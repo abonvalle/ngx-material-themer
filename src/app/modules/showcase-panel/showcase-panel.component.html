@@ -1,0 +1,162 @@
+<div class="flex-wrapper">
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row>
+      <span>Second Line</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Card Title</mat-card-title>
+      <mat-card-subtitle>Card Subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      Card Content
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Button</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-button-toggle-group>
+    <mat-button-toggle value="left">Left</mat-button-toggle>
+    <mat-button-toggle value="center">Center</mat-button-toggle>
+    <mat-button-toggle value="right">Right</mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-checkbox>Checkbox</mat-checkbox>
+
+  <mat-chip-listbox>
+    <mat-chip-option>One fish</mat-chip-option>
+    <mat-chip-option>Two fish</mat-chip-option>
+    <mat-chip-option color="accent" selected>Accent fish</mat-chip-option>
+    <mat-chip-option color="warn">Warn fish</mat-chip-option>
+  </mat-chip-listbox>
+
+  <mat-datepicker></mat-datepicker>
+  <!-- <div>
+  <mat-dialog-content>
+    Dialog Content
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button>Button</button>
+  </mat-dialog-actions>
+</div> -->
+  <mat-divider></mat-divider>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Panel Title</mat-panel-title>
+      <mat-panel-description>Panel Description</mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+      Panel Content
+    </mat-panel-description>
+  </mat-expansion-panel>
+  <mat-form-field>
+    <mat-label>Input</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Textarea</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>Tile 1</mat-grid-tile>
+    <mat-grid-tile>Tile 2</mat-grid-tile>
+  </mat-grid-list>
+  <mat-icon>favorite</mat-icon>
+  <mat-list>
+    <mat-list-item>List Item 1</mat-list-item>
+    <mat-list-item>List Item 2</mat-list-item>
+    <mat-list-item>List Item 3</mat-list-item>
+  </mat-list>
+  <mat-menu>
+    <button mat-menu-item>Menu Item 1</button>
+    <button mat-menu-item>Menu Item 2</button>
+    <button mat-menu-item>Menu Item 3</button>
+  </mat-menu>
+  <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+  <mat-radio-group>
+    <mat-radio-button value="option1">Option 1</mat-radio-button>
+    <mat-radio-button value="option2">Option 2</mat-radio-button>
+    <mat-radio-button value="option3">Option 3</mat-radio-button>
+  </mat-radio-group>
+  <mat-select>
+    <mat-option value="option1">Option 1</mat-option>
+    <mat-option value="option2">Option 2</mat-option>
+    <mat-option value="option3">Option 3</mat-option>
+  </mat-select>
+  <mat-slider>
+    <input matSliderThumb>
+  </mat-slider>
+
+  <mat-spinner></mat-spinner>
+  <mat-stepper>
+    <mat-step label="Step 1"></mat-step>
+    <mat-step label="Step 2"></mat-step>
+    <mat-step label="Step 3"></mat-step>
+  </mat-stepper>
+  <mat-table>
+    <ng-container matColumnDef="column1">
+      <mat-header-cell *matHeaderCellDef>Column 1</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="column2">
+      <mat-header-cell *matHeaderCellDef>Column 2</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="['column1', 'column2']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['column1', 'column2'];"></mat-row>
+  </mat-table>
+  <mat-tab-group>
+    <mat-tab label="Tab 1">Tab Content 1</mat-tab>
+    <mat-tab label="Tab 2">Tab Content 2</mat-tab>
+    <mat-tab label="Tab 3">Tab Content 3</mat-tab>
+  </mat-tab-group>
+  <mat-toolbar color="accent">Toolbar</mat-toolbar>
+  <button mat-raised-button matTooltip="Info about the action"
+    aria-label="Button that displays a tooltip when focused or hovered over">
+    Tooltip
+  </button>
+
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+      <!-- use a disabled button to provide padding for tree leaf -->
+      <button mat-icon-button disabled></button>
+      {{node.name}}
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+      <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      {{node.name}}
+    </mat-tree-node>
+  </mat-tree>
+
+</div>

@@ -1,0 +1,30 @@
+<div #main class="absolute z-50 p-8 dark:bg-black bg-white rounded-md" [ngClass]="{'hidden': closed()}" tabindex="-1"
+  (blur)="close()">
+  <div class="flex gap-6">
+    <div #picker></div>
+    <div class="flex flex-col justify-center">
+      <fieldset class="p-2 border-[1px] dark:border-white/40 border-black/40 rounded-md flex flex-col gap-2">
+        <div>
+          <label for="hexCol" class="text-sm dark:text-white/80 text-black/80 mr-2">hex:</label>
+          <input type="text" id="hexCol" [value]="colorHex" (input)="updateColor($event)"
+            class="w-[4.2rem] h-6 text-black">
+        </div>
+        <div>
+          <label for="rgbCol" class="text-sm dark:text-white/80 text-black/80 mr-2">rgb:</label>
+          <input type="text" id="rgbCol" [value]="colorRGB" (input)="updateColor($event)"
+            class="w-[8.8rem] h-6 text-black">
+        </div>
+        <div>
+          <label for="hslCol" class="text-sm dark:text-white/80 text-black/80 mr-2">hsl:</label>
+          <input id="hslCol" type="text" [value]="colorHsl" (input)="updateColor($event)"
+            class="w-[8.8rem] h-6 text-black">
+        </div>
+      </fieldset>
+      <button mat-raised-button color="accent" (click)="removeColor()" class="mt-2">Remove color</button>
+    </div>
+  </div>
+
+  <a href="https://iro.js.org" class="absolute left-1 bottom-1 text-xs dark:text-white/80 text-black/80">
+    Color picker from iro.js ❤️
+  </a>
+</div>

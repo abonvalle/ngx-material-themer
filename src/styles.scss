@@ -1,9 +1,10 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -12,28 +13,61 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
+
 $angular-material-themer-primary: mat.define-palette(mat.$indigo-palette);
-$angular-material-themer-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$angular-material-themer-accent: mat.define-palette(mat.$pink-palette);
 
 // The warn palette is optional (defaults to red).
 $angular-material-themer-warn: mat.define-palette(mat.$red-palette);
-
+$my-typography: mat.define-typography-config();
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$angular-material-themer-theme: mat.define-light-theme((
-  color: (
-    primary: $angular-material-themer-primary,
-    accent: $angular-material-themer-accent,
-    warn: $angular-material-themer-warn,
+$angular-material-themer-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-material-themer-primary,
+      accent: $angular-material-themer-accent,
+      warn: $angular-material-themer-warn,
+    ),
+    typography: $my-typography,
   )
-));
+);
+
+$angular-material-themer-theme-dark: mat.define-dark-theme(
+  (
+    color: (
+      primary: $angular-material-themer-primary,
+      accent: $angular-material-themer-accent,
+      warn: $angular-material-themer-warn,
+    ),
+    typography: $my-typography,
+  )
+);
+
+// Apply the dark theme by default
+@include mat.all-component-themes($angular-material-themer-theme-dark);
+@include mat.typography-hierarchy($angular-material-themer-theme-dark);
+
+// Apply the light theme only when the user prefers light themes.
+@media (prefers-color-scheme: light) {
+  // Use the `-color` mixins to only apply color styles without reapplying the same
+  // typography and density styles.
+  @include mat.all-component-themes($angular-material-themer-theme);
+  @include mat.typography-hierarchy($angular-material-themer-theme);
+}
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($angular-material-themer-theme);
+// @include mat.all-component-themes($angular-material-themer-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

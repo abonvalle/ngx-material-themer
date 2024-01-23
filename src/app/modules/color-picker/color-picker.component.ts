@@ -26,7 +26,8 @@ import iro from '@jaames/iro';
 export class ColorPickerComponent implements AfterViewInit {
   @ViewChild('picker') picker!: ElementRef<HTMLElement>;
   @ViewChild('main') main!: ElementRef<HTMLElement>;
-  @Input() color: string = '#000';
+  @Input() color: string | null = null;
+  private _color: string;
   @Output() colorChange = new EventEmitter<string>();
   closed = signal(true);
   colorPicker!: iro.ColorPicker;
@@ -40,19 +41,25 @@ export class ColorPickerComponent implements AfterViewInit {
     return this.colorPicker?.color?.hslString ?? '';
   }
 
-  constructor(private _cdr: ChangeDetectorRef) {}
+  constructor(private _cdr: ChangeDetectorRef) {
+    this._color = this.color ?? '#ffffff';
+  }
   @ViewChild('picker') pickerRef!: ElementRef<HTMLElement>;
   ngAfterViewInit() {
     //@ts-ignore
     this.colorPicker = new iro.ColorPicker(this.pickerRef?.nativeElement, {
       width: 120,
-      color: this.color,
+      color: this._color,
+      layoutDirection: 'horizontal',
+      sliderSize: 10,
+      borderWidth: 1,
+      borderColor: '#fff',
     });
     this._cdr.markForCheck();
 
     this.colorPicker.on('color:change', (color: any) => {
       this.main.nativeElement.focus();
-      this.color = color.hexString;
+      this._color = color.hexString;
       this.colorChange.emit(color.hexString);
       this._cdr.markForCheck();
     });
@@ -63,8 +70,9 @@ export class ColorPickerComponent implements AfterViewInit {
     } catch (e) {}
   }
   removeColor() {
-    this.color = '';
+    this._color = '';
     this.colorChange.emit('');
+    this._cdr.markForCheck();
     this.close();
   }
   close() {

@@ -1,4 +1,11 @@
-import { Component, Input, ViewChild, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  signal,
+} from '@angular/core';
 import { ColorPickerComponent } from '../color-picker/color-picker.component';
 import { CommonModule } from '@angular/common';
 
@@ -11,8 +18,13 @@ import { CommonModule } from '@angular/common';
 })
 export class ColorBrickComponent {
   @ViewChild('colorPicker') colorPicker!: ColorPickerComponent;
-  @Input() color: string = '';
+  @Input() color: string | null = null;
+  @Output() colorChange = new EventEmitter<string>();
   openColorPicker() {
     this.colorPicker?.open();
+  }
+  updateColor(color: string) {
+    this.color = color;
+    this.colorChange.emit(color);
   }
 }

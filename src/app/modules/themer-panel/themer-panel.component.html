@@ -1,6 +1,6 @@
-<div class="flex flex-col justify-center p-8">
+<div class="flex flex-col justify-center p-8 gap-8">
   <h1 class="mat-headline-4 whitespace-nowrap">ng Material Themer</h1>
-  <mat-form-field>
+  <mat-form-field class="!mb-0">
     <mat-label>Current theme</mat-label>
     <mat-select>
       @for (theme of themes; track theme.value) {
@@ -13,7 +13,10 @@
     <mat-icon class="mat-icon">brightness_6</mat-icon>
     <span>Toggle Dark/Light mode</span>
   </button>
-  <app-color-palette [name]="'primary'"></app-color-palette>
-  <app-color-palette [name]="'accent'"></app-color-palette>
-  <app-color-palette [name]="'warn'"></app-color-palette>
+
+  <div class="flex flex-col gap-5">
+    <app-color-palette [name]="'primary'"></app-color-palette>
+    <app-color-palette [name]="'accent'"></app-color-palette>
+    <app-color-palette [name]="'warn'"></app-color-palette>
+  </div>
 </div>

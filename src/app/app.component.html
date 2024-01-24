@@ -1,8 +1,8 @@
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened class="themer-panel">
+<mat-drawer-container class="overflow-auto " [autosize]="true" [ngClass]="{'dark':isDarkMode()}">
+  <mat-drawer mode="side" opened class="overflow-auto max-w-[40%]">
     <app-themer-panel></app-themer-panel>
   </mat-drawer>
-  <mat-drawer-content class="pad">
+  <mat-drawer-content class="p-7">
     <app-showcase-panel></app-showcase-panel>
   </mat-drawer-content>
 </mat-drawer-container>

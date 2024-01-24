@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { ThemerPanelComponent } from './modules/themer-panel/themer-panel.component';
 import { ShowcasePanelComponent } from './modules/showcase-panel/showcase-panel.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ThemeModeService } from './modules/theme-mode.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,4 +20,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 })
 export class AppComponent {
   title = 'angular-material-themer';
+  isDarkMode = this._themeModeService.isDarkMode;
+  constructor(private _themeModeService: ThemeModeService) {}
 }

@@ -1,22 +1,91 @@
-<div class="flex flex-col justify-center p-8 gap-8">
-  <h1 class="mat-headline-4 whitespace-nowrap">ng Material Themer</h1>
-  <mat-form-field class="!mb-0">
-    <mat-label>Current theme</mat-label>
-    <mat-select>
-      @for (theme of themes; track theme.value) {
-      <mat-option [value]="theme.value">{{theme.label}}</mat-option>
+<div class="flex flex-col justify-center p-8 gap-8 overflow-auto">
+  <div>
+    <h1 class="mat-headline-4 whitespace-nowrap !mb-1">ng Material Themer</h1>
+    <a class="flex items-center">
+      @if(isDarkMode()){
+      <img src="assets/svg/github-mark-white.svg" alt="github icon" width="28">
+      }@else{
+      <img src="assets/svg/github-mark.svg" alt="github icon" width="28">
       }
-    </mat-select>
-  </mat-form-field>
+      Give it a star on Github!
+    </a>
+  </div>
+  <div class="flex flex-col justify-center ">
+    <h5 class="mat-typography">Use preset themes :</h5>
+    <mat-chip-listbox aria-label="Preset theme selection" class="mb-4">
+      @for (theme of themes; track theme.value) {
+      <mat-chip-option [value]="theme.value">{{theme.label}}</mat-chip-option>
+      }
+    </mat-chip-listbox>
 
-  <button mat-button>
-    <mat-icon class="mat-icon">brightness_6</mat-icon>
-    <span>Toggle Dark/Light mode</span>
+    <div class="flex items-center ">
+      Dark mode
+      <mat-icon class="mat-icon">brightness_2</mat-icon>
+      <mat-slide-toggle [hideIcon]="true" class="mx-2" [checked]="!isDarkMode()" (change)="updateMode()">
+      </mat-slide-toggle>
+      <mat-icon class="mat-icon">brightness_7</mat-icon>
+      Light mode
+    </div>
+
+  </div>
+  <mat-divider></mat-divider>
+  <div>
+    <h5 class="mat-typography">Light palette</h5>
+    <div class="flex flex-col gap-5">
+      <mat-form-field class="">
+        <mat-label>Palette Name</mat-label>
+        <span matTextPrefix>$&nbsp;</span>
+        <input matInput placeholder="Ex. light-palette" value="light-palette">
+      </mat-form-field>
+      <app-color-palette [name]="'primary'"></app-color-palette>
+      <app-color-palette [name]="'accent'"></app-color-palette>
+      <app-color-palette [name]="'warn'"></app-color-palette>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  @if(!darkModePal()) {
+  <button mat-raised-button (click)="addDarkModePal()" class="max-w-64">
+    <mat-icon class="mat-icon">add</mat-icon>
+    <span>Add dark mode palette</span>
   </button>
-
-  <div class="flex flex-col gap-5">
-    <app-color-palette [name]="'primary'"></app-color-palette>
-    <app-color-palette [name]="'accent'"></app-color-palette>
-    <app-color-palette [name]="'warn'"></app-color-palette>
+  } @else {
+  <div>
+    <h5 class="mat-typography">Dark palette</h5>
+    <div class="flex flex-col gap-5">
+      <mat-form-field class="">
+        <mat-label>Palette Name</mat-label>
+        <span matTextPrefix>$&nbsp;</span>
+        <input matInput placeholder="Ex. dark-palette" value="dark-palette">
+      </mat-form-field>
+      <app-color-palette [name]="'primary'"></app-color-palette>
+      <app-color-palette [name]="'accent'"></app-color-palette>
+      <app-color-palette [name]="'warn'"></app-color-palette>
+    </div>
+  </div>
+  <button mat-raised-button color="warn" (click)="removeDarkModePal()" class="max-w-64">
+    <mat-icon class="mat-icon">remove</mat-icon>
+    <span>Remove dark mode palette</span>
+  </button>
+  }
+  <mat-divider></mat-divider>
+  <div>
+    <mat-form-field class="!mb-0 w-32">
+      <mat-label>Style lang</mat-label>
+      <mat-select [(value)]="cssMode" class="!text-sm">
+        <mat-option value="CSS">CSS</mat-option>
+        <mat-option value="SASS">SCSS/SASS</mat-option>
+        <mat-option value="LESS">LESS</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="flex gap-5">
+      <button mat-raised-button color="accent" class="max-w-64">
+        <mat-icon class="mat-icon">download</mat-icon>
+        <span>Download style file</span>
+      </button>
+      <button mat-raised-button color="accent" class="max-w-64">
+        <mat-icon class="mat-icon">content_copy</mat-icon>
+        <span>Copy style</span>
+      </button>
+    </div>
   </div>
 </div>

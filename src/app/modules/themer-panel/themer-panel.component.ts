@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Signal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ColorPickerComponent } from '../color-picker/color-picker.component';
 import { ColorBrickComponent } from '../color-brick/color-brick.component';
 import { ColorPaletteComponent } from '../color-palette/color-palette.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ThemeModeService } from '../theme-mode.service';
 
 @Component({
   selector: 'app-themer-panel',
@@ -16,18 +24,51 @@ import { MatSelectModule } from '@angular/material/select';
     ColorBrickComponent,
     ColorPaletteComponent,
     MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatSlideToggleModule,
   ],
   templateUrl: './themer-panel.component.html',
   styleUrl: './themer-panel.component.scss',
 })
 export class ThemerPanelComponent {
+  darkModePal = signal(false);
+  cssMode: 'CSS' | 'SASS' | 'LESS' = 'CSS';
   themes = [
     { value: 'd&a', label: 'Deep Purple & Amber' },
     { value: 'dark', label: 'Indigo & Pink' },
     { value: 'light', label: 'Pink & Blue-grey' },
     { value: 'purple', label: 'Purple & Green' },
-    { value: 'custom', label: 'Custom' },
   ];
+  isDarkMode = this._themeModeService.isDarkMode;
+  constructor(
+    public dialog: MatDialog,
+    private _themeModeService: ThemeModeService
+  ) {}
+
+  addDarkModePal() {
+    this.darkModePal.update((_) => true);
+  }
+  removeDarkModePal() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete dark mode palette',
+        msg: 'Its colors will be lost forever.',
+        yes: 'Delete the palette',
+        no: 'Cancel',
+      },
+      width: '400px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.warn('The dialog was closed', result);
+      result && this.darkModePal.update((_) => false);
+    });
+  }
+  updateMode() {
+    this._themeModeService.toggleThemeMode();
+  }
 }
 
 /** https://stackblitz.com/edit/angular-material-theming-playground?file=src%2Fapp%2Fapp.component.ts

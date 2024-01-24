@@ -12,7 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ThemeModeService } from '../theme-mode.service';
+import { ThemeService } from '../services/theme-mode.service';
+import { ThemeComponent } from '../theme/theme.component';
 
 @Component({
   selector: 'app-themer-panel',
@@ -29,12 +30,13 @@ import { ThemeModeService } from '../theme-mode.service';
     MatDividerModule,
     MatChipsModule,
     MatSlideToggleModule,
+    ThemeComponent,
   ],
   templateUrl: './themer-panel.component.html',
   styleUrl: './themer-panel.component.scss',
 })
 export class ThemerPanelComponent {
-  darkModePal = signal(false);
+  secondeTheme = signal(false);
   cssMode: 'CSS' | 'SASS' | 'LESS' = 'CSS';
   themes = [
     { value: 'd&a', label: 'Deep Purple & Amber' },
@@ -42,32 +44,29 @@ export class ThemerPanelComponent {
     { value: 'light', label: 'Pink & Blue-grey' },
     { value: 'purple', label: 'Purple & Green' },
   ];
-  isDarkMode = this._themeModeService.isDarkMode;
-  constructor(
-    public dialog: MatDialog,
-    private _themeModeService: ThemeModeService
-  ) {}
+  isDarkMode = this._themeService.isDarkMode;
+  constructor(public dialog: MatDialog, private _themeService: ThemeService) {}
 
-  addDarkModePal() {
-    this.darkModePal.update((_) => true);
+  addSecondTheme() {
+    this.secondeTheme.update((_) => true);
   }
-  removeDarkModePal() {
+  removeSecondTheme() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: 'Delete dark mode palette',
-        msg: 'Its colors will be lost forever.',
-        yes: 'Delete the palette',
+        title: 'Delete second theme',
+        msg: 'Its palettes & colors will be lost forever.',
+        yes: 'Delete the theme',
         no: 'Cancel',
       },
       width: '400px',
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.warn('The dialog was closed', result);
-      result && this.darkModePal.update((_) => false);
+      result && this.secondeTheme.update((_) => false);
     });
   }
   updateMode() {
-    this._themeModeService.toggleThemeMode();
+    this._themeService.toggleThemeMode();
   }
 }
 

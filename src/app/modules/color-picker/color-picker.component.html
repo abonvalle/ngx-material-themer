@@ -1,5 +1,5 @@
-<div #main class="absolute z-50 p-4 dark:bg-black bg-white rounded-md" [ngClass]="{'hidden': closed()}" tabindex="-1"
-  (blur)="close()">
+<div #main class="absolute z-50 p-4 dark:bg-black bg-white rounded-md border-[1px] border-black/50 dark:border-white/50"
+  [ngClass]="{'hidden': closed()}" tabindex="-1" (blur)="close()">
   <div class="flex gap-6">
     <div #picker></div>
     <div class="flex flex-col justify-center">

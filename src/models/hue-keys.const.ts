@@ -1,4 +1,4 @@
-export const paletteKeys = [
+export const hueKeys = [
   '050',
   '100',
   '200',
@@ -13,4 +13,4 @@ export const paletteKeys = [
   'A200',
   'A400',
   'A700',
-];
+] as const;

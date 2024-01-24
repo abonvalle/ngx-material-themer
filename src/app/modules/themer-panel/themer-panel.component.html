@@ -1,11 +1,11 @@
 <div class="flex flex-col justify-center p-8 gap-8 overflow-auto">
   <div>
-    <h1 class="mat-headline-4 whitespace-nowrap !mb-1">ng Material Themer</h1>
-    <a class="flex items-center">
+    <h1 class="mat-headline-4 whitespace-nowrap !mb-3">ng Material Themer</h1>
+    <a class="flex items-center gap-2 cursor-pointer underline">
       @if(isDarkMode()){
-      <img src="assets/svg/github-mark-white.svg" alt="github icon" width="28">
+      <img src="assets/svg/github-mark-white.svg" alt="github icon" width="20">
       }@else{
-      <img src="assets/svg/github-mark.svg" alt="github icon" width="28">
+      <img src="assets/svg/github-mark.svg" alt="github icon" width="20">
       }
       Give it a star on Github!
     </a>
@@ -29,42 +29,23 @@
 
   </div>
   <mat-divider></mat-divider>
-  <div>
-    <h5 class="mat-typography">Light palette</h5>
-    <div class="flex flex-col gap-5">
-      <mat-form-field class="">
-        <mat-label>Palette Name</mat-label>
-        <span matTextPrefix>$&nbsp;</span>
-        <input matInput placeholder="Ex. light-palette" value="light-palette">
-      </mat-form-field>
-      <app-color-palette [name]="'primary'"></app-color-palette>
-      <app-color-palette [name]="'accent'"></app-color-palette>
-      <app-color-palette [name]="'warn'"></app-color-palette>
-    </div>
-  </div>
+  <app-theme name="my-custom-theme" label="Custom theme"></app-theme>
   <mat-divider></mat-divider>
-  @if(!darkModePal()) {
-  <button mat-raised-button (click)="addDarkModePal()" class="max-w-64">
+  @if(!secondeTheme()) {
+  <button mat-raised-button (click)="addSecondTheme()" class="">
     <mat-icon class="mat-icon">add</mat-icon>
-    <span>Add dark mode palette</span>
+    <span>Add a 2nd theme
+      <span class="text-xs italic text-black/50">
+        (Ex. dark mode)
+      </span>
+    </span>
   </button>
   } @else {
-  <div>
-    <h5 class="mat-typography">Dark palette</h5>
-    <div class="flex flex-col gap-5">
-      <mat-form-field class="">
-        <mat-label>Palette Name</mat-label>
-        <span matTextPrefix>$&nbsp;</span>
-        <input matInput placeholder="Ex. dark-palette" value="dark-palette">
-      </mat-form-field>
-      <app-color-palette [name]="'primary'"></app-color-palette>
-      <app-color-palette [name]="'accent'"></app-color-palette>
-      <app-color-palette [name]="'warn'"></app-color-palette>
-    </div>
-  </div>
-  <button mat-raised-button color="warn" (click)="removeDarkModePal()" class="max-w-64">
+  <app-theme name="my-custom-dark-theme" label="Second custom theme"></app-theme>
+
+  <button mat-raised-button color="warn" (click)="removeSecondTheme()" class="max-w-64">
     <mat-icon class="mat-icon">remove</mat-icon>
-    <span>Remove dark mode palette</span>
+    <span>Remove second theme</span>
   </button>
   }
   <mat-divider></mat-divider>

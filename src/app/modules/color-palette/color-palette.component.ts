@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Signal, signal } from '@angular/core';
 import { ColorBrickComponent } from '../color-brick/color-brick.component';
 import { CommonModule } from '@angular/common';
-import { paletteKeys } from '../../../models/palette-keys.const';
+import { hueKeys } from '../../../models/hue-keys.const';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { Color } from '../../../models/color.interface';
@@ -29,7 +29,7 @@ export class ColorPaletteComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {
-    paletteKeys.forEach((key) => {
+    hueKeys.forEach((key) => {
       this.palette.set(key, '');
     });
   }
@@ -61,7 +61,7 @@ export class ColorPaletteComponent implements OnInit {
   }
   updatePaletteColors(colors: string) {
     const paletteColors = this.computeColors(colors);
-    paletteKeys.forEach((key, index) => {
+    hueKeys.forEach((key, index) => {
       this.palette.set(key, paletteColors[index].hex);
     });
     this.mainColor = this.palette.get('500') || '';
@@ -73,10 +73,10 @@ export class ColorPaletteComponent implements OnInit {
         `--theme-${theme}-${color.name}`,
         color.hex
       );
-      document.documentElement.style.setProperty(
-        `--theme-${theme}-contrast-${color.name}`,
-        color.darkContrast ? 'rgba(black, 0.87)' : 'white'
-      );
+      // document.documentElement.style.setProperty(
+      // `--theme-${theme}-contrast-${color.name}`,
+      // color.darkContrast ? 'rgba(black, 0.87)' : 'white'
+      // );
     });
   }
 
@@ -104,7 +104,7 @@ export class ColorPaletteComponent implements OnInit {
     return {
       name: name,
       hex: c.toHexString(),
-      darkContrast: c.isLight(),
+      // darkContrast: c.isLight(),
     };
   }
 }

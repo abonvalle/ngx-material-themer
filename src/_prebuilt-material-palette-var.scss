@@ -1,0 +1,23 @@
+@import "~@angular/material/theming/_palette.scss";
+
+:export {
+  red-palette: $red-palette;
+  pink-palette: $pink-palette;
+  purple-palette: $purple-palette;
+  deep-purple-palette: $deep-purple-palette;
+  indigo-palette: $indigo-palette;
+  blue-palette: $blue-palette;
+  light-blue-palette: $light-blue-palette;
+  cyan-palette: $cyan-palette;
+  teal-palette: $teal-palette;
+  green-palette: $green-palette;
+  light-green-palette: $light-green-palette;
+  lime-palette: $lime-palette;
+  yellow-palette: $yellow-palette;
+  amber-palette: $amber-palette;
+  orange-palette: $orange-palette;
+  deep-orange-palette: $deep-orange-palette;
+  brown-palette: $brown-palette;
+  grey-palette: $grey-palette;
+  blue-grey-palette: $blue-grey-palette;
+}

@@ -1,0 +1,13 @@
+<div>
+  <h5 class="mat-typography">{{label}}</h5>
+  <div class="flex flex-col gap-5">
+    <mat-form-field class="">
+      <mat-label>Theme Name</mat-label>
+      <span matTextPrefix>$&nbsp;</span>
+      <input matInput placeholder="Ex. my-custom-theme" [value]="name" (input)="updateName($event)">
+    </mat-form-field>
+    <app-color-palette [name]="'primary'"></app-color-palette>
+    <app-color-palette [name]="'accent'"></app-color-palette>
+    <app-color-palette [name]="'warn'"></app-color-palette>
+  </div>
+</div>

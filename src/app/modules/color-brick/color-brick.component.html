@@ -1,4 +1,4 @@
 <div (click)="openColorPicker()" [ngStyle]="{'background-color': color}"
-  class="w-12 h-8 bg-black/10 dark:border-black border-white border-[1px] cursor-pointer dark:hover:border-white/60 hover:border-black/60">
+  class="w-12 h-8 bg-black/10 border-transparent border-[1px] cursor-pointer dark:hover:border-white/60 hover:border-black/60">
 </div>
 <app-color-picker #colorPicker [color]="color" (colorChange)="updateColor($event)"></app-color-picker>

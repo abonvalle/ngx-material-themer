@@ -1,23 +1,29 @@
-import { Component, Input, OnInit, Signal, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  Signal,
+  effect,
+  signal
+} from '@angular/core';
 import { ColorBrickComponent } from '../color-brick/color-brick.component';
 import { CommonModule } from '@angular/common';
-import { hueKeys } from '../../../models/hue-keys.const';
+import { hueKeys } from '../../../../models/hue-keys.const';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { Color } from '../../../models/color.interface';
+import { Color } from '../../../../models/color.interface';
+
 declare const tinycolor: any;
 
 @Component({
   selector: 'app-color-palette',
   standalone: true,
-  imports: [
-    CommonModule,
-    ColorBrickComponent,
-    MatExpansionModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, ColorBrickComponent, MatExpansionModule, MatIconModule],
   templateUrl: './color-palette.component.html',
   styleUrl: './color-palette.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorPaletteComponent implements OnInit {
   @Input({ required: true }) name!: string;
@@ -27,7 +33,7 @@ export class ColorPaletteComponent implements OnInit {
   smoothHideTimeout: number | null = null;
   mainColor = this.palette.get('500') || '';
 
-  constructor() {}
+  constructor(private _cdrRef: ChangeDetectorRef) {}
   ngOnInit(): void {
     hueKeys.forEach((key) => {
       this.palette.set(key, '');
@@ -38,14 +44,12 @@ export class ColorPaletteComponent implements OnInit {
       //Smooth hide
       this.smoothHide();
     } else {
-      this.smoothHideTimeout !== null &&
-        window.clearTimeout(this.smoothHideTimeout);
+      this.smoothHideTimeout !== null && window.clearTimeout(this.smoothHideTimeout);
       this.showLabel.update((_) => true);
     }
   }
   smoothHide() {
-    this.smoothHideTimeout !== null &&
-      window.clearTimeout(this.smoothHideTimeout);
+    this.smoothHideTimeout !== null && window.clearTimeout(this.smoothHideTimeout);
 
     this.smoothHideTimeout = window.setTimeout(() => {
       this.showLabel.update((_) => false);
@@ -69,10 +73,7 @@ export class ColorPaletteComponent implements OnInit {
 
   updateTheme(colors: Color[], theme: string) {
     colors.forEach((color) => {
-      document.documentElement.style.setProperty(
-        `--theme-${theme}-${color.name}`,
-        color.hex
-      );
+      document.documentElement.style.setProperty(`--theme-${theme}-${color.name}`, color.hex);
       // document.documentElement.style.setProperty(
       // `--theme-${theme}-contrast-${color.name}`,
       // color.darkContrast ? 'rgba(black, 0.87)' : 'white'
@@ -95,7 +96,7 @@ export class ColorPaletteComponent implements OnInit {
       this.getColorObject(tinycolor(hex).lighten(50).saturate(30), 'A100'),
       this.getColorObject(tinycolor(hex).lighten(30).saturate(30), 'A200'),
       this.getColorObject(tinycolor(hex).lighten(10).saturate(15), 'A400'),
-      this.getColorObject(tinycolor(hex).lighten(5).saturate(5), 'A700'),
+      this.getColorObject(tinycolor(hex).lighten(5).saturate(5), 'A700')
     ];
   }
 
@@ -103,7 +104,7 @@ export class ColorPaletteComponent implements OnInit {
     const c = tinycolor(value);
     return {
       name: name,
-      hex: c.toHexString(),
+      hex: c.toHexString()
       // darkContrast: c.isLight(),
     };
   }

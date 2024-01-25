@@ -1,21 +1,14 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  effect,
-  signal,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, effect, signal } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ColorPaletteComponent } from '../color-palette/color-palette.component';
 import { MatInputModule } from '@angular/material/input';
+import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
 
 @Component({
   selector: 'app-theme',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, ColorPaletteComponent],
   templateUrl: './theme.component.html',
-  styleUrl: './theme.component.scss',
+  styleUrl: './theme.component.scss'
 })
 export class ThemeComponent {
   @Input({ required: true }) name!: string;

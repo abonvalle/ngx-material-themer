@@ -1,19 +1,19 @@
-import { Component, Signal, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ColorPickerComponent } from '../color-picker/color-picker.component';
-import { ColorBrickComponent } from '../color-brick/color-brick.component';
-import { ColorPaletteComponent } from '../color-palette/color-palette.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ThemeService } from '../services/theme-mode.service';
 import { ThemeComponent } from '../theme/theme.component';
+import { ColorBrickComponent } from '@features/color-brick/color-brick.component';
+import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
+import { ToolPanelComponent } from '@modules/tool-panel/tool-panel.component';
+import { ThemeService } from '@modules/services/theme-mode.service';
+import { ConfirmDialogComponent } from '@features/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-themer-panel',
@@ -21,7 +21,6 @@ import { ThemeComponent } from '../theme/theme.component';
   imports: [
     MatButtonModule,
     MatIconModule,
-    ColorPickerComponent,
     ColorBrickComponent,
     ColorPaletteComponent,
     MatSelectModule,
@@ -31,9 +30,10 @@ import { ThemeComponent } from '../theme/theme.component';
     MatChipsModule,
     MatSlideToggleModule,
     ThemeComponent,
+    ToolPanelComponent
   ],
   templateUrl: './themer-panel.component.html',
-  styleUrl: './themer-panel.component.scss',
+  styleUrl: './themer-panel.component.scss'
 })
 export class ThemerPanelComponent {
   secondeTheme = signal(false);
@@ -42,10 +42,13 @@ export class ThemerPanelComponent {
     { value: 'd&a', label: 'Deep Purple & Amber' },
     { value: 'dark', label: 'Indigo & Pink' },
     { value: 'light', label: 'Pink & Blue-grey' },
-    { value: 'purple', label: 'Purple & Green' },
+    { value: 'purple', label: 'Purple & Green' }
   ];
   isDarkMode = this._themeService.isDarkMode;
-  constructor(public dialog: MatDialog, private _themeService: ThemeService) {}
+  constructor(
+    public dialog: MatDialog,
+    private _themeService: ThemeService
+  ) {}
 
   addSecondTheme() {
     this.secondeTheme.update((_) => true);
@@ -56,9 +59,9 @@ export class ThemerPanelComponent {
         title: 'Delete second theme',
         msg: 'Its palettes & colors will be lost forever.',
         yes: 'Delete the theme',
-        no: 'Cancel',
+        no: 'Cancel'
       },
-      width: '400px',
+      width: '400px'
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.warn('The dialog was closed', result);

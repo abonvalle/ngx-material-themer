@@ -3,6 +3,14 @@
   "compileOnSave": false,
   "include": ["src"],
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@features/*": ["src/app/modules/features/*"],
+      "@models/*": ["src/models/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@shared/*": ["src/app/modules/shared/*"],
+      "@assets/*": ["src/assets/*"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -13,6 +21,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "sourceMap": true,
+    "allowJs": true,
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "node",

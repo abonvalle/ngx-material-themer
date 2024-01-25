@@ -1,0 +1,50 @@
+<div class="flex h-full flex-col items-start justify-start gap-2">
+  <span class="">{{ name }}</span>
+  <div class="flex h-full flex-wrap items-center justify-start">
+    @if (!expanded()) {
+      <app-color-brick></app-color-brick>
+      <div
+        (mouseenter)="toggleShowLabel(true)"
+        (mouseleave)="toggleShowLabel(false)"
+        class="relative ml-2 flex h-full min-h-8 w-28 items-center justify-start">
+        <span
+          (click)="setExpanded(true)"
+          class="cursor-pointer whitespace-nowrap text-xs transition-opacity duration-300"
+          [ngClass]="{ 'opacity-0': !showLabel() }"
+          >Expand palette</span
+        >
+        <mat-icon
+          (click)="setExpanded(true)"
+          class="absolute left-0 z-0 cursor-pointer transition-transform duration-300"
+          [ngClass]="{ 'translate-x-20': showLabel() }"
+          >chevron_right</mat-icon
+        >
+      </div>
+    } @else {
+      @for (color of palette | keyvalue; track color.key) {
+        <div class="flex flex-col items-center justify-center gap-2">
+          <app-color-brick>
+            <span class="text-sm">{{ color.key }}</span>
+          </app-color-brick>
+        </div>
+      }
+      <div
+        (mouseenter)="toggleShowLabel(true)"
+        (mouseleave)="toggleShowLabel(false)"
+        class="relative ml-2 flex h-full min-h-8 w-28 items-center justify-start">
+        <span
+          (click)="setExpanded(false)"
+          class="cursor-pointer whitespace-nowrap text-xs transition-opacity duration-300"
+          [ngClass]="{ 'opacity-0': !showLabel() }"
+          >Reduce palette</span
+        >
+        <mat-icon
+          (click)="setExpanded(false)"
+          class="absolute left-0 z-0 cursor-pointer transition-transform duration-300"
+          [ngClass]="{ 'translate-x-20': showLabel() }">
+          chevron_left
+        </mat-icon>
+      </div>
+    }
+  </div>
+</div>

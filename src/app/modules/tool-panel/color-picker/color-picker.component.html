@@ -1,0 +1,55 @@
+<div class="z-50 flex h-full w-full items-center justify-center p-4">
+  <div class="flex gap-6">
+    <div #picker></div>
+    <div class="flex flex-col justify-center">
+      <fieldset class="flex flex-col gap-2 rounded-md border-[1px] border-black/40 p-2 dark:border-white/40">
+        <div>
+          <label for="hexCol" class="mr-2 text-sm text-black/80 dark:text-white/80">hex:</label>
+          <input
+            type="text"
+            id="hexCol"
+            [value]="colorHex"
+            (input)="updateColor($event)"
+            class="h-6 w-[4.2rem] text-black" />
+        </div>
+        <div>
+          <label for="rgbCol" class="mr-2 text-sm text-black/80 dark:text-white/80">rgb:</label>
+          <input
+            type="text"
+            id="rgbCol"
+            [value]="colorRGB"
+            (input)="updateColor($event)"
+            class="h-6 w-[8.8rem] text-black" />
+        </div>
+        <div>
+          <label for="hslCol" class="mr-2 text-sm text-black/80 dark:text-white/80">hsl:</label>
+          <input
+            id="hslCol"
+            type="text"
+            [value]="colorHsl"
+            (input)="updateColor($event)"
+            class="h-6 w-[8.8rem] text-black" />
+        </div>
+      </fieldset>
+      @if (showContrastOptions) {
+        <mat-checkbox [checked]="automaticContrast()" (change)="updateAutomaticContrast($event)">
+          <span class="text-xs" matTooltip="Uncheck to specify dark/light text">
+            Determine text contrast automatically
+          </span>
+        </mat-checkbox>
+        @if (!automaticContrast()) {
+          <div class="flex items-center gap-2">
+            <label for="">Dark text</label>
+            <mat-slide-toggle [hideIcon]="true"></mat-slide-toggle>
+            <label for="">Light text</label>
+          </div>
+        }
+      }
+      <button mat-raised-button color="accent" (click)="removeColor()" class="mt-2">Remove color</button>
+    </div>
+  </div>
+
+  <a href="https://iro.js.org" class="absolute bottom-2 left-2 text-xs text-black/80 dark:text-white/80">
+    Color picker from iro.js ❤️
+  </a>
+</div>

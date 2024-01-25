@@ -11,11 +11,13 @@ import {
 import { ColorPickerComponent } from '../../tool-panel/color-picker/color-picker.component';
 import { CommonModule } from '@angular/common';
 import { ToolPanelService } from '../../tool-panel/tool-panel.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-color-brick',
   standalone: true,
-  imports: [CommonModule, ColorPickerComponent],
+  imports: [CommonModule, MatButtonModule, MatMenuModule, ColorPickerComponent],
   templateUrl: './color-brick.component.html',
   styleUrl: './color-brick.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

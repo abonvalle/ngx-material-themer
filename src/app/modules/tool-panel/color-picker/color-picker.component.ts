@@ -113,14 +113,14 @@ export class ColorPickerComponent implements AfterViewInit {
   updateAutomaticContrast(event: MatCheckboxChange) {
     this.automaticContrast.update((_) => event.checked);
   }
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (this._eltRef.nativeElement.contains(event.target)) {
-      return;
-    }
-    console.warn('onClick doc ', this._toolPanelService.currentElement());
-    if (this._toolPanelService.currentElement()) {
-      this._toolPanelService.currentElement.set(null);
-    }
-  }
+  // @HostListener('document:click', ['$event'])
+  // onClick(event: MouseEvent) {
+  //   if (this._eltRef.nativeElement.contains(event.target)) {
+  //     return;
+  //   }
+  //   console.warn('onClick doc ', this._toolPanelService.currentElement());
+  //   if (this._toolPanelService.currentElement()) {
+  //     this._toolPanelService.currentElement.set(null);
+  //   }
+  // }
 }

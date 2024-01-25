@@ -32,7 +32,7 @@ $dynamic-app-theme: mat.define-light-theme(
     color: (
       primary: $dynamic-theme-primary-palette,
       accent: $dynamic-theme-accent-palette,
-      warn: mat.define-palette(mat.$red-palette),
+      warn: mat.define-palette(mat.$red-palette)
     ),
     typography: $dynamic-typography,
     // is-dark: false,
@@ -109,4 +109,8 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-menu-panel {
+  max-width: none !important;
 }

@@ -20,14 +20,12 @@
           }
         </mat-chip-listbox>
 
-        <div class="flex items-center">
-          Dark mode
-          <mat-icon class="mat-icon">brightness_2</mat-icon>
-          <mat-slide-toggle [hideIcon]="true" class="mx-2" [checked]="!isDarkMode()" (change)="updateMode()">
-          </mat-slide-toggle>
-          <mat-icon class="mat-icon">brightness_7</mat-icon>
-          Light mode
-        </div>
+        <mat-slide-toggle class="mx-2" [checked]="isDarkMode()" (change)="updateMode()" labelPosition="before">
+          <div class="flex items-center">
+            <mat-icon class="mat-icon rotate-180">brightness_3</mat-icon>
+            Dark mode
+          </div>
+        </mat-slide-toggle>
       </div>
       <mat-divider></mat-divider>
       <app-theme name="my-custom-theme" label="Custom theme"></app-theme>
@@ -48,31 +46,31 @@
           <span>Remove second theme</span>
         </button>
       }
-      <mat-divider></mat-divider>
-      <div>
-        <mat-form-field class="!mb-0 w-32">
-          <mat-label>Style lang</mat-label>
-          <mat-select [(value)]="cssMode" class="!text-sm">
-            <mat-option value="CSS">CSS</mat-option>
-            <mat-option value="SASS">SCSS/SASS</mat-option>
-            <mat-option value="LESS">LESS</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div class="flex gap-5">
-          <button mat-raised-button color="accent" class="max-w-64">
-            <mat-icon class="mat-icon">download</mat-icon>
-            <span>Download style file</span>
-          </button>
-          <button mat-raised-button color="accent" class="max-w-64">
-            <mat-icon class="mat-icon">content_copy</mat-icon>
-            <span>Copy style</span>
-          </button>
-        </div>
-      </div>
     </div>
   </div>
-  <div class="">
+  <mat-divider></mat-divider>
+  <div class="flex min-h-[200px] flex-col items-center justify-center p-8">
+    <mat-form-field class="!mb-0">
+      <mat-label>Style lang</mat-label>
+      <mat-select [(value)]="cssMode" class="!text-sm">
+        <mat-option value="CSS">CSS</mat-option>
+        <mat-option value="SASS">SCSS/SASS</mat-option>
+        <mat-option value="LESS">LESS</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="flex gap-5">
+      <button mat-raised-button color="accent" class="max-w-64">
+        <mat-icon class="mat-icon">download</mat-icon>
+        <span>Download style file</span>
+      </button>
+      <button mat-raised-button color="accent" class="max-w-64">
+        <mat-icon class="mat-icon">content_copy</mat-icon>
+        <span>Copy style</span>
+      </button>
+    </div>
+  </div>
+  <!-- <div class="">
     <mat-divider></mat-divider>
     <app-tool-panel></app-tool-panel>
-  </div>
+  </div> -->
 </div>

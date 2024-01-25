@@ -1,10 +1,20 @@
 <div>
-  <h5 class="mat-typography">{{label}}</h5>
+  <h5 class="mat-typography">{{ label }}</h5>
+  <div class="mb-3 flex flex-row items-center">
+    <div class="flex items-center justify-center text-xs">
+      <mat-slide-toggle class="mx-2" [checked]="isLightTheme()" (change)="updateTheme($event)" labelPosition="before">
+        <div class="flex items-center justify-center">
+          <mat-icon class="mat-icon rotate-180">brightness_3</mat-icon>
+          Define theme as dark
+        </div>
+      </mat-slide-toggle>
+    </div>
+  </div>
   <div class="flex flex-col gap-5">
     <mat-form-field class="">
       <mat-label>Theme Name</mat-label>
       <span matTextPrefix>$&nbsp;</span>
-      <input matInput placeholder="Ex. my-custom-theme" [value]="name" (input)="updateName($event)">
+      <input matInput placeholder="Ex. my-custom-theme" [value]="name" (input)="updateName($event)" />
     </mat-form-field>
     <app-color-palette [name]="'primary'"></app-color-palette>
     <app-color-palette [name]="'accent'"></app-color-palette>

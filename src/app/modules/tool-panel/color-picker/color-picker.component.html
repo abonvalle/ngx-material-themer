@@ -10,7 +10,7 @@
             id="hexCol"
             [value]="colorHex"
             (input)="updateColor($event)"
-            class="h-6 w-[4.2rem] text-black" />
+            class="h-6 w-[4.2rem] border-[1px] border-black/20 text-black" />
         </div>
         <div>
           <label for="rgbCol" class="mr-2 text-sm text-black/80 dark:text-white/80">rgb:</label>
@@ -19,7 +19,7 @@
             id="rgbCol"
             [value]="colorRGB"
             (input)="updateColor($event)"
-            class="h-6 w-[8.8rem] text-black" />
+            class="h-6 w-[8.8rem] border-[1px] border-black/20 text-black" />
         </div>
         <div>
           <label for="hslCol" class="mr-2 text-sm text-black/80 dark:text-white/80">hsl:</label>
@@ -28,7 +28,7 @@
             type="text"
             [value]="colorHsl"
             (input)="updateColor($event)"
-            class="h-6 w-[8.8rem] text-black" />
+            class="h-6 w-[8.8rem] border-[1px] border-black/20 text-black" />
         </div>
       </fieldset>
       @if (showContrastOptions) {

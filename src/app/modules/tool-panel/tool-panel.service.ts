@@ -10,6 +10,6 @@ export class ToolPanelService {
   constructor() {}
   updateCurrentElementColor(color: string | null) {
     console.warn('updateCurrentElementColor', this.currentElement(), color);
-    this.currentElement()?.setColor(color);
+    this.currentElement()?.setColor(color ?? '');
   }
 }

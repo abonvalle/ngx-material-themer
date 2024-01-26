@@ -1,8 +1,8 @@
 <div class="flex h-full flex-col items-start justify-start gap-2">
-  <span class="">{{ name }}</span>
+  <span class="">{{ palette().name }}</span>
   <div class="flex h-full flex-wrap items-center justify-start">
     @if (!expanded()) {
-      <app-color-brick></app-color-brick>
+      <app-color-brick [color]="palette().colors[500]" (colorChange)="updatePalette($event)"></app-color-brick>
       <div
         (mouseenter)="toggleShowLabel(true)"
         (mouseleave)="toggleShowLabel(false)"
@@ -21,9 +21,9 @@
         >
       </div>
     } @else {
-      @for (color of palette | keyvalue; track color.key) {
+      @for (color of paletteColors() | keyvalue; track color.key) {
         <div class="flex flex-col items-center justify-center gap-2">
-          <app-color-brick>
+          <app-color-brick [color]="color.value" (colorChange)="updateColor($event, color.key)">
             <span class="text-sm">{{ color.key }}</span>
           </app-color-brick>
         </div>

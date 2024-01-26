@@ -34,7 +34,7 @@ export class ColorPickerComponent implements AfterViewInit {
   @Input() showContrastOptions = false;
   private _color: Signal<string | undefined> = computed(() => {
     console.warn('compute _color');
-    return this._toolPanelService.currentElement()?.color() || undefined;
+    return this._toolPanelService.currentElement()?.color || undefined;
   });
   closed = signal(true);
   colorPicker!: iro.ColorPicker;

@@ -12,7 +12,7 @@ import { ThemeComponent } from '../theme/theme.component';
 import { ColorBrickComponent } from '@features/color-brick/color-brick.component';
 import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
 import { ToolPanelComponent } from '@modules/tool-panel/tool-panel.component';
-import { ThemeService } from '@modules/services/theme-mode.service';
+import { ThemesService } from '@modules/services/themes.service';
 import { ConfirmDialogComponent } from '@features/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -44,10 +44,10 @@ export class ThemerPanelComponent {
     { value: 'light', label: 'Pink & Blue-grey' },
     { value: 'purple', label: 'Purple & Green' }
   ];
-  isDarkMode = this._themeService.isDarkMode;
+  isDarkMode = this._themeService.darkMode;
   constructor(
     public dialog: MatDialog,
-    private _themeService: ThemeService
+    private _themeService: ThemesService
   ) {}
 
   addSecondTheme() {
@@ -69,7 +69,7 @@ export class ThemerPanelComponent {
     });
   }
   updateMode() {
-    this._themeService.toggleThemeMode();
+    this._themeService.toggleDarkMode();
   }
 }
 

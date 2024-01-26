@@ -6,6 +6,7 @@ import {
   Input,
   Output,
   WritableSignal,
+  effect,
   signal
 } from '@angular/core';
 import { ColorPickerComponent } from '../../tool-panel/color-picker/color-picker.component';
@@ -23,17 +24,20 @@ import { MatMenuModule } from '@angular/material/menu';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorBrickComponent {
-  color: WritableSignal<string | null> = signal(null);
+  @Input({ required: true }) color!: string;
+  @Output() colorChange: EventEmitter<string> = new EventEmitter();
   constructor(
     private _toolPanelService: ToolPanelService,
     private _cdrRef: ChangeDetectorRef
   ) {}
   editColor(event: Event) {
     event.stopPropagation();
+    console.warn('editColor');
     this._toolPanelService.currentElement.set(this);
   }
-  setColor(color: string | null) {
-    this.color.set(color);
+  setColor(color: string) {
+    this.color = color;
+    this.colorChange.emit(this.color);
     this._cdrRef.markForCheck();
   }
 }

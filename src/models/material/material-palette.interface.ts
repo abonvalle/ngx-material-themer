@@ -1,5 +1,3 @@
-import { MaterialHue } from './material-hue.type';
+import { MaterialColors } from './material-colors.interface';
 
-export type MaterialPalette = {
-  [key in MaterialHue]: string;
-} & { contrast: { [key in MaterialHue]: string } };
+export type MaterialPalette = MaterialColors & { contrast: MaterialColors };

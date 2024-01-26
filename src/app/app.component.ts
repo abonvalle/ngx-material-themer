@@ -2,7 +2,7 @@ import { Component, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ThemeService } from './modules/services/theme-mode.service';
+import { ThemesService } from './modules/services/themes.service';
 import { Color } from '../models/color.interface';
 import { ThemerPanelComponent } from '@features/themer-panel/themer-panel.component';
 import { ShowcasePanelComponent } from '@features/showcase-panel/showcase-panel.component';
@@ -15,8 +15,8 @@ import { ShowcasePanelComponent } from '@features/showcase-panel/showcase-panel.
 })
 export class AppComponent {
   title = 'ng-material-themer';
-  isDarkMode = this._themeService.isDarkMode;
-  constructor(private _themeService: ThemeService) {
+  isDarkMode = this._themeService.darkMode;
+  constructor(private _themeService: ThemesService) {
     effect(() => {
       // this._paletteService.currentPalette();
     });

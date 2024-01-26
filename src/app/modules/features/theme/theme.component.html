@@ -16,8 +16,8 @@
       <span matTextPrefix>$&nbsp;</span>
       <input matInput placeholder="Ex. my-custom-theme" [value]="name" (input)="updateName($event)" />
     </mat-form-field>
-    <app-color-palette [name]="'primary'"></app-color-palette>
-    <app-color-palette [name]="'accent'"></app-color-palette>
-    <app-color-palette [name]="'warn'"></app-color-palette>
+    <app-color-palette [(palette)]="primaryPal"></app-color-palette>
+    <app-color-palette [(palette)]="accentPal"></app-color-palette>
+    <app-color-palette [(palette)]="warnPal"></app-color-palette>
   </div>
 </div>

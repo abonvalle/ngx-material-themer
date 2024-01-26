@@ -1,8 +1,8 @@
-import { Color } from './color.interface';
+import { MaterialPalette } from './material/material-palette.interface';
 import { PaletteName } from './palette-name.type';
 
 export interface Palette {
-  name: PaletteName;
-  colors: Color[];
+  readonly name: PaletteName;
+  colors: MaterialPalette;
 }
 [];

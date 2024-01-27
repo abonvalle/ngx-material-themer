@@ -1,9 +1,9 @@
-<mat-drawer-container class="overflow-hidden " [autosize]="true" [ngClass]="{'dark':isDarkMode()}">
-  <mat-drawer mode="side" opened class="overflow-auto max-w-[40%]">
+<mat-drawer-container class="overflow-hidden" [autosize]="true" [ngClass]="{ dark: isDarkMode() }">
+  <mat-drawer mode="side" opened class="max-w-[40%] overflow-auto">
     <app-themer-panel></app-themer-panel>
   </mat-drawer>
-  <mat-drawer-content class="p-7 overflow-y-auto !h-screen">
+  <mat-drawer-content class="!h-screen overflow-y-auto p-7">
     <h3 class="mat-typography">Preview panel</h3>
-    <app-showcase-panel></app-showcase-panel>
+    <app-preview-panel></app-preview-panel>
   </mat-drawer-content>
 </mat-drawer-container>

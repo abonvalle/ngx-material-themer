@@ -5,8 +5,10 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
+  Output,
   Signal,
   ViewChild,
   computed,
@@ -32,6 +34,7 @@ import { debounce } from '@shared/utils';
 export class ColorPickerComponent implements AfterViewInit {
   @ViewChild('picker') pickerRef!: ElementRef<HTMLElement>;
   @Input() showContrastOptions = false;
+  @Output() clickOutside: EventEmitter<void> = new EventEmitter();
   private _color: Signal<string | undefined> = computed(() => {
     console.warn('compute _color');
     return this._toolPanelService.currentElement()?.color || undefined;
@@ -98,6 +101,7 @@ export class ColorPickerComponent implements AfterViewInit {
   }
   removeColor() {
     this._toolPanelService.updateCurrentElementColor(null);
+    this._toolPanelService.updateCurrentElementContrasts({});
     // this._color = '';
     // this.colorChange.emit('');
     // this._cdr.markForCheck();
@@ -113,14 +117,22 @@ export class ColorPickerComponent implements AfterViewInit {
   updateAutomaticContrast(event: MatCheckboxChange) {
     this.automaticContrast.update((_) => event.checked);
   }
+
   // @HostListener('document:click', ['$event'])
   // onClick(event: MouseEvent) {
+  //   console.warn('onClick doc cancel', event.target);
   //   if (this._eltRef.nativeElement.contains(event.target)) {
+  //     console.warn('onClick doc cancel');
   //     return;
   //   }
-  //   console.warn('onClick doc ', this._toolPanelService.currentElement());
-  //   if (this._toolPanelService.currentElement()) {
-  //     this._toolPanelService.currentElement.set(null);
-  //   }
+  //   this.clickOutside.emit();
+  // if (this._toolPanelService.currentElement()) {
+  //   this._toolPanelService.currentElement.set(null);
   // }
+  // }
+  reset() {
+    if (this._toolPanelService.currentElement()) {
+      this._toolPanelService.currentElement.set(null);
+    }
+  }
 }

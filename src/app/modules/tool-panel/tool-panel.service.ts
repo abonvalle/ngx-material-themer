@@ -9,7 +9,9 @@ export class ToolPanelService {
   // currentElementColor = computed(() => this.currentElement()?.color || null);
   constructor() {}
   updateCurrentElementColor(color: string | null) {
-    console.warn('updateCurrentElementColor', this.currentElement(), color);
     this.currentElement()?.setColor(color ?? '');
+  }
+  updateCurrentElementContrasts(contrasts: { dark?: string; light?: string }) {
+    this.currentElement()?.setContrasts(contrasts);
   }
 }

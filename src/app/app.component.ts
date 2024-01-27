@@ -5,11 +5,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ThemesService } from './modules/services/themes.service';
 import { Color } from '../models/color.interface';
 import { ThemerPanelComponent } from '@features/themer-panel/themer-panel.component';
-import { ShowcasePanelComponent } from '@features/showcase-panel/showcase-panel.component';
+import { PreviewPanelComponent } from '@features/preview-panel/preview-panel.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ThemerPanelComponent, ShowcasePanelComponent, MatSidenavModule],
+  imports: [CommonModule, RouterOutlet, ThemerPanelComponent, PreviewPanelComponent, MatSidenavModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

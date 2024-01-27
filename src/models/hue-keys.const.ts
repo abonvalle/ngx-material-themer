@@ -1,5 +1,5 @@
 export const hueKeys = [
-  '050',
+  '50',
   '100',
   '200',
   '300',
@@ -12,5 +12,5 @@ export const hueKeys = [
   'A100',
   'A200',
   'A400',
-  'A700',
+  'A700'
 ] as const;

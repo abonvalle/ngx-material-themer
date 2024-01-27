@@ -25,19 +25,25 @@ import { MatMenuModule } from '@angular/material/menu';
 })
 export class ColorBrickComponent {
   @Input({ required: true }) color!: string;
+  @Input() contrasts!: { dark?: string; light?: string };
   @Output() colorChange: EventEmitter<string> = new EventEmitter();
+  @Output() contrastsChange: EventEmitter<{ dark?: string; light?: string }> = new EventEmitter();
   constructor(
     private _toolPanelService: ToolPanelService,
     private _cdrRef: ChangeDetectorRef
   ) {}
   editColor(event: Event) {
     event.stopPropagation();
-    console.warn('editColor');
     this._toolPanelService.currentElement.set(this);
   }
   setColor(color: string) {
     this.color = color;
     this.colorChange.emit(this.color);
+    this._cdrRef.markForCheck();
+  }
+  setContrasts(contrasts: { dark?: string; light?: string }) {
+    this.contrasts = contrasts;
+    this.contrastsChange.emit(this.contrasts);
     this._cdrRef.markForCheck();
   }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowcasePanelComponent } from './showcase-panel.component';
+import { HelpTooltipComponent } from './help-tooltip.component';
 
-describe('ShowcasePanelComponent', () => {
-  let component: ShowcasePanelComponent;
-  let fixture: ComponentFixture<ShowcasePanelComponent>;
+describe('HelpTooltipComponent', () => {
+  let component: HelpTooltipComponent;
+  let fixture: ComponentFixture<HelpTooltipComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShowcasePanelComponent]
+      imports: [HelpTooltipComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ShowcasePanelComponent);
+    fixture = TestBed.createComponent(HelpTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -11,6 +11,7 @@
 
 $dynamic-theme-primary-palette: mat.define-palette($dynamic-theme-primary);
 $dynamic-theme-accent-palette: mat.define-palette($dynamic-theme-accent);
+$dynamic-theme-warn-palette: mat.define-palette($dynamic-theme-warn);
 
 $dynamic-typography: mat.define-typography-config();
 //   $font-family: 'Roboto, "Helvetica Neue", sans-serif',
@@ -32,7 +33,7 @@ $dynamic-app-theme: mat.define-light-theme(
     color: (
       primary: $dynamic-theme-primary-palette,
       accent: $dynamic-theme-accent-palette,
-      warn: mat.define-palette(mat.$red-palette)
+      warn: $dynamic-theme-warn-palette
     ),
     typography: $dynamic-typography,
     // is-dark: false,

@@ -4,12 +4,9 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
-  Signal,
   WritableSignal,
   computed,
-  effect,
   signal
 } from '@angular/core';
 import { ColorBrickComponent } from '../color-brick/color-brick.component';
@@ -20,40 +17,34 @@ import { MatIconModule } from '@angular/material/icon';
 import { Color } from '../../../../models/color.interface';
 import { Palette } from '@models/palette.interface';
 import { MaterialPalette } from '@models/material/material-palette.interface';
-import { MaterialHue } from '@models/material/material-hue.type';
 import { MaterialColors } from '@models/material/material-colors.interface';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 declare const tinycolor: any;
 
 @Component({
   selector: 'app-color-palette',
   standalone: true,
-  imports: [CommonModule, ColorBrickComponent, MatExpansionModule, MatIconModule],
+  imports: [CommonModule, ColorBrickComponent, MatExpansionModule, MatIconModule, MatTooltipModule],
   templateUrl: './color-palette.component.html',
   styleUrl: './color-palette.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ColorPaletteComponent implements OnInit {
+export class ColorPaletteComponent {
   @Input({ required: true }) palette!: WritableSignal<Palette>;
   @Output() paletteChange: EventEmitter<WritableSignal<Palette>> = new EventEmitter();
   expanded = signal(false);
   paletteOLD = new Map<string, string>();
   showLabel = signal(false);
   smoothHideTimeout: number | null = null;
-  mainColor = this.paletteOLD.get('500') || '';
   paletteColors = computed(() => {
     const colors: Partial<MaterialPalette> = this.palette().colors;
-    // .filter((color) => this.notContrast(color));
     delete colors.contrast;
     return colors as MaterialColors;
   });
 
   constructor(private _cdrRef: ChangeDetectorRef) {}
-  ngOnInit(): void {
-    // hueKeys.forEach((key) => {
-    //   this.paletteOLD.set(key, '');
-    // });
-  }
+
   toggleShowLabel(enter: boolean) {
     if (!enter) {
       //Smooth hide
@@ -74,17 +65,6 @@ export class ColorPaletteComponent implements OnInit {
     this.showLabel.update((_) => false);
     this.expanded.update((_) => value);
   }
-  // updateColor(color: string, key: string) {
-  //   this.palette.update((pal) => (pal.key = color));
-  //   this.mainColor = this.paletteOLD.get('500') || '';
-  // }
-  updatePaletteColors(colors: string) {
-    const paletteColors = this.computeColors(colors);
-    hueKeys.forEach((key, index) => {
-      this.paletteOLD.set(key, paletteColors[index].hex);
-    });
-    this.mainColor = this.paletteOLD.get('500') || '';
-  }
   updatePalette(color: string) {
     const paletteColors = this.computeColors(color);
     this.palette.update((pal) => {
@@ -96,9 +76,6 @@ export class ColorPaletteComponent implements OnInit {
       });
       return pal;
     });
-    // hueKeys.forEach((key, index) => {
-    //   this.paletteOLD.set(key, paletteColors[index].hex);
-    // });
   }
 
   updateTheme(colors: Color[], theme: string) {
@@ -137,9 +114,6 @@ export class ColorPaletteComponent implements OnInit {
       hex: c.toHexString()
       // darkContrast: c.isLight(),
     };
-  }
-  notContrast(color: MaterialPalette[keyof MaterialPalette]) {
-    return typeof color === 'string';
   }
   updateColor(color: string, key: string) {
     this.palette.update((pal) => {

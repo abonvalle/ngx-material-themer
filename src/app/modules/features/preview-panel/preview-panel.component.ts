@@ -25,11 +25,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {
-  MatTreeFlatDataSource,
-  MatTreeFlattener,
-  MatTreeModule,
-} from '@angular/material/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatInputModule } from '@angular/material/input';
@@ -41,21 +37,21 @@ interface FoodNode {
 const TREE_DATA: FoodNode[] = [
   {
     name: 'Fruit',
-    children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
+    children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }]
   },
   {
     name: 'Vegetables',
     children: [
       {
         name: 'Green',
-        children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
+        children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }]
       },
       {
         name: 'Orange',
-        children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-    ],
-  },
+        children: [{ name: 'Pumpkins' }, { name: 'Carrots' }]
+      }
+    ]
+  }
 ];
 
 /** Flat node with expandable and level information */
@@ -66,7 +62,7 @@ interface ExampleFlatNode {
 }
 
 @Component({
-  selector: 'app-showcase-panel',
+  selector: 'app-preview-panel',
   standalone: true,
   imports: [
     CommonModule,
@@ -96,18 +92,18 @@ interface ExampleFlatNode {
     MatTabsModule,
     MatTooltipModule,
     MatTreeModule,
-    MatInputModule,
+    MatInputModule
   ],
   providers: [provideNativeDateAdapter()],
-  templateUrl: './showcase-panel.component.html',
-  styleUrl: './showcase-panel.component.scss',
+  templateUrl: './preview-panel.component.html',
+  styleUrl: './preview-panel.component.scss'
 })
-export class ShowcasePanelComponent {
+export class PreviewPanelComponent {
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
-      level: level,
+      level: level
     };
   };
 

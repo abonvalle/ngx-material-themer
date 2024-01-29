@@ -1,8 +1,8 @@
 <div class="flex h-full flex-col items-start justify-start gap-2">
-  <span class="capitalize">{{ palette().name }}</span>
+  <span class="capitalize">{{ name }}</span>
   <div class="flex h-full flex-wrap items-center justify-start">
     @if (!expanded()) {
-      <app-color-brick [color]="palette().colors[500]" (colorChange)="updatePalette($event)"></app-color-brick>
+      <app-color-brick [color]="palette()[500]" (colorChange)="updatePalette($event)"></app-color-brick>
       <div
         (mouseenter)="toggleShowLabel(true)"
         (mouseleave)="toggleShowLabel(false)"

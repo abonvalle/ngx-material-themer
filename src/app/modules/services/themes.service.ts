@@ -1,7 +1,5 @@
 import { Injectable, Signal, WritableSignal, computed, effect, signal } from '@angular/core';
-import { Theme } from '../../../models/theme.interface';
 import { ThemeComponent } from '@features/theme/theme.component';
-import { Palette } from '@models/palette.interface';
 import { MaterialPalette } from '@models/material/material-palette.interface';
 
 @Injectable({
@@ -44,18 +42,25 @@ export class ThemesService {
       light: theme.fontLight,
       isLight: theme.isLightTheme()
     };
-    this.setMaterialPaletteColor(theme.primaryPal(), fonts);
-    this.setMaterialPaletteColor(theme.accentPal(), fonts);
-    this.setMaterialPaletteColor(theme.warnPal(), fonts);
+    console.warn('applyTheme primary', theme.primaryPal());
+    console.warn('applyTheme accent', theme.accentPal());
+    console.warn('applyTheme warn', theme.warnPal());
+    this.setMaterialPaletteColor('primary', theme.primaryPal(), fonts);
+    this.setMaterialPaletteColor('accent', theme.accentPal(), fonts);
+    this.setMaterialPaletteColor('warn', theme.warnPal(), fonts);
   }
-  setMaterialPaletteColor(matPal: Palette, fonts: { dark: string; light: string; isLight: boolean }) {
-    Object.entries(matPal.colors).forEach(([key, color]) => {
+  setMaterialPaletteColor(
+    palName: string,
+    matPal: MaterialPalette,
+    fonts: { dark: string; light: string; isLight: boolean }
+  ) {
+    Object.entries(matPal).forEach(([key, color]) => {
       if (typeof color !== 'string') {
         return;
       }
-      document.documentElement.style.setProperty(`--theme-${matPal.name}-${key}`, color);
+      document.documentElement.style.setProperty(`--theme-${palName}-${key}`, color);
       const fontColor = fonts.isLight ? fonts.light : fonts.dark;
-      document.documentElement.style.setProperty(`--theme-${matPal.name}-contrast-${key}`, fontColor);
+      document.documentElement.style.setProperty(`--theme-${palName}-contrast-${key}`, fontColor);
     });
   }
 }

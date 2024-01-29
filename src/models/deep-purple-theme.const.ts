@@ -1,4 +1,3 @@
-import { Theme } from './theme.interface';
 import variables from '../_prebuilt-material-palette-var.scss';
 import { MaterialTheme } from './material/material-theme.interface';
 

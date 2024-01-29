@@ -1,0 +1,13 @@
+<div class="flex flex-col gap-2">
+  <app-simplified-palette
+    [(colors)]="primaryPal"
+    (colorsChange)="updatePal($event, primaryPalChange)"></app-simplified-palette>
+
+  <app-simplified-palette
+    [(colors)]="accentPal"
+    (colorsChange)="updatePal($event, accentPalChange)"></app-simplified-palette>
+
+  <app-simplified-palette
+    [(colors)]="warnPal"
+    (colorsChange)="updatePal($event, warnPalChange)"></app-simplified-palette>
+</div>

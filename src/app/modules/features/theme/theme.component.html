@@ -38,7 +38,7 @@
 
     <div class="flex items-center justify-center pb-[22px] text-xs"></div>
   </div>
-  <div class="flex flex-col gap-5">
+  <!-- <div class="flex flex-col gap-5">
     <div class="flex flex-col gap-2">
       <span>Font</span>
       <div class="flex flex-wrap items-center">
@@ -52,5 +52,25 @@
     <app-color-palette [(palette)]="primaryPal"></app-color-palette>
     <app-color-palette [(palette)]="accentPal"></app-color-palette>
     <app-color-palette [(palette)]="warnPal"></app-color-palette>
-  </div>
+  </div> -->
+  @if (isPalMode()) {
+    <app-theme-palette-mode
+      [(primaryPal)]="primaryPal"
+      [(accentPal)]="accentPal"
+      [(warnPal)]="warnPal"
+      [fontDark]="fontDark"
+      [fontLight]="fontLight"
+      [automaticContrast]="automaticContrast()"></app-theme-palette-mode>
+  } @else {
+    <app-theme-classic-mode
+      [primaryPal]="primaryPalSimplified()"
+      [accentPal]="accentPalSimplified()"
+      [warnPal]="warnPalSimplified()"
+      [fontDark]="fontDark"
+      [fontLight]="fontLight"
+      [automaticContrast]="automaticContrast()"
+      (primaryPalChange)="updatePal($event, primaryPal)"
+      (accentPalChange)="updatePal($event, accentPal)"
+      (warnPalChange)="updatePal($event, warnPal)"></app-theme-classic-mode>
+  }
 </div>

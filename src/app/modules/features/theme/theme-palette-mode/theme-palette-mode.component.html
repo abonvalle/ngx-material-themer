@@ -1,0 +1,24 @@
+<div class="flex flex-col gap-5">
+  <div class="flex flex-col gap-2">
+    <span>Font</span>
+    <div class="flex flex-wrap items-center">
+      <app-color-brick [(color)]="fontLight"><span class="text-white">light</span></app-color-brick>
+      <app-color-brick [(color)]="fontDark"><span class="text-black">dark</span></app-color-brick>
+      <mat-checkbox [checked]="automaticContrast" matTooltip="Uncheck to sepcify contrast for every hue" class="ml-5">
+        Determine contrast automatically
+      </mat-checkbox>
+    </div>
+  </div>
+  <app-color-palette
+    name="Primary"
+    [(palette)]="primaryPal"
+    (paletteChange)="updatePalette(primaryPalChange, primaryPal)"></app-color-palette>
+  <app-color-palette
+    name="Accent"
+    [(palette)]="accentPal"
+    (paletteChange)="updatePalette(accentPalChange, accentPal)"></app-color-palette>
+  <app-color-palette
+    name="Warn"
+    [(palette)]="warnPal"
+    (paletteChange)="updatePalette(warnPalChange, warnPal)"></app-color-palette>
+</div>

@@ -5,8 +5,10 @@ import {
   Input,
   OnChanges,
   Output,
+  Signal,
   SimpleChanges,
   WritableSignal,
+  computed,
   signal
 } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,10 +18,16 @@ import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-to
 import { ColorBrickComponent } from '@features/color-brick/color-brick.component';
 import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
 import { emptyPalette } from '@models/empty-palette.const';
-import { Palette } from '@models/palette.interface';
 import { ThemesService } from '@modules/services/themes.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
+import { ThemePaletteModeComponent } from './theme-palette-mode/theme-palette-mode.component';
+import { ThemeClassicModeComponent } from './theme-classic-mode/theme-classic-mode.component';
+import { MaterialPalette } from '@models/material/material-palette.interface';
+import { SimplifiedPalette } from '@models/simplified';
+import { PaletteService } from '@modules/services/palette.service';
+
+const noPal: MaterialPalette = Object.assign({}, emptyPalette);
 
 @Component({
   selector: 'app-theme',
@@ -32,20 +40,29 @@ import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.
     MatSlideToggle,
     ColorBrickComponent,
     MatCheckboxModule,
-    HelpTooltipComponent
+    HelpTooltipComponent,
+    ThemePaletteModeComponent,
+    ThemeClassicModeComponent
   ],
   templateUrl: './theme.component.html',
   styleUrl: './theme.component.scss'
 })
 export class ThemeComponent implements OnChanges {
-  @Input({ required: true }) name!: string;
-  @Input({ required: true }) label!: string;
+  @Input({ required: true }) name: string = '';
+  @Input({ required: true }) label: string = '';
   @Output() nameChange = new EventEmitter<string>();
   guid = Math.random().toString(36).substring(2);
   isLightTheme = signal(false);
-  primaryPal: WritableSignal<Palette> = signal({ name: 'primary', colors: Object.assign({}, emptyPalette) });
-  accentPal: WritableSignal<Palette> = signal({ name: 'accent', colors: Object.assign({}, emptyPalette) });
-  warnPal: WritableSignal<Palette> = signal({ name: 'warn', colors: Object.assign({}, emptyPalette) });
+  primaryPal: WritableSignal<MaterialPalette> = signal(noPal);
+  accentPal: WritableSignal<MaterialPalette> = signal(noPal);
+  warnPal: WritableSignal<MaterialPalette> = signal(noPal);
+  primaryPalSimplified: Signal<SimplifiedPalette> = computed(() =>
+    this._paletteService.simplifyPalette(this.primaryPal())
+  );
+  accentPalSimplified: Signal<SimplifiedPalette> = computed(() =>
+    this._paletteService.simplifyPalette(this.accentPal())
+  );
+  warnPalSimplified: Signal<SimplifiedPalette> = computed(() => this._paletteService.simplifyPalette(this.warnPal()));
   fontLight = '';
   fontDark = '';
   automaticContrast = signal(true);
@@ -53,7 +70,8 @@ export class ThemeComponent implements OnChanges {
 
   constructor(
     private _destroyRef: DestroyRef,
-    private _themesService: ThemesService
+    private _themesService: ThemesService,
+    private _paletteService: PaletteService
   ) {
     this._themesService.addTheme(this);
     this._destroyRef.onDestroy(() => {
@@ -69,6 +87,7 @@ export class ThemeComponent implements OnChanges {
       changes['fontLight'] ||
       changes['fontDark']
     ) {
+      console.log('update in theme');
       this._themesService.applyTheme(this);
     }
   }
@@ -81,5 +100,8 @@ export class ThemeComponent implements OnChanges {
   }
   updatePaletteMode(value: MatSlideToggleChange) {
     this.isPalMode.set(value.checked);
+  }
+  updatePal(simplePal: SimplifiedPalette, matPal: WritableSignal<MaterialPalette>) {
+    matPal.set(this._paletteService.normalizePalette(simplePal));
   }
 }

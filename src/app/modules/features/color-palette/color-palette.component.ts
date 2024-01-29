@@ -11,16 +11,16 @@ import {
 } from '@angular/core';
 import { ColorBrickComponent } from '../color-brick/color-brick.component';
 import { CommonModule } from '@angular/common';
-import { hueKeys } from '../../../../models/hue-keys.const';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { Color } from '../../../../models/color.interface';
-import { Palette } from '@models/palette.interface';
 import { MaterialPalette } from '@models/material/material-palette.interface';
 import { MaterialColors } from '@models/material/material-colors.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { emptyPalette } from '@models/empty-palette.const';
 
 declare const tinycolor: any;
+const noPal: MaterialPalette = Object.assign({}, emptyPalette);
 
 @Component({
   selector: 'app-color-palette',
@@ -31,14 +31,15 @@ declare const tinycolor: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorPaletteComponent {
-  @Input({ required: true }) palette!: WritableSignal<Palette>;
-  @Output() paletteChange: EventEmitter<WritableSignal<Palette>> = new EventEmitter();
+  @Input({ required: true }) name: string = '';
+  @Input({ required: true }) palette: WritableSignal<MaterialPalette> = signal(noPal);
+  @Output() paletteChange: EventEmitter<WritableSignal<MaterialPalette>> = new EventEmitter();
   expanded = signal(false);
   paletteOLD = new Map<string, string>();
   showLabel = signal(false);
   smoothHideTimeout: number | null = null;
   paletteColors = computed(() => {
-    const colors: Partial<MaterialPalette> = this.palette().colors;
+    const colors: Partial<MaterialPalette> = this.palette();
     delete colors.contrast;
     return colors as MaterialColors;
   });
@@ -68,11 +69,11 @@ export class ColorPaletteComponent {
   updatePalette(color: string) {
     const paletteColors = this.computeColors(color);
     this.palette.update((pal) => {
-      Object.entries(pal.colors).map(([key, color]) => {
+      Object.entries(pal).map(([key, color]) => {
         if (typeof color !== 'string') {
           return;
         }
-        pal.colors[key as keyof MaterialColors] = paletteColors.find((c) => c.name === key)?.hex || color;
+        pal[key as keyof MaterialColors] = paletteColors.find((c) => c.name === key)?.hex || color;
       });
       return pal;
     });
@@ -117,7 +118,7 @@ export class ColorPaletteComponent {
   }
   updateColor(color: string, key: string) {
     this.palette.update((pal) => {
-      pal.colors[key as keyof MaterialColors] = color;
+      pal[key as keyof MaterialColors] = color;
       return pal;
     });
   }

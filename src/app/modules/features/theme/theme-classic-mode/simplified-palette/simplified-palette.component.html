@@ -1,0 +1,9 @@
+<div class="flex flex-wrap">
+  @for (color of colors | keyvalue; track color.key) {
+    <div>
+      <span>{{ color.key }}</span>
+      <app-color-brick [(color)]="color.value.main" (colorChange)="onUpdateColors()"></app-color-brick>
+      <app-color-brick [(color)]="color.value.contrast" (colorChange)="onUpdateColors()"></app-color-brick>
+    </div>
+  }
+</div>

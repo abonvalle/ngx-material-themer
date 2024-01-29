@@ -11,4 +11,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   templateUrl: './buttons.component.html',
   styleUrl: './buttons.component.scss'
 })
-export class ButtonsComponent {}
+export class ButtonsComponent {
+  label = 'Buttons';
+}

@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './slide-toggle.component.scss'
 })
 export class SlideToggleComponent {
+  label = 'Slide Toggle';
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;

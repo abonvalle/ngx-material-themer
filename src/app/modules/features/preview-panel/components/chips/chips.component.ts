@@ -25,6 +25,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrl: './chips.component.scss'
 })
 export class ChipsComponent {
+  label = 'Chips';
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
   filteredFruits: Observable<string[]>;

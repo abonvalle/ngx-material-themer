@@ -8,4 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.scss'
 })
-export class IconComponent {}
+export class IconComponent {
+  label = 'Icon';
+}

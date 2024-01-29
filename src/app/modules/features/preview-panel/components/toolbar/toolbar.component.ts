@@ -10,4 +10,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
-export class ToolbarComponent {}
+export class ToolbarComponent {
+  label = 'Toolbar';
+}

@@ -1,36 +1,33 @@
-<div class="flex flex-col gap-4 overflow-y-auto">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Toolbar </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-toolbar></app-toolbar>
-  </mat-expansion-panel>
-
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Inputs </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-inputs></app-inputs>
-  </mat-expansion-panel>
-
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Stepper </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-stepper></app-stepper>
-  </mat-expansion-panel>
-
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Badge </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-badge></app-badge>
-  </mat-expansion-panel>
-
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Bottom Sheet </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-bottom-sheet></app-bottom-sheet>
-  </mat-expansion-panel>
+<div class="flex justify-between">
+  <h3 class="mat-typography">Preview panel</h3>
+  <form class="">
+    <mat-form-field class="">
+      <mat-label>Search a component</mat-label>
+      <input
+        type="text"
+        placeholder="Ex. toolbar"
+        aria-label="Search a component"
+        matInput
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+        (input)="onInput($event)" />
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptSelected($event)">
+        @for (option of filteredOptions(); track option) {
+          <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+<div class="flex flex-col gap-4 overflow-y-auto pb-4">
+  @for (component of components; track component.ref) {
+    <mat-expansion-panel [expanded]="component.open">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ component.label }} </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <app-dynamic-content [component]="component.ref"></app-dynamic-content>
+      </ng-template>
+    </mat-expansion-panel>
+  }
 </div>

@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './paginator.component.scss'
 })
 export class PaginatorComponent {
+  label = 'Paginator';
   length = 50;
   pageSize = 10;
   pageIndex = 0;

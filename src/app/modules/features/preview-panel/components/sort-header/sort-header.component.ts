@@ -17,6 +17,7 @@ export interface Dessert {
   styleUrl: './sort-header.component.scss'
 })
 export class SortHeaderComponent {
+  label = 'Sort Header';
   desserts: Dessert[] = [
     { name: 'Frozen yogurt', calories: 159, fat: 6, carbs: 24, protein: 4 },
     { name: 'Ice cream sandwich', calories: 237, fat: 9, carbs: 37, protein: 4 },

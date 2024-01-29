@@ -9,4 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './tooltip.component.html',
   styleUrl: './tooltip.component.scss'
 })
-export class TooltipComponent {}
+export class TooltipComponent {
+  label = 'Tooltip';
+}

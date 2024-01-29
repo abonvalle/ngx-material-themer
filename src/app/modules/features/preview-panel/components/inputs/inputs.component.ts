@@ -27,6 +27,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
   styleUrl: './inputs.component.scss'
 })
 export class InputsComponent implements OnInit {
+  label = 'Inputs';
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;

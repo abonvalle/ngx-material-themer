@@ -9,4 +9,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   templateUrl: './tabs.component.html',
   styleUrl: './tabs.component.scss'
 })
-export class TabsComponent {}
+export class TabsComponent {
+  label = 'Tabs';
+}

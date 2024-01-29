@@ -9,4 +9,6 @@ import { MatListModule } from '@angular/material/list';
   templateUrl: './divider.component.html',
   styleUrl: './divider.component.scss'
 })
-export class DividerComponent {}
+export class DividerComponent {
+  label = 'Divider';
+}

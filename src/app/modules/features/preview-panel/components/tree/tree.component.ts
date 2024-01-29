@@ -41,6 +41,7 @@ const TREE_DATA: FoodNode[] = [
   styleUrl: './tree.component.scss'
 })
 export class TreeComponent {
+  label = 'Tree';
   treeControl = new NestedTreeControl<FoodNode>((node) => node.children);
   dataSource = new MatTreeNestedDataSource<FoodNode>();
 

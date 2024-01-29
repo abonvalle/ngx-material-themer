@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './progress-spinner.component.scss'
 })
 export class ProgressSpinnerComponent {
+  label = 'Progress Spinner';
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'determinate';
   value = 50;

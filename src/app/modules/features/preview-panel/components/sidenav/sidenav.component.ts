@@ -11,4 +11,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss'
 })
-export class SidenavComponent {}
+export class SidenavComponent {
+  label = 'Sidenav';
+}

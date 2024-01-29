@@ -13,6 +13,7 @@ import { MatStepperModule } from '@angular/material/stepper';
   styleUrl: './stepper.component.scss'
 })
 export class StepperComponent {
+  label = 'Stepper';
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required]
   });

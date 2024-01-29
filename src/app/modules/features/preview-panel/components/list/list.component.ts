@@ -17,6 +17,7 @@ export interface Section {
   styleUrl: './list.component.scss'
 })
 export class ListComponent {
+  label = 'List';
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   folders: Section[] = [
     {

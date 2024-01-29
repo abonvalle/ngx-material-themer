@@ -45,6 +45,7 @@ export class BottomSheetComponent {
   imports: [MatListModule]
 })
 export class BottomSheetOverviewExampleSheet {
+  label = 'Bottom Sheet';
   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
 
   openLink(event: MouseEvent): void {

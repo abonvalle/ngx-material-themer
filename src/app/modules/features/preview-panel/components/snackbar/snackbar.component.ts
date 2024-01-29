@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './snackbar.component.scss'
 })
 export class SnackbarComponent {
+  label = 'Snackbar';
   constructor(private _snackBar: MatSnackBar) {}
 
   openSnackBar(message: string, action: string) {

@@ -26,6 +26,7 @@ export interface DialogData {
   styleUrl: './dialog.component.scss'
 })
 export class DialogComponent {
+  label = 'Dialog';
   animal!: string;
   name!: string;
 

@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './badge.component.scss'
 })
 export class BadgeComponent {
+  label = 'Badge';
   hidden = false;
 
   toggleBadgeVisibility() {

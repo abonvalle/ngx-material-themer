@@ -9,5 +9,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
   styleUrl: './expansion-panel.component.scss'
 })
 export class ExpansionPanelComponent {
+  label = 'Expansion Panel';
   panelOpenState = false;
 }

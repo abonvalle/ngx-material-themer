@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './slider.component.scss'
 })
 export class SliderComponent {
+  label = 'Slider';
   disabled = false;
   max = 100;
   min = 0;

@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './progress-bar.component.scss'
 })
 export class ProgressBarComponent {
+  label = 'Progress Bar';
   color: ThemePalette = 'primary';
   mode: ProgressBarMode = 'determinate';
   value = 50;

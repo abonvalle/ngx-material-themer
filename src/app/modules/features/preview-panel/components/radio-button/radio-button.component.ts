@@ -8,4 +8,6 @@ import { MatRadioModule } from '@angular/material/radio';
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.scss'
 })
-export class RadioButtonComponent {}
+export class RadioButtonComponent {
+  label = 'Radio Button';
+}

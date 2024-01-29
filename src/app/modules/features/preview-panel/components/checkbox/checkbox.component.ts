@@ -18,6 +18,7 @@ export interface Task {
   styleUrl: './checkbox.component.scss'
 })
 export class CheckboxComponent {
+  label = 'Checkbox';
   task: Task = {
     name: 'Indeterminate',
     completed: false,

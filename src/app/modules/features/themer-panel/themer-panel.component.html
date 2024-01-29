@@ -2,8 +2,17 @@
   <div class="flex-1 overflow-auto p-8">
     <div class="flex flex-col justify-center gap-8">
       <div>
-        <h1 class="mat-headline-4 !mb-3 whitespace-nowrap">ng Material Themer</h1>
-        <a class="flex cursor-pointer items-center gap-2 underline">
+        <h1 class="mat-headline-4 !mb-1 whitespace-nowrap">
+          ng Material Themer <span class="text-base">v{{ appVersion }}</span>
+        </h1>
+        <p class="mat-body-1 text-black/75">
+          A tool to easily create your own Angular Material theme.
+          <br />
+          <span class="mb-3 text-sm text-black/60">
+            Based on Angular Material v{{ materialVersion }}, this may not work for earlier versions
+          </span>
+        </p>
+        <a class="mb-2 flex cursor-pointer items-center gap-2 underline">
           @if (isDarkMode()) {
             <img src="assets/svg/github-mark-white.svg" alt="github icon" width="20" />
           } @else {

@@ -14,6 +14,8 @@ import { ColorPaletteComponent } from '@features/color-palette/color-palette.com
 import { ToolPanelComponent } from '@modules/tool-panel/tool-panel.component';
 import { ThemesService } from '@modules/services/themes.service';
 import { ConfirmDialogComponent } from '@features/confirm-dialog/confirm-dialog.component';
+import { VERSION } from '@angular/material/core';
+import packageJSON from 'package.json';
 
 @Component({
   selector: 'app-themer-panel',
@@ -45,6 +47,8 @@ export class ThemerPanelComponent {
     { value: 'purple', label: 'Purple & Green' }
   ];
   isDarkMode = this._themeService.darkMode;
+  materialVersion = `${VERSION.major}.${VERSION.minor}`;
+  appVersion = packageJSON.version.slice(-packageJSON.version.lastIndexOf('.'));
   constructor(
     public dialog: MatDialog,
     private _themeService: ThemesService

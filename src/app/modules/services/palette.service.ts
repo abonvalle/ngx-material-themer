@@ -19,7 +19,7 @@ export class PaletteService {
 
   normalizePalette(simplPal: SimplifiedPalette): MaterialPalette {
     return {
-      '50': '#ffffff',
+      '050': '#ffffff',
       '100': simplPal.lighter.main,
       '200': '#ffffff',
       '300': '#ffffff',
@@ -34,7 +34,7 @@ export class PaletteService {
       A400: '#ffffff',
       A700: '#ffffff',
       contrast: {
-        '50': '#000000',
+        '050': '#000000',
         '100': simplPal.lighter.contrast,
         '200': '#000000',
         '300': '#000000',

@@ -21,6 +21,28 @@
           Give it a star on Github!
         </a>
       </div>
+      <div class="flex items-center justify-start gap-2">
+        <div class="flex flex-col items-start justify-center gap-3">
+          <div class="flex items-center justify-center">
+            <mat-icon class="mat-icon mr-2 rotate-180">brightness_3</mat-icon>
+            Dark mode
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="mat-icon mr-1">help_outline</mat-icon>
+            Hide help tooltips
+          </div>
+        </div>
+        <div class="flex flex-col items-center justify-center gap-3">
+          <mat-slide-toggle class="mx-2 mb-2" [checked]="isDarkMode()" (change)="updateMode()" labelPosition="before">
+          </mat-slide-toggle>
+          <mat-slide-toggle
+            class="mx-2"
+            [checked]="hideHelpTooltips()"
+            (change)="updateHideHelpTooltips()"
+            labelPosition="before">
+          </mat-slide-toggle>
+        </div>
+      </div>
       <div class="flex flex-col justify-center">
         <h5 class="mat-typography">Use preset themes :</h5>
         <mat-chip-listbox aria-label="Preset theme selection" class="mb-4">
@@ -28,13 +50,6 @@
             <mat-chip-option [value]="theme.value">{{ theme.label }}</mat-chip-option>
           }
         </mat-chip-listbox>
-
-        <mat-slide-toggle class="mx-2" [checked]="isDarkMode()" (change)="updateMode()" labelPosition="before">
-          <div class="flex items-center">
-            <mat-icon class="mat-icon rotate-180">brightness_3</mat-icon>
-            Dark mode
-          </div>
-        </mat-slide-toggle>
       </div>
       <mat-divider></mat-divider>
       <app-theme name="my-custom-theme" label="Custom theme"></app-theme>

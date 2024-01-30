@@ -7,7 +7,6 @@ import { MaterialPalette } from '@models/material/material-palette.interface';
 })
 export class ThemesService {
   darkMode: WritableSignal<boolean> = signal(false);
-
   themes: WritableSignal<ThemeComponent[]> = signal([]);
   constructor() {
     effect(() => {

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfigService } from '@modules/services/config.service';
 
 @Component({
   selector: 'app-help-tooltip',
@@ -12,4 +13,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class HelpTooltipComponent {
   @Input({ required: true }) tooltip = '';
+  readonly hideTooltips = this._configService.hideHelpTooltips;
+  constructor(private _configService: ConfigService) {}
 }

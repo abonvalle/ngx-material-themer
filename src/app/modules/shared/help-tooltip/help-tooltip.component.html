@@ -1,3 +1,5 @@
-<div class="flex h-full items-start justify-center">
-  <mat-icon class="mat-icon !text-[16px] text-black/60" [matTooltip]="tooltip"> help_outline </mat-icon>
-</div>
+@if (!hideTooltips()) {
+  <div class="flex h-full items-start justify-center">
+    <mat-icon class="mat-icon !text-[16px] text-black/60" [matTooltip]="tooltip"> help_outline </mat-icon>
+  </div>
+}

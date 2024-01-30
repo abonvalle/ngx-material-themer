@@ -1,13 +1,19 @@
 <div class="flex flex-col gap-2">
   <app-simplified-palette
+    label="Primary"
+    tooltip="For the color that appears most frequently throughout your application"
     [(colors)]="primaryPal"
     (colorsChange)="updatePal($event, primaryPalChange)"></app-simplified-palette>
 
   <app-simplified-palette
+    label="Accent"
+    tooltip="Secondary palette used to selectively highlight key parts of your UI"
     [(colors)]="accentPal"
     (colorsChange)="updatePal($event, accentPalChange)"></app-simplified-palette>
 
   <app-simplified-palette
+    label="Warn (optionnal)"
+    tooltip="Error palette used for warnings and error states. Default to material red."
     [(colors)]="warnPal"
     (colorsChange)="updatePal($event, warnPalChange)"></app-simplified-palette>
 </div>

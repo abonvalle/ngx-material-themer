@@ -16,6 +16,7 @@ import { ThemesService } from '@modules/services/themes.service';
 import { ConfirmDialogComponent } from '@features/confirm-dialog/confirm-dialog.component';
 import { VERSION } from '@angular/material/core';
 import packageJSON from 'package.json';
+import { ConfigService } from '@modules/services/config.service';
 
 @Component({
   selector: 'app-themer-panel',
@@ -47,11 +48,13 @@ export class ThemerPanelComponent {
     { value: 'purple', label: 'Purple & Green' }
   ];
   isDarkMode = this._themeService.darkMode;
+  hideHelpTooltips = this._configService.hideHelpTooltips;
   materialVersion = `${VERSION.major}.${VERSION.minor}`;
   appVersion = packageJSON.version.slice(-packageJSON.version.lastIndexOf('.'));
   constructor(
     public dialog: MatDialog,
-    private _themeService: ThemesService
+    private _themeService: ThemesService,
+    private _configService: ConfigService
   ) {}
 
   addSecondTheme() {
@@ -74,6 +77,9 @@ export class ThemerPanelComponent {
   }
   updateMode() {
     this._themeService.toggleDarkMode();
+  }
+  updateHideHelpTooltips() {
+    this._configService.toggleHideHelpTooltips();
   }
 }
 

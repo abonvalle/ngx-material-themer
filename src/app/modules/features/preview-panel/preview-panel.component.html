@@ -1,7 +1,7 @@
-<div class="flex justify-between">
-  <h3 class="mat-typography">Preview panel</h3>
+<div class="flex items-center justify-between">
+  <h3 class="mat-typography !mb-[11px]">Preview panel</h3>
   <form class="">
-    <mat-form-field class="">
+    <mat-form-field class="w-[250px]">
       <mat-label>Search a component</mat-label>
       <input
         type="text"
@@ -11,6 +11,11 @@
         [formControl]="myControl"
         [matAutocomplete]="auto"
         (input)="onInput($event)" />
+      @if (myControl.value) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="myControl.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptSelected($event)">
         @for (option of filteredOptions(); track option) {
           <mat-option [value]="option">{{ option }}</mat-option>
@@ -20,7 +25,7 @@
   </form>
 </div>
 <div class="flex flex-col gap-4 overflow-y-auto pb-4">
-  @for (component of components; track component.ref) {
+  @for (component of components(); track component.ref) {
     <mat-expansion-panel [expanded]="component.open">
       <mat-expansion-panel-header>
         <mat-panel-title> {{ component.label }} </mat-panel-title>

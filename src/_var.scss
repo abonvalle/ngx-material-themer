@@ -1,5 +1,5 @@
 $dynamic-theme-primary: (
-  50: var(--theme-primary-50),
+  50: var(--theme-primary-050),
   100: var(--theme-primary-100),
   200: var(--theme-primary-200),
   300: var(--theme-primary-300),
@@ -14,7 +14,7 @@ $dynamic-theme-primary: (
   A400: var(--theme-primary-A400),
   A700: var(--theme-primary-A700),
   contrast: (
-    50: var(--theme-primary-contrast-50),
+    50: var(--theme-primary-contrast-050),
     100: var(--theme-primary-contrast-100),
     200: var(--theme-primary-contrast-200),
     300: var(--theme-primary-contrast-300),
@@ -31,7 +31,7 @@ $dynamic-theme-primary: (
   )
 );
 $dynamic-theme-accent: (
-  50: var(--theme-accent-50),
+  50: var(--theme-accent-050),
   100: var(--theme-accent-100),
   200: var(--theme-accent-200),
   300: var(--theme-accent-300),
@@ -46,7 +46,7 @@ $dynamic-theme-accent: (
   A400: var(--theme-accent-A400),
   A700: var(--theme-accent-A700),
   contrast: (
-    50: var(--theme-accent-contrast-50),
+    50: var(--theme-accent-contrast-050),
     100: var(--theme-accent-contrast-100),
     200: var(--theme-accent-contrast-200),
     300: var(--theme-accent-contrast-300),
@@ -63,7 +63,7 @@ $dynamic-theme-accent: (
   )
 );
 $dynamic-theme-warn: (
-  50: var(--theme-warn-50),
+  50: var(--theme-warn-050),
   100: var(--theme-warn-100),
   200: var(--theme-warn-200),
   300: var(--theme-warn-300),
@@ -78,7 +78,7 @@ $dynamic-theme-warn: (
   A400: var(--theme-warn-A400),
   A700: var(--theme-warn-A700),
   contrast: (
-    50: var(--theme-warn-contrast-50),
+    50: var(--theme-warn-contrast-050),
     100: var(--theme-warn-contrast-100),
     200: var(--theme-warn-contrast-200),
     300: var(--theme-warn-contrast-300),

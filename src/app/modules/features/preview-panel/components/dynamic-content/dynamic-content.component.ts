@@ -1,3 +1,4 @@
+import { ComponentType } from '@angular/cdk/overlay';
 import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
   styleUrl: './dynamic-content.component.scss'
 })
 export class DynamicContentComponent implements OnInit {
-  @Input() component: any;
+  @Input({ required: true }) component!: ComponentType<unknown>;
 
   constructor(public viewContainerRef: ViewContainerRef) {}
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PreviewPanelComponent } from '@models/preview-panel-component.interface';
+import { PreviewPanelComponent } from '@features/preview-panel/model/preview-panel-component.interface';
 import {
   BadgeComponent,
   BottomSheetComponent,

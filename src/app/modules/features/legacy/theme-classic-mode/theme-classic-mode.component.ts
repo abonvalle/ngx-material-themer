@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, WritableSignal } from '@angular/core';
+import { emptySimplePalette } from '@features/legacy/simplified/empty-simple-palette.const';
 import { SimplifiedPalette } from '@features/legacy/simplified/simplified-palette.interface';
-import { emptySimplePalette } from '@models/empty-simple-palette.const';
 import { MaterialPalette } from '@models/material/material-palette.interface';
 import { PalettesService } from '@modules/services/palettes.service';
 import { SimplifiedPaletteComponent } from '../simplified-palette/simplified-palette.component';

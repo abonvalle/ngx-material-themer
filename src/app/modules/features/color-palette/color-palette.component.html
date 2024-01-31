@@ -1,5 +1,10 @@
 <div class="flex h-full flex-col items-start justify-start gap-2">
-  <span class="capitalize">{{ name }}</span>
+  <span class="flex gap-1 capitalize">
+    {{ name }}
+    @if (tooltip) {
+      <app-help-tooltip [tooltip]="tooltip"></app-help-tooltip>
+    }
+  </span>
   <div class="flex h-full flex-wrap items-center justify-start">
     @if (!expanded()) {
       <app-color-brick [color]="palette()[500]" (colorChange)="updatePalette($event)"></app-color-brick>
@@ -9,50 +14,56 @@
         class="relative ml-2 flex h-full min-h-8 w-28 items-center justify-start">
         <span
           (click)="setExpanded(true)"
-          class="cursor-pointer whitespace-nowrap text-xs transition-opacity duration-300"
-          [ngClass]="{ 'opacity-0': !showLabel() }"
-          matTooltip="Expand to specify each palette color">
-          Expand palette
+          class="flex cursor-pointer items-center justify-center whitespace-nowrap text-xs transition-opacity duration-300"
+          [ngClass]="{ 'opacity-0': !showLabel() }">
+          Expand palette <app-help-tooltip tooltip="Expand to specify each palette color"></app-help-tooltip>
         </span>
         <mat-icon
           (click)="setExpanded(true)"
           class="absolute left-0 z-0 cursor-pointer transition-transform duration-300"
-          [ngClass]="{ 'translate-x-20': showLabel() }"
-          >chevron_right</mat-icon
-        >
+          [ngClass]="{
+            'translate-x-20': hideHelpTooltips() && showLabel(),
+            'translate-x-24': !hideHelpTooltips() && showLabel()
+          }">
+          chevron_right
+        </mat-icon>
       </div>
     } @else {
-      <div
-        class="text-sm text-black/60"
-        matTooltip="I let the palette feature but the default 100 is used to initialize $lighter and 700 for $darker when
-      creating the theme but I haven't found any use in Angular Material components. My guess is ">
-        It seems that the only hue used in Angular Material by default is 500
-        <mat-icon class="text-black/60">help_outline</mat-icon>
-      </div>
-      @for (color of paletteColors() | keyvalue; track color.key) {
-        <div class="flex flex-col items-center justify-center gap-2">
-          <app-color-brick [color]="color.value" (colorChange)="updateColor($event, color.key)">
-            <span class="text-sm">{{ color.key }}</span>
-          </app-color-brick>
-        </div>
-      }
-      <div
-        (mouseenter)="toggleShowLabel(true)"
-        (mouseleave)="toggleShowLabel(false)"
-        class="relative ml-2 flex h-full min-h-8 w-28 items-center justify-start">
-        <span
-          (click)="setExpanded(false)"
-          class="cursor-pointer whitespace-nowrap text-xs transition-opacity duration-300"
-          [ngClass]="{ 'opacity-0': !showLabel() }"
-          matTooltip="Reduce to create a palette from your color automatically">
-          Reduce palette
+      <div class="flex flex-col">
+        <span class="mb-2 text-xs italic text-black/50">
+          Lighter = {{ lighterColor }}, Default = {{ defaultColor }}, Text = {{ textColor }}, Darker = {{ darkerColor }}
+          <span class="ml-2 cursor-pointer font-medium underline" (click)="updateDefaultsHues()">Update</span>
         </span>
-        <mat-icon
-          (click)="setExpanded(false)"
-          class="absolute left-0 z-0 cursor-pointer transition-transform duration-300"
-          [ngClass]="{ 'translate-x-20': showLabel() }">
-          chevron_left
-        </mat-icon>
+        <div class="flex h-full flex-wrap items-center justify-start">
+          @for (color of paletteColors() | keyvalue; track color.key) {
+            <div class="flex flex-col items-center justify-center gap-2">
+              <app-color-brick [color]="color.value" (colorChange)="updateColor($event, color.key)">
+                <span class="text-sm">{{ color.key }}</span>
+              </app-color-brick>
+            </div>
+          }
+          <div
+            (mouseenter)="toggleShowLabel(true)"
+            (mouseleave)="toggleShowLabel(false)"
+            class="relative ml-2 flex h-full min-h-8 w-28 items-center justify-start">
+            <span
+              (click)="setExpanded(false)"
+              class="flex cursor-pointer items-center justify-center whitespace-nowrap text-xs transition-opacity duration-300"
+              [ngClass]="{ 'opacity-0': !showLabel() }">
+              Reduce palette
+              <app-help-tooltip tooltip="Reduce to create a palette from your color automatically"></app-help-tooltip>
+            </span>
+            <mat-icon
+              (click)="setExpanded(false)"
+              class="absolute left-0 z-0 cursor-pointer transition-transform duration-300"
+              [ngClass]="{
+                'translate-x-20': hideHelpTooltips() && showLabel(),
+                'translate-x-24': !hideHelpTooltips() && showLabel()
+              }">
+              chevron_left
+            </mat-icon>
+          </div>
+        </div>
       </div>
     }
   </div>

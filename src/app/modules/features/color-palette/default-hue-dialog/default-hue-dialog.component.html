@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>{{ data.name }} palette</h1>
+<div mat-dialog-content>
+  <p>Drag & drop the "mark"</p>
+  <p class="flex items-center justify-center text-xs">
+    Be sure to respect the "Lighter < Default < Darker" order to keep your app's style consistent.
+  </p>
+  <div
+    cdkDropList
+    cdkDropListSortingDisabled
+    class="example-list w-full !cursor-default"
+    (cdkDropListDropped)="drop($event)">
+    @for (hueKey of hueKeys(); track hueKey) {
+      <div
+        class="example-box !cursor-default"
+        [style.background-color]="getPaletteColor(hueKey.name)"
+        (click)="updateColor(hueKey.name)"
+        [attr.data-hue]="hueKey.name">
+        <span class="rounded-lg bg-white px-2 py-1">
+          {{ hueKey.name }}
+        </span>
+        <div class="flex gap-2">
+          @for (mark of hueKey.marks; track mark) {
+            <mat-chip class="!cursor-move border-[1px] border-black/50 bg-slate-300" cdkDrag [attr.data-mark]="mark">
+              {{ mark }}
+            </mat-chip>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button cdkFocusInitial>Update</button>
+</div>

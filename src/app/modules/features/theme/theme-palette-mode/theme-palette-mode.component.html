@@ -12,13 +12,16 @@
   <app-color-palette
     name="Primary"
     [(palette)]="primaryPal"
+    tooltip="For the color that appears most frequently throughout your application"
     (paletteChange)="updatePalette(primaryPalChange, primaryPal)"></app-color-palette>
   <app-color-palette
     name="Accent"
     [(palette)]="accentPal"
+    tooltip="Secondary palette used to selectively highlight key parts of your UI"
     (paletteChange)="updatePalette(accentPalChange, accentPal)"></app-color-palette>
   <app-color-palette
     name="Warn"
     [(palette)]="warnPal"
+    tooltip="Error palette used for warnings and error states. Default to material red."
     (paletteChange)="updatePalette(warnPalChange, warnPal)"></app-color-palette>
 </div>

@@ -12,7 +12,7 @@
       <mat-slide-toggle class="mx-2" [checked]="isLightTheme()" (change)="updateTheme($event)" labelPosition="before">
       </mat-slide-toggle>
     </div>
-    <div class="flex items-center justify-between">
+    <!-- <div class="flex items-center justify-between">
       <div class="flex items-center justify-center">
         <mat-icon class="mat-icon mr-1">palette</mat-icon>
         Palette mode
@@ -26,7 +26,7 @@
         (change)="updatePaletteMode($event)"
         labelPosition="before">
       </mat-slide-toggle>
-    </div>
+    </div> -->
   </div>
   <div class="flex flex-row flex-wrap items-center">
     <mat-form-field class="">
@@ -53,15 +53,15 @@
     <app-color-palette [(palette)]="accentPal"></app-color-palette>
     <app-color-palette [(palette)]="warnPal"></app-color-palette>
   </div> -->
-  @if (isPalMode()) {
-    <app-theme-palette-mode
-      [(primaryPal)]="primaryPal"
-      [(accentPal)]="accentPal"
-      [(warnPal)]="warnPal"
-      [fontDark]="fontDark"
-      [fontLight]="fontLight"
-      [automaticContrast]="automaticContrast()"></app-theme-palette-mode>
-  } @else {
+  <!-- @if (isPalMode()) { -->
+  <app-theme-palette-mode
+    [(primaryPal)]="primaryPal"
+    [(accentPal)]="accentPal"
+    [(warnPal)]="warnPal"
+    [fontDark]="fontDark"
+    [fontLight]="fontLight"
+    [automaticContrast]="automaticContrast()"></app-theme-palette-mode>
+  <!-- } @else {
     <app-theme-classic-mode
       [primaryPal]="primaryPalSimplified()"
       [accentPal]="accentPalSimplified()"
@@ -72,5 +72,5 @@
       (primaryPalChange)="updatePal($event, primaryPal)"
       (accentPalChange)="updatePal($event, accentPal)"
       (warnPalChange)="updatePal($event, warnPal)"></app-theme-classic-mode>
-  }
+  } -->
 </div>

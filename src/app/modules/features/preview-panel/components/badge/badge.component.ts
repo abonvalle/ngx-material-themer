@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-badge',

@@ -5,8 +5,8 @@
       <app-help-tooltip [tooltip]="tooltip"></app-help-tooltip>
     }
   </span>
-  <div class="flex h-full flex-wrap items-center justify-start">
-    @if (!expanded()) {
+  <div class="flex h-full w-full flex-wrap items-center justify-start">
+    <!-- @if (!expanded()) {
       <app-color-brick [color]="palette()[500]" (colorChange)="updatePalette($event)"></app-color-brick>
       <div
         (mouseenter)="toggleShowLabel(true)"
@@ -28,13 +28,38 @@
           chevron_right
         </mat-icon>
       </div>
-    } @else {
-      <div class="flex flex-col">
-        <span class="mb-2 text-xs italic text-black/50">
-          Lighter = {{ lighterColor }}, Default = {{ defaultColor }}, Text = {{ textColor }}, Darker = {{ darkerColor }}
-          <span class="ml-2 cursor-pointer font-medium underline" (click)="updateDefaultsHues()">Update</span>
-        </span>
-        <div class="flex h-full flex-wrap items-center justify-start">
+    } @else { -->
+    <div class="flex w-full flex-col">
+      <!-- <span class="mb-2 text-xs italic text-black/50">
+        Lighter = {{ lighterColor }}, Default = {{ defaultColor }}, Text = {{ textColor }}, Darker = {{ darkerColor }}
+        <span class="ml-2 cursor-pointer font-medium underline" (click)="updateDefaultsHues()">Update</span>
+      </span> -->
+      <div
+        cdkDropList
+        cdkDropListSortingDisabled
+        class="example-list w-full !cursor-default"
+        (cdkDropListDropped)="drop($event)">
+        @for (hueKey of paletteColors() | keyvalue; track hueKey) {
+          <!-- (click)="updateColor(hueKey.name)" -->
+          <!-- <div class="example-box !cursor-default" [style.background-color]="hueKey.value" [attr.data-hue]="hueKey.key">
+            <span class="rounded-lg bg-white px-2 py-1">
+              {{ hueKey.key }}
+            </span>
+            <div class="flex gap-2">
+              @for (mark of hueKey.marks; track mark) {
+                <mat-chip class="!cursor-move border-[1px] border-black/50 bg-slate-300" cdkDrag [attr.data-mark]="mark">
+                  {{ mark }}
+                </mat-chip>
+              }
+            </div>
+          </div> -->
+          <app-color-tile
+            [color]="hueKey.value"
+            [colorName]="hueKey.key"
+            [marks]="getMarks(hueKey.key)"></app-color-tile>
+        }
+      </div>
+      <!-- <div class="flex h-full flex-wrap items-center justify-start">
           @for (color of paletteColors() | keyvalue; track color.key) {
             <div class="flex flex-col items-center justify-center gap-2">
               <app-color-brick [color]="color.value" (colorChange)="updateColor($event, color.key)">
@@ -63,8 +88,8 @@
               chevron_left
             </mat-icon>
           </div>
-        </div>
-      </div>
-    }
+        </div> -->
+    </div>
+    <!-- } -->
   </div>
 </div>

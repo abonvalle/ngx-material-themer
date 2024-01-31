@@ -1,21 +1,9 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  Signal,
-  WritableSignal,
-  computed,
-  effect,
-  input,
-  signal
-} from '@angular/core';
-import { SimplifiedPalette } from '@models/simplified/simplified-palette.interface';
-import { SimplifiedPaletteComponent } from './simplified-palette/simplified-palette.component';
-import { emptyPalette } from '@models/empty-palette.const';
-import { PaletteService } from '@modules/services/palette.service';
-import { MaterialPalette } from '@models/material/material-palette.interface';
+import { Component, EventEmitter, Input, Output, WritableSignal } from '@angular/core';
+import { SimplifiedPalette } from '@features/legacy/simplified/simplified-palette.interface';
 import { emptySimplePalette } from '@models/empty-simple-palette.const';
+import { MaterialPalette } from '@models/material/material-palette.interface';
+import { PalettesService } from '@modules/services/palettes.service';
+import { SimplifiedPaletteComponent } from '../simplified-palette/simplified-palette.component';
 
 const noPal: SimplifiedPalette = Object.assign({}, emptySimplePalette);
 
@@ -37,7 +25,7 @@ export class ThemeClassicModeComponent {
   @Output() accentPalChange: EventEmitter<SimplifiedPalette> = new EventEmitter();
   @Output() warnPalChange: EventEmitter<SimplifiedPalette> = new EventEmitter();
 
-  constructor(private _paletteService: PaletteService) {}
+  constructor(private _paletteService: PalettesService) {}
   updatePalette(
     paletteEvtEmitter: EventEmitter<WritableSignal<MaterialPalette>>,
     palette: WritableSignal<MaterialPalette>

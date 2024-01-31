@@ -1,17 +1,8 @@
 import { CommonModule, TitleCasePipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  WritableSignal,
-  computed
-} from '@angular/core';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { ColorBrickComponent } from '@features/color-brick/color-brick.component';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
+import { SimplifiedPalette } from '@features/legacy/simplified/simplified-palette.interface';
 import { colorKeyTooltip } from '@models/color-key-tooltip.const';
-import { SimplifiedPalette } from '@models/simplified/simplified-palette.interface';
 import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
 
 @Component({

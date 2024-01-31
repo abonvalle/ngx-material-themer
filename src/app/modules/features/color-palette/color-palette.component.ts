@@ -1,3 +1,5 @@
+import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -11,21 +13,21 @@ import {
   inject,
   signal
 } from '@angular/core';
-import { ColorBrickComponent } from '../color-brick/color-brick.component';
-import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { Color } from '../../../../models/color.interface';
-import { MaterialPalette } from '@models/material/material-palette.interface';
-import { MaterialColors } from '@models/material/material-colors.interface';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { emptyPalette } from '@models/empty-palette.const';
-import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
+import { MaterialColors } from '@models/material/material-colors.interface';
+import { MaterialPalette } from '@models/material/material-palette.interface';
 import { ConfigService } from '@modules/services/config.service';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatDialog } from '@angular/material/dialog';
-import { DefaultHueDialogComponent } from './default-hue-dialog/default-hue-dialog.component';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PalettesService } from '@modules/services/palettes.service';
+import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
+import { Color } from '../../../../models/color.interface';
+import { ColorBrickComponent } from '../legacy/color-brick/color-brick.component';
+import { DefaultHueDialogComponent } from '../legacy/default-hue-dialog/default-hue-dialog.component';
+import { ColorTileComponent } from './components/color-tile/color-tile.component';
 
 declare const tinycolor: any;
 const noPal: MaterialPalette = Object.assign({}, emptyPalette);
@@ -33,7 +35,17 @@ const noPal: MaterialPalette = Object.assign({}, emptyPalette);
 @Component({
   selector: 'app-color-palette',
   standalone: true,
-  imports: [CommonModule, ColorBrickComponent, MatExpansionModule, MatIconModule, HelpTooltipComponent],
+  imports: [
+    CommonModule,
+    ColorBrickComponent,
+    MatExpansionModule,
+    MatIconModule,
+    HelpTooltipComponent,
+    MatChipsModule,
+    CdkDropList,
+    CdkDrag,
+    ColorTileComponent
+  ],
   templateUrl: './color-palette.component.html',
   styleUrl: './color-palette.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -60,6 +72,7 @@ export class ColorPaletteComponent {
   constructor(
     private _cdrRef: ChangeDetectorRef,
     private _configService: ConfigService,
+    private _palettesService: PalettesService,
     public dialog: MatDialog
   ) {}
 
@@ -157,5 +170,22 @@ export class ColorPaletteComponent {
       .subscribe((result) => {
         console.log('The dialog was closed');
       });
+  }
+  drop(event: CdkDragDrop<any>) {
+    const hueTarget = (<HTMLElement>(<any>event.event).originalTarget).getAttribute('data-hue');
+    const mark = event.item.element.nativeElement.getAttribute('data-mark') as any;
+    // this.hueKeys.update((hueKeys) => {
+    //   const oldHue = hueKeys.find((hueKey) => hueKey.marks.includes(mark));
+    //   const newHue = hueKeys.find((hueKey) => hueKey.name === hueTarget);
+    //   if (!newHue || !oldHue) {
+    //     return hueKeys;
+    //   }
+    //   oldHue.marks = oldHue.marks.filter((hueKeyMark) => hueKeyMark !== mark);
+    //   newHue.marks = [...newHue.marks, mark];
+    //   return hueKeys;
+    // });
+  }
+  getMarks(hueKey: string) {
+    return [];
   }
 }

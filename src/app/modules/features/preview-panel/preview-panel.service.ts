@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
+import { PreviewPanelComponent } from '@models/preview-panel-component.interface';
 import {
-  ButtonsComponent,
-  InputsComponent,
-  StepperComponent,
   BadgeComponent,
   BottomSheetComponent,
+  ButtonsComponent,
   CardComponent,
   CheckboxComponent,
   ChipsComponent,
@@ -12,24 +11,25 @@ import {
   DividerComponent,
   ExpansionPanelComponent,
   IconComponent,
-  TreeComponent,
-  TooltipComponent,
-  ToolbarComponent,
-  TabsComponent,
-  TableComponent,
-  SortHeaderComponent,
-  SnackbarComponent,
-  SliderComponent,
-  SlideToggleComponent,
-  SidenavComponent,
-  RadioButtonComponent,
-  ProgressSpinnerComponent,
-  ProgressBarComponent,
-  PaginatorComponent,
+  InputsComponent,
+  ListComponent,
   MenuComponent,
-  ListComponent
+  PaginatorComponent,
+  ProgressBarComponent,
+  ProgressSpinnerComponent,
+  RadioButtonComponent,
+  SidenavComponent,
+  SlideToggleComponent,
+  SliderComponent,
+  SnackbarComponent,
+  SortHeaderComponent,
+  StepperComponent,
+  TableComponent,
+  TabsComponent,
+  ToolbarComponent,
+  TooltipComponent,
+  TreeComponent
 } from './components';
-import { PreviewPanelComponent } from '@models/preview-panel-component.interface';
 
 @Injectable({
   providedIn: 'root'

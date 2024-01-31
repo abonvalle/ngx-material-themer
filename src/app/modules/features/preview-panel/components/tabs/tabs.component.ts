@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-tabs',

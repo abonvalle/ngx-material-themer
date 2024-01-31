@@ -1,19 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  WritableSignal,
-  effect,
-  signal
-} from '@angular/core';
-import { ColorPickerComponent } from '../../tool-panel/color-picker/color-picker.component';
 import { CommonModule } from '@angular/common';
-import { ToolPanelService } from '../../tool-panel/tool-panel.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { ColorPickerComponent } from '../../../shared/color-picker/color-picker.component';
+import { ColorPickerService } from '../../../shared/color-picker/color-picker.service';
 
 @Component({
   selector: 'app-color-brick',
@@ -29,7 +19,7 @@ export class ColorBrickComponent {
   @Output() colorChange: EventEmitter<string> = new EventEmitter();
   @Output() contrastsChange: EventEmitter<{ dark?: string; light?: string }> = new EventEmitter();
   constructor(
-    private _toolPanelService: ToolPanelService,
+    private _toolPanelService: ColorPickerService,
     private _cdrRef: ChangeDetectorRef
   ) {}
   editColor(event: Event) {

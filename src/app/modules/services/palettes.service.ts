@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { SimplifiedPalette } from '@features/legacy/simplified';
 import { MaterialPalette } from '@models/material/material-palette.interface';
-import { SimplifiedPalette } from '@models/simplified';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaletteService {
+export class PalettesService {
   constructor() {}
 
   simplifyPalette(pal: MaterialPalette): SimplifiedPalette {

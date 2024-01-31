@@ -6,7 +6,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
   Output,
   Signal,
@@ -17,11 +16,11 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import iro from '@jaames/iro';
-import { ToolPanelService } from '../tool-panel.service';
 import { debounce } from '@shared/utils';
+import { ColorPickerService } from './color-picker.service';
 
 @Component({
   selector: 'app-color-picker',
@@ -54,7 +53,7 @@ export class ColorPickerComponent implements AfterViewInit {
 
   constructor(
     private _cdr: ChangeDetectorRef,
-    private _toolPanelService: ToolPanelService,
+    private _toolPanelService: ColorPickerService,
     private _eltRef: ElementRef
   ) {
     effect(
@@ -101,7 +100,7 @@ export class ColorPickerComponent implements AfterViewInit {
   }
   removeColor() {
     this._toolPanelService.updateCurrentElementColor(null);
-    this._toolPanelService.updateCurrentElementContrasts({});
+    // this._toolPanelService.updateCurrentElementContrasts({});
     // this._color = '';
     // this.colorChange.emit('');
     // this._cdr.markForCheck();

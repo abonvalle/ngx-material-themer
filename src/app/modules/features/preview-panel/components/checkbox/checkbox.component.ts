@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ThemePalette } from '@angular/material/core';
 
 export interface Task {
   name: string;

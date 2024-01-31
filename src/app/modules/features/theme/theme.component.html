@@ -54,13 +54,13 @@
     <app-color-palette [(palette)]="warnPal"></app-color-palette>
   </div> -->
   <!-- @if (isPalMode()) { -->
-  <app-theme-palette-mode
+  <app-theme-palettes-mode
     [(primaryPal)]="primaryPal"
     [(accentPal)]="accentPal"
     [(warnPal)]="warnPal"
     [fontDark]="fontDark"
     [fontLight]="fontLight"
-    [automaticContrast]="automaticContrast()"></app-theme-palette-mode>
+    [automaticContrast]="automaticContrast()"></app-theme-palettes-mode>
   <!-- } @else {
     <app-theme-classic-mode
       [primaryPal]="primaryPalSimplified()"

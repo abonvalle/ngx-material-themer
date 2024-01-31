@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ColorPickerComponent } from './color-picker/color-picker.component';
-import { ToolPanelService } from './tool-panel.service';
+import { ColorPickerComponent } from '../../../shared/color-picker/color-picker.component';
+import { ColorPickerService } from '../../../shared/color-picker/color-picker.service';
 
 @Component({
   selector: 'app-tool-panel',
@@ -10,5 +10,5 @@ import { ToolPanelService } from './tool-panel.service';
   styleUrl: './tool-panel.component.scss'
 })
 export class ToolPanelComponent {
-  constructor(public toolPanelService: ToolPanelService) {}
+  constructor(public toolPanelService: ColorPickerService) {}
 }

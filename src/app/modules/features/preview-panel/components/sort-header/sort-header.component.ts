@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Sort, MatSortModule } from '@angular/material/sort';
+import { MatSortModule, Sort } from '@angular/material/sort';
 
 export interface Dessert {
   calories: number;

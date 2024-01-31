@@ -1,22 +1,22 @@
 import { Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDialog } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ThemeComponent } from '../theme/theme.component';
-import { ColorBrickComponent } from '@features/color-brick/color-brick.component';
-import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
-import { ToolPanelComponent } from '@modules/tool-panel/tool-panel.component';
-import { ThemesService } from '@modules/services/themes.service';
-import { ConfirmDialogComponent } from '@features/confirm-dialog/confirm-dialog.component';
 import { VERSION } from '@angular/material/core';
-import packageJSON from 'package.json';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
+import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
+import { ToolPanelComponent } from '@features/legacy/tool-panel/tool-panel.component';
 import { ConfigService } from '@modules/services/config.service';
+import { ThemesService } from '@modules/services/themes.service';
+import { ConfirmDialogComponent } from '@modules/shared/confirm-dialog/confirm-dialog.component';
+import packageJSON from 'package.json';
+import { ThemeComponent } from '../theme/theme.component';
 
 @Component({
   selector: 'app-themer-panel',

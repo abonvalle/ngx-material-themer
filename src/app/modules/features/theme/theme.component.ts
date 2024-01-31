@@ -11,21 +11,21 @@ import {
   computed,
   signal
 } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { ColorBrickComponent } from '@features/color-brick/color-brick.component';
 import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
+import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
+import { SimplifiedPalette } from '@features/legacy/simplified';
 import { emptyPalette } from '@models/empty-palette.const';
-import { ThemesService } from '@modules/services/themes.service';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
-import { ThemePaletteModeComponent } from './theme-palette-mode/theme-palette-mode.component';
-import { ThemeClassicModeComponent } from './theme-classic-mode/theme-classic-mode.component';
 import { MaterialPalette } from '@models/material/material-palette.interface';
-import { SimplifiedPalette } from '@models/simplified';
-import { PaletteService } from '@modules/services/palette.service';
+import { PalettesService } from '@modules/services/palettes.service';
+import { ThemesService } from '@modules/services/themes.service';
+import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
+import { ThemeClassicModeComponent } from '../legacy/theme-classic-mode/theme-classic-mode.component';
+import { ThemePalettesModeComponent } from './components/theme-palette-mode/theme-palettes-mode.component';
 
 const noPal: MaterialPalette = Object.assign({}, emptyPalette);
 
@@ -41,7 +41,7 @@ const noPal: MaterialPalette = Object.assign({}, emptyPalette);
     ColorBrickComponent,
     MatCheckboxModule,
     HelpTooltipComponent,
-    ThemePaletteModeComponent,
+    ThemePalettesModeComponent,
     ThemeClassicModeComponent
   ],
   templateUrl: './theme.component.html',
@@ -71,7 +71,7 @@ export class ThemeComponent implements OnChanges {
   constructor(
     private _destroyRef: DestroyRef,
     private _themesService: ThemesService,
-    private _paletteService: PaletteService
+    private _paletteService: PalettesService
   ) {
     this._themesService.addTheme(this);
     this._destroyRef.onDestroy(() => {

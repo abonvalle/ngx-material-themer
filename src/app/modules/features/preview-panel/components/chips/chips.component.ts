@@ -1,14 +1,14 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { AsyncPipe } from '@angular/common';
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { MatIconModule } from '@angular/material/icon';
-import { AsyncPipe } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 @Component({
   selector: 'app-chips',
   standalone: true,

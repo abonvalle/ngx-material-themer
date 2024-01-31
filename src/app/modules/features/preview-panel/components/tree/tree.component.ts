@@ -1,8 +1,8 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component } from '@angular/core';
-import { MatTreeNestedDataSource, MatTreeModule } from '@angular/material/tree';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 
 /**
  * Food data with nested structure.

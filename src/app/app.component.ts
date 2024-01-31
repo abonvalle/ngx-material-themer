@@ -1,11 +1,11 @@
-import { Component, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Component, effect } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ThemesService } from './modules/services/themes.service';
-import { Color } from '../models/color.interface';
-import { ThemerPanelComponent } from '@features/themer-panel/themer-panel.component';
+import { RouterOutlet } from '@angular/router';
 import { PreviewPanelComponent } from '@features/preview-panel/preview-panel.component';
+import { ThemerPanelComponent } from '@features/themer-panel/themer-panel.component';
+import { Color } from '../models/color.interface';
+import { ThemesService } from './modules/services/themes.service';
 @Component({
   selector: 'app-root',
   standalone: true,

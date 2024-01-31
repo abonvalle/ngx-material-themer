@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
 import { JsonPipe } from '@angular/common';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-paginator',

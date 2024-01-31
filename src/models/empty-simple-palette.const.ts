@@ -1,4 +1,4 @@
-import { SimplifiedPalette } from './simplified';
+import { SimplifiedPalette } from '../app/modules/features/legacy/simplified';
 
 export const emptySimplePalette: SimplifiedPalette = Object.freeze({
   default: { main: '', contrast: '' },

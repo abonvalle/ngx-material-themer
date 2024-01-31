@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ToolPanelService } from './tool-panel.service';
+import { ColorPickerService } from './color-picker.service';
 
-describe('ToolPanelService', () => {
-  let service: ToolPanelService;
+describe('ColorPickerService', () => {
+  let service: ColorPickerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ToolPanelService);
+    service = TestBed.inject(ColorPickerService);
   });
 
   it('should be created', () => {

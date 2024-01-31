@@ -6,21 +6,15 @@ import {
   MatDialogClose,
   MatDialogContent,
   MatDialogRef,
-  MatDialogTitle,
+  MatDialogTitle
 } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-dialog',
   standalone: true,
-  imports: [
-    MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
-  ],
+  imports: [MatButtonModule, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose],
   templateUrl: './confirm-dialog.component.html',
-  styleUrl: './confirm-dialog.component.scss',
+  styleUrl: './confirm-dialog.component.scss'
 })
 export class ConfirmDialogComponent {
   constructor(

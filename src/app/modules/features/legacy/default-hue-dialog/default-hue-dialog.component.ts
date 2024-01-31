@@ -1,4 +1,7 @@
+import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 import { Component, Inject, WritableSignal, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -7,14 +10,9 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from '@angular/material/dialog';
-import { CdkDragDrop, CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import { dialogData, hueKeys, hueKeysMark } from './model';
 import { hueKeys as hueKeysConst } from '@models/hue-keys.const';
 import { MaterialColors } from '@models/material';
-import { CommonModule } from '@angular/common';
+import { dialogData, hueKeys, hueKeysMark } from '../../color-palette/model';
 
 @Component({
   selector: 'app-default-hue-dialog',

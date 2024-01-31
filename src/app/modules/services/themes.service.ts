@@ -1,4 +1,4 @@
-import { Injectable, Signal, WritableSignal, computed, effect, signal } from '@angular/core';
+import { Injectable, WritableSignal, effect, signal } from '@angular/core';
 import { ThemeComponent } from '@features/theme/theme.component';
 import { MaterialPalette } from '@models/material/material-palette.interface';
 

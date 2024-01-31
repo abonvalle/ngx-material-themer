@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressBarMode, MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { ThemePalette } from '@angular/material/core';
+import { MatProgressBarModule, ProgressBarMode } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-progress-bar',

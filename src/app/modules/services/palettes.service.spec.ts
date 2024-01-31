@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PaletteService } from './palette.service';
+import { PalettesService } from './palettes.service';
 
-describe('PaletteService', () => {
-  let service: PaletteService;
+describe('PalettesService', () => {
+  let service: PalettesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PaletteService);
+    service = TestBed.inject(PalettesService);
   });
 
   it('should be created', () => {

@@ -1,17 +1,17 @@
-import { Component, DestroyRef, OnInit, Signal, WritableSignal, inject, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
-import { DynamicContentComponent } from './components/dynamic-content/dynamic-content.component';
+import { Component, DestroyRef, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { map, startWith } from 'rxjs';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
-import { PreviewPanelService } from './preview-panel.service';
-import { PreviewPanelComponent as PreviewPanelComponentInterface } from '@models/preview-panel-component.interface';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { PreviewPanelComponent as PreviewPanelComponentInterface } from '@models/preview-panel-component.interface';
+import { map, startWith } from 'rxjs';
+import { DynamicContentComponent } from './components/dynamic-content/dynamic-content.component';
+import { PreviewPanelService } from './preview-panel.service';
 @Component({
   selector: 'app-preview-panel',
   standalone: true,

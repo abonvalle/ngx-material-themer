@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SimplifiedPalette } from '@features/legacy/simplified';
 import { MaterialPalette } from '@models/material/material-palette.interface';
 
 @Injectable({
@@ -8,7 +7,7 @@ import { MaterialPalette } from '@models/material/material-palette.interface';
 export class PalettesService {
   constructor() {}
 
-  simplifyPalette(pal: MaterialPalette): SimplifiedPalette {
+  simplifyPalette(pal: MaterialPalette): any {
     return {
       darker: { main: pal['700'], contrast: pal.contrast['700'] },
       default: { main: pal['500'], contrast: pal.contrast['500'] },
@@ -17,7 +16,7 @@ export class PalettesService {
     };
   }
 
-  normalizePalette(simplPal: SimplifiedPalette): MaterialPalette {
+  normalizePalette(simplPal: any): MaterialPalette {
     return {
       '050': '#ffffff',
       '100': simplPal.lighter.main,

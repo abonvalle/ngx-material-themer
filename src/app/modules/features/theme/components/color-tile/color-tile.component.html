@@ -1,0 +1,39 @@
+<!-- #matMenuTrigger="matMenuTrigger"
+[matMenuTriggerFor]="menu" -->
+<div
+  class="example-box !cursor-default"
+  [colorPicker]="_color"
+  (colorPickerChange)="setColor($event)"
+  cpPosition="bottom"
+  cpAlphaChannel="disabled"
+  cpOutputFormat="hex"
+  [cpAddColorButton]="true"
+  cpPresetLabel="Recently used colors"
+  cpPresetEmptyMessage="No colors"
+  [cpExtraTemplate]="customTemplate"
+  [style.background-color]="color"
+  [attr.data-hue]="colorName">
+  <span class="rounded-lg bg-white px-2 py-1">
+    {{ colorName }}
+  </span>
+  <div class="flex gap-2">
+    @for (mark of marks; track mark) {
+      <mat-chip class="!cursor-move border-[1px] border-black/50 bg-slate-300" cdkDrag [attr.data-mark]="mark">
+        {{ mark }}
+      </mat-chip>
+    }
+  </div>
+  <!-- <mat-menu #menu="matMenu" (closed)="test()">
+    <app-color-picker
+      #picker
+      [color]="color"
+      (colorChange)="setColor($event)"
+      (click)="$event.stopPropagation()"></app-color-picker>
+
+  </mat-menu> -->
+  <ng-template #customTemplate>
+    <div class="">
+      <h3>Custom template.</h3>
+    </div>
+  </ng-template>
+</div>

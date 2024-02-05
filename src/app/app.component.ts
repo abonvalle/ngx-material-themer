@@ -4,8 +4,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { PreviewPanelComponent } from '@features/preview-panel/preview-panel.component';
 import { ThemerPanelComponent } from '@features/themer-panel/themer-panel.component';
+import { ThemesService } from '@modules/shared/services/themes.service';
 import { Color } from '../models/color.interface';
-import { ThemesService } from './modules/services/themes.service';
 @Component({
   selector: 'app-root',
   standalone: true,

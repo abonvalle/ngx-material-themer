@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ConfigService } from '@modules/services/config.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-help-tooltip',

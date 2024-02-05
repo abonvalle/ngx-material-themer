@@ -1,11 +1,9 @@
-import { Component, EventEmitter, Input, Output, WritableSignal, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
 import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
+import { ColorPaletteComponent } from '@features/theme/components/color-palette/color-palette.component';
 import { emptyPalette } from '@models/empty-palette.const';
 import { MaterialPalette } from '@models/material/material-palette.interface';
-
-const noPal: MaterialPalette = Object.assign({}, emptyPalette);
 
 @Component({
   selector: 'app-theme-palettes-mode',
@@ -15,9 +13,9 @@ const noPal: MaterialPalette = Object.assign({}, emptyPalette);
   styleUrl: './theme-palettes-mode.component.scss'
 })
 export class ThemePalettesModeComponent {
-  @Input({ required: true }) primaryPal: WritableSignal<MaterialPalette> = signal(noPal);
-  @Input({ required: true }) accentPal: WritableSignal<MaterialPalette> = signal(noPal);
-  @Input({ required: true }) warnPal: WritableSignal<MaterialPalette> = signal(noPal);
+  @Input({ required: true }) primaryPal: MaterialPalette = Object.assign({}, emptyPalette);
+  @Input({ required: true }) accentPal: MaterialPalette = Object.assign({}, emptyPalette);
+  @Input({ required: true }) warnPal: MaterialPalette = Object.assign({}, emptyPalette);
   @Input({ required: true }) fontLight: string = '';
   @Input({ required: true }) fontDark: string = '';
   @Input({ required: true }) automaticContrast: boolean = false;
@@ -25,10 +23,7 @@ export class ThemePalettesModeComponent {
   @Output() accentPalChange = new EventEmitter();
   @Output() warnPalChange = new EventEmitter();
 
-  updatePalette(
-    paletteEvtEmitter: EventEmitter<WritableSignal<MaterialPalette>>,
-    palette: WritableSignal<MaterialPalette>
-  ) {
+  updatePalette(paletteEvtEmitter: EventEmitter<MaterialPalette>, palette: MaterialPalette) {
     paletteEvtEmitter.emit(palette);
   }
 }

@@ -1,34 +1,24 @@
-<div class="flex h-full flex-col items-start justify-start gap-2">
-  <span class="flex gap-1 capitalize">
-    {{ name }}
-    @if (tooltip) {
-      <app-help-tooltip [tooltip]="tooltip"></app-help-tooltip>
-    }
-  </span>
-  <div class="flex h-full w-full flex-wrap items-center justify-start">
-    <!-- @if (!expanded()) {
-      <app-color-brick [color]="palette()[500]" (colorChange)="updatePalette($event)"></app-color-brick>
-      <div
-        (mouseenter)="toggleShowLabel(true)"
-        (mouseleave)="toggleShowLabel(false)"
-        class="relative ml-2 flex h-full min-h-8 w-28 items-center justify-start">
-        <span
-          (click)="setExpanded(true)"
-          class="flex cursor-pointer items-center justify-center whitespace-nowrap text-xs transition-opacity duration-300"
-          [ngClass]="{ 'opacity-0': !showLabel() }">
-          Expand palette <app-help-tooltip tooltip="Expand to specify each palette color"></app-help-tooltip>
-        </span>
-        <mat-icon
-          (click)="setExpanded(true)"
-          class="absolute left-0 z-0 cursor-pointer transition-transform duration-300"
-          [ngClass]="{
-            'translate-x-20': hideHelpTooltips() && showLabel(),
-            'translate-x-24': !hideHelpTooltips() && showLabel()
-          }">
-          chevron_right
-        </mat-icon>
-      </div>
-    } @else { -->
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ name }}
+        @if (tooltip) {
+          <app-help-tooltip class="ml-1" [tooltip]="tooltip"></app-help-tooltip>
+        }
+      </mat-panel-title>
+      <mat-panel-description>
+        @for (hueKey of paletteColors() | keyvalue; track hueKey.key) {
+          @if (hueKey.value) {
+            <div class="h-4 w-2" [ngStyle]="{ 'background-color': hueKey.value }"></div>
+          }
+        }
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-checkbox [checked]="automaticShades()" (change)="updateAutomaticShades($event)" class="ml-5">
+      Determine shades automatically
+      <app-help-tooltip tooltip="Uncheck to specify each shade manually"></app-help-tooltip>
+    </mat-checkbox>
     <div class="flex w-full flex-col">
       <!-- <span class="mb-2 text-xs italic text-black/50">
         Lighter = {{ lighterColor }}, Default = {{ defaultColor }}, Text = {{ textColor }}, Darker = {{ darkerColor }}
@@ -37,9 +27,9 @@
       <div
         cdkDropList
         cdkDropListSortingDisabled
-        class="example-list w-full !cursor-default"
-        (cdkDropListDropped)="drop($event)">
-        @for (hueKey of paletteColors() | keyvalue; track hueKey) {
+        (cdkDropListDropped)="drop($event)"
+        class="example-list w-full !cursor-default">
+        @for (hueKey of paletteColors() | keyvalue; track hueKey.key) {
           <!-- (click)="updateColor(hueKey.name)" -->
           <!-- <div class="example-box !cursor-default" [style.background-color]="hueKey.value" [attr.data-hue]="hueKey.key">
             <span class="rounded-lg bg-white px-2 py-1">
@@ -55,6 +45,7 @@
           </div> -->
           <app-color-tile
             [color]="hueKey.value"
+            (colorChange)="updateColor($event, hueKey.key)"
             [colorName]="hueKey.key"
             [marks]="getMarks(hueKey.key)"></app-color-tile>
         }
@@ -90,6 +81,5 @@
           </div>
         </div> -->
     </div>
-    <!-- } -->
-  </div>
-</div>
+  </mat-expansion-panel>
+</mat-accordion>

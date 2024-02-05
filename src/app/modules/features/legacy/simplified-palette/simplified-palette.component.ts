@@ -1,7 +1,6 @@
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
-import { SimplifiedPalette } from '@features/legacy/simplified/simplified-palette.interface';
 import { colorKeyTooltip } from '@models/color-key-tooltip.const';
 import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
 
@@ -16,8 +15,8 @@ import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.
 export class SimplifiedPaletteComponent {
   @Input({ required: true }) label: string = '';
   @Input() tooltip: string = '';
-  @Input({ required: true }) colors!: SimplifiedPalette;
-  @Output() colorsChange: EventEmitter<SimplifiedPalette> = new EventEmitter();
+  @Input({ required: true }) colors!: any;
+  @Output() colorsChange: EventEmitter<any> = new EventEmitter();
   constructor() {}
 
   onUpdateColors() {

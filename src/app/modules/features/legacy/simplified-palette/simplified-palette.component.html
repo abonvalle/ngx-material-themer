@@ -14,7 +14,7 @@
     </span>
   </div>
   <div class="flex flex-wrap">
-    @for (color of colors | keyvalue; track color.key) {
+    <!-- @for (color of colors | keyvalue; track color.key) {
       <div>
         <span class="flex">
           {{ color.key | titlecase }}
@@ -27,6 +27,6 @@
           <app-color-brick [(color)]="color.value.contrast" (colorChange)="onUpdateColors()"></app-color-brick>
         </div>
       </div>
-    }
+    } -->
   </div>
 </div>

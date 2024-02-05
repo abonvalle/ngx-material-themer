@@ -12,7 +12,7 @@ import {
 } from '@angular/material/dialog';
 import { hueKeys as hueKeysConst } from '@models/hue-keys.const';
 import { MaterialColors } from '@models/material';
-import { dialogData, hueKeys, hueKeysMark } from '../../color-palette/model';
+import { dialogData, hueKeys, hueKeysMark } from '../../theme/model';
 
 @Component({
   selector: 'app-default-hue-dialog',

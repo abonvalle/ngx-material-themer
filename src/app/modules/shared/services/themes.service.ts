@@ -41,12 +41,12 @@ export class ThemesService {
       light: theme.fontLight,
       isLight: theme.isLightTheme()
     };
-    console.warn('applyTheme primary', theme.primaryPal());
-    console.warn('applyTheme accent', theme.accentPal());
-    console.warn('applyTheme warn', theme.warnPal());
-    this.setMaterialPaletteColor('primary', theme.primaryPal(), fonts);
-    this.setMaterialPaletteColor('accent', theme.accentPal(), fonts);
-    this.setMaterialPaletteColor('warn', theme.warnPal(), fonts);
+    console.warn('applyTheme primary', theme.primaryPal);
+    console.warn('applyTheme accent', theme.accentPal);
+    console.warn('applyTheme warn', theme.warnPal);
+    this.setMaterialPaletteColor('primary', theme.primaryPal, fonts);
+    this.setMaterialPaletteColor('accent', theme.accentPal, fonts);
+    this.setMaterialPaletteColor('warn', theme.warnPal, fonts);
   }
   setMaterialPaletteColor(
     palName: string,

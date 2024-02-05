@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, Output, WritableSignal } from '@angular/core';
-import { emptySimplePalette } from '@features/legacy/simplified/empty-simple-palette.const';
-import { SimplifiedPalette } from '@features/legacy/simplified/simplified-palette.interface';
 import { MaterialPalette } from '@models/material/material-palette.interface';
-import { PalettesService } from '@modules/services/palettes.service';
+import { PalettesService } from '@modules/shared/services/palettes.service';
 import { SimplifiedPaletteComponent } from '../simplified-palette/simplified-palette.component';
 
-const noPal: SimplifiedPalette = Object.assign({}, emptySimplePalette);
+const noPal: any = Object.assign({});
 
 @Component({
   selector: 'app-theme-classic-mode',
@@ -15,15 +13,15 @@ const noPal: SimplifiedPalette = Object.assign({}, emptySimplePalette);
   styleUrl: './theme-classic-mode.component.scss'
 })
 export class ThemeClassicModeComponent {
-  @Input({ required: true }) primaryPal: SimplifiedPalette = noPal;
-  @Input({ required: true }) accentPal: SimplifiedPalette = noPal;
-  @Input({ required: true }) warnPal: SimplifiedPalette = noPal;
+  @Input({ required: true }) primaryPal: any = noPal;
+  @Input({ required: true }) accentPal: any = noPal;
+  @Input({ required: true }) warnPal: any = noPal;
   @Input({ required: true }) fontLight: string = '';
   @Input({ required: true }) fontDark: string = '';
   @Input({ required: true }) automaticContrast: boolean = false;
-  @Output() primaryPalChange: EventEmitter<SimplifiedPalette> = new EventEmitter();
-  @Output() accentPalChange: EventEmitter<SimplifiedPalette> = new EventEmitter();
-  @Output() warnPalChange: EventEmitter<SimplifiedPalette> = new EventEmitter();
+  @Output() primaryPalChange: EventEmitter<any> = new EventEmitter();
+  @Output() accentPalChange: EventEmitter<any> = new EventEmitter();
+  @Output() warnPalChange: EventEmitter<any> = new EventEmitter();
 
   constructor(private _paletteService: PalettesService) {}
   updatePalette(
@@ -32,7 +30,7 @@ export class ThemeClassicModeComponent {
   ) {
     paletteEvtEmitter.emit(palette);
   }
-  updatePal(simplPal: SimplifiedPalette, palChange: EventEmitter<SimplifiedPalette>) {
+  updatePal(simplPal: any, palChange: EventEmitter<any>) {
     palChange.emit(simplPal);
   }
 }

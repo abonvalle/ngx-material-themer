@@ -54,13 +54,13 @@
     <app-color-palette [(palette)]="warnPal"></app-color-palette>
   </div> -->
   <!-- @if (isPalMode()) { -->
-  <app-theme-palettes-mode
+  <!-- <app-theme-palettes-mode
     [(primaryPal)]="primaryPal"
     [(accentPal)]="accentPal"
     [(warnPal)]="warnPal"
     [fontDark]="fontDark"
     [fontLight]="fontLight"
-    [automaticContrast]="automaticContrast()"></app-theme-palettes-mode>
+    [automaticContrast]="automaticContrast()"></app-theme-palettes-mode> -->
   <!-- } @else {
     <app-theme-classic-mode
       [primaryPal]="primaryPalSimplified()"
@@ -73,4 +73,31 @@
       (accentPalChange)="updatePal($event, accentPal)"
       (warnPalChange)="updatePal($event, warnPal)"></app-theme-classic-mode>
   } -->
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-2">
+      <span>Font</span>
+      <div class="flex flex-wrap items-center">
+        <app-color-brick [(color)]="fontLight"><span class="text-white">light</span></app-color-brick>
+        <app-color-brick [(color)]="fontDark"><span class="text-black">dark</span></app-color-brick>
+        <mat-checkbox [checked]="automaticContrast" matTooltip="Uncheck to sepcify contrast for every hue" class="ml-5">
+          Determine contrast automatically
+        </mat-checkbox>
+      </div>
+    </div>
+    <app-color-palette
+      name="Primary"
+      [(palette)]="primaryPal"
+      (paletteChange)="updatePalette($event)"
+      tooltip="For the color that appears most frequently throughout your application"></app-color-palette>
+    <app-color-palette
+      name="Accent"
+      [(palette)]="accentPal"
+      (paletteChange)="updatePalette($event)"
+      tooltip="Secondary palette used to selectively highlight key parts of your UI"></app-color-palette>
+    <app-color-palette
+      name="Warn"
+      [(palette)]="warnPal"
+      (paletteChange)="updatePalette($event)"
+      tooltip="Error palette used for warnings and error states. Default to material red."></app-color-palette>
+  </div>
 </div>

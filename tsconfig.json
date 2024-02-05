@@ -8,7 +8,7 @@
       "@features/*": ["src/app/modules/features/*"],
       "@models/*": ["src/models/*"],
       "@modules/*": ["src/app/modules/*"],
-      "@shared/*": ["src/app/modules/shared/*"],
+      "@shared/*": ["src/app/shared/*"],
       "@assets/*": ["src/assets/*"]
     },
     "outDir": "./dist/out-tsc",

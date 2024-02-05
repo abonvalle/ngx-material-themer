@@ -9,12 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ColorPaletteComponent } from '@features/color-palette/color-palette.component';
 import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
-import { ToolPanelComponent } from '@features/legacy/tool-panel/tool-panel.component';
-import { ConfigService } from '@modules/services/config.service';
-import { ThemesService } from '@modules/services/themes.service';
+import { ColorPaletteComponent } from '@features/theme/components/color-palette/color-palette.component';
 import { ConfirmDialogComponent } from '@modules/shared/confirm-dialog/confirm-dialog.component';
+import { ConfigService } from '@modules/shared/services/config.service';
+import { ThemesService } from '@modules/shared/services/themes.service';
 import packageJSON from 'package.json';
 import { ThemeComponent } from '../theme/theme.component';
 
@@ -32,8 +31,7 @@ import { ThemeComponent } from '../theme/theme.component';
     MatDividerModule,
     MatChipsModule,
     MatSlideToggleModule,
-    ThemeComponent,
-    ToolPanelComponent
+    ThemeComponent
   ],
   templateUrl: './themer-panel.component.html',
   styleUrl: './themer-panel.component.scss'

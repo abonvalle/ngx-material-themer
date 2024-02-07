@@ -1,3 +1,5 @@
+import { hueKeys } from '@models/hue-keys.const';
+
 function I(a, b, c) {
   return Math.min(Math.max(a, b), c);
 }
@@ -594,6 +596,21 @@ function Ze(a, b) {
     }
   return { uc: d, tc: e };
 }
-export function createPalette(hexColor) {
-  return Ye(te(hexColor.slice(1))).map((c) => X(c));
+export function computeColor(hexCode, name, light, dark) {
+  const c = te(hexCode.slice(1));
+  return {
+    name,
+    hexCode,
+    contrastLight: Xe(c) ? false : true,
+    contrastRatio: pe(Xe(c) ? te(dark.slice(1)) : te(light.slice(1)), c)
+  };
+}
+export function createPalette(hexCode, light, dark) {
+  const t = Ye(te(hexCode.slice(1))).map((c, index) => ({
+    name: hueKeys[index],
+    hexCode: '#' + X(c),
+    contrastLight: Xe(c) ? false : true,
+    contrastRatio: pe(Xe(c) ? te(dark.slice(1)) : te(light.slice(1)), c)
+  }));
+  return t;
 }

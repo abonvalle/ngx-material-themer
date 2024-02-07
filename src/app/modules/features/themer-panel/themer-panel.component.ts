@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
+import { MatChipListboxChange, MatChipsModule } from '@angular/material/chips';
 import { VERSION } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -40,11 +40,12 @@ export class ThemerPanelComponent {
   secondeTheme = signal(false);
   cssMode: 'CSS' | 'SASS' | 'LESS' = 'CSS';
   themes = [
-    { value: 'd&a', label: 'Deep Purple & Amber' },
-    { value: 'dark', label: 'Indigo & Pink' },
-    { value: 'light', label: 'Pink & Blue-grey' },
-    { value: 'purple', label: 'Purple & Green' }
+    { value: 'd&a', label: 'Deep Purple & Amber', primary: '#673ab7', secondary: '#ffc107' },
+    { value: 'i&p', label: 'Indigo & Pink', primary: '#3f51b5', secondary: '#e91e63' },
+    { value: 'p&bl', label: 'Pink & Blue-grey', primary: '#e91e63', secondary: '#607d8b', dark: true },
+    { value: 'p&g', label: 'Purple & Green', primary: '#9c27b0', secondary: '#4caf50', dark: true }
   ];
+  currentTheme = signal(this.themes[0]);
   isDarkMode = this._themeService.darkMode;
   hideHelpTooltips = this._configService.hideHelpTooltips;
   materialVersion = `${VERSION.major}.${VERSION.minor}`;
@@ -78,6 +79,13 @@ export class ThemerPanelComponent {
   }
   updateHideHelpTooltips() {
     this._configService.toggleHideHelpTooltips();
+  }
+  selectPresetTheme(event: MatChipListboxChange) {
+    const th = this.themes.find((theme) => theme.value === event.value);
+    if (th) {
+      this.currentTheme.set(th);
+    }
+    console.log('selectPresetTheme', event.value);
   }
 }
 

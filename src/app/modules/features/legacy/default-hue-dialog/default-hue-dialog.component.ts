@@ -12,7 +12,7 @@ import {
 } from '@angular/material/dialog';
 import { hueKeys as hueKeysConst } from '@models/hue-keys.const';
 import { MaterialColors } from '@models/material';
-import { dialogData, hueKeys, hueKeysMark } from '../../theme/model';
+import { dialogData, hueKeys, marks } from '../../theme/model';
 
 @Component({
   selector: 'app-default-hue-dialog',
@@ -36,11 +36,11 @@ export class DefaultHueDialogComponent {
       name: hueKey,
       marks:
         hueKey === '500'
-          ? [hueKeysMark.Default, hueKeysMark.Text]
+          ? [marks.Default, marks.Text]
           : hueKey === '100'
-            ? [hueKeysMark.Lighter]
+            ? [marks.Lighter]
             : hueKey === '700'
-              ? [hueKeysMark.Darker]
+              ? [marks.Darker]
               : []
     }))
   );

@@ -1,6 +1,6 @@
 import { MaterialPalette } from './material/material-palette.interface';
 
-export const emptyPalette: MaterialPalette = Object.freeze({
+export const emptyMaterialPalette: MaterialPalette = Object.freeze({
   contrast: {
     '050': null,
     100: null,

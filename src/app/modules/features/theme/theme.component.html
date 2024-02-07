@@ -77,8 +77,12 @@
     <div class="flex flex-col gap-2">
       <span>Font</span>
       <div class="flex flex-wrap items-center">
-        <app-color-brick [(color)]="fontLight"><span class="text-white">light</span></app-color-brick>
-        <app-color-brick [(color)]="fontDark"><span class="text-black">dark</span></app-color-brick>
+        <app-color-brick [(color)]="fontLight" (colorChange)="test($event)">
+          <span class="text-black">light</span>
+        </app-color-brick>
+        <app-color-brick [(color)]="fontDark" (colorChange)="test($event)">
+          <span class="text-white">dark</span>
+        </app-color-brick>
         <mat-checkbox [checked]="automaticContrast" matTooltip="Uncheck to sepcify contrast for every hue" class="ml-5">
           Determine contrast automatically
         </mat-checkbox>
@@ -86,18 +90,24 @@
     </div>
     <app-color-palette
       name="Primary"
-      [(palette)]="primaryPal"
-      (paletteChange)="updatePalette($event)"
+      [fontLight]="fontLight"
+      [fontDark]="fontDark"
+      [defaultColor]="primary"
+      (paletteChange)="updatePalette($event, 'primaryPal')"
       tooltip="For the color that appears most frequently throughout your application"></app-color-palette>
     <app-color-palette
       name="Accent"
-      [(palette)]="accentPal"
-      (paletteChange)="updatePalette($event)"
+      [fontLight]="fontLight"
+      [fontDark]="fontDark"
+      [defaultColor]="secondary"
+      (paletteChange)="updatePalette($event, 'accentPal')"
       tooltip="Secondary palette used to selectively highlight key parts of your UI"></app-color-palette>
     <app-color-palette
       name="Warn"
-      [(palette)]="warnPal"
-      (paletteChange)="updatePalette($event)"
+      defaultColor="#f44336"
+      [fontLight]="fontLight"
+      [fontDark]="fontDark"
+      (paletteChange)="updatePalette($event, 'warnPal')"
       tooltip="Error palette used for warnings and error states. Default to material red."></app-color-palette>
   </div>
 </div>

@@ -1,6 +1,6 @@
-import { hueKeysMark } from './hue-keys-mark.enum';
+import { marks } from './marks.enum';
 
 export interface hueKeys {
   name: string;
-  marks: hueKeysMark[];
+  marks: marks[];
 }

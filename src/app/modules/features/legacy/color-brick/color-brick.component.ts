@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @Component({
   selector: 'app-color-brick',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatMenuModule],
+  imports: [CommonModule, MatButtonModule, MatMenuModule, ColorPickerModule],
   templateUrl: './color-brick.component.html',
   styleUrl: './color-brick.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -22,8 +23,7 @@ export class ColorBrickComponent {
     // this._toolPanelService.currentElement.set(this);
   }
   setColor(color: string) {
-    this.color = color;
-    this.colorChange.emit(this.color);
+    this.colorChange.emit(color);
     this._cdrRef.markForCheck();
   }
   setContrasts(contrasts: { dark?: string; light?: string }) {

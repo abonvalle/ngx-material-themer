@@ -7,12 +7,13 @@ import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-to
 import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
 import { ThemeClassicModeComponent } from '@features/legacy/theme-classic-mode/theme-classic-mode.component';
 import { ColorPaletteComponent } from '@features/theme/components/color-palette/color-palette.component';
-import { emptyPalette } from '@models/empty-palette.const';
+import { Color } from '@features/theme/model/color.interface';
+import { emptyMaterialPalette } from '@models/empty-material-palette.const';
+import { MaterialColors } from '@models/material';
 import { MaterialPalette } from '@models/material/material-palette.interface';
 import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
 import { PalettesService } from '@modules/shared/services/palettes.service';
 import { ThemesService } from '@modules/shared/services/themes.service';
-import { ThemePalettesModeComponent } from '../legacy/theme-palette-mode/theme-palettes-mode.component';
 
 @Component({
   selector: 'app-theme',
@@ -26,7 +27,6 @@ import { ThemePalettesModeComponent } from '../legacy/theme-palette-mode/theme-p
     ColorBrickComponent,
     MatCheckboxModule,
     HelpTooltipComponent,
-    ThemePalettesModeComponent,
     ThemeClassicModeComponent
   ],
   templateUrl: './theme.component.html',
@@ -35,15 +35,19 @@ import { ThemePalettesModeComponent } from '../legacy/theme-palette-mode/theme-p
 export class ThemeComponent implements OnChanges {
   @Input({ required: true }) name: string = '';
   @Input({ required: true }) label: string = '';
+  @Input() primary: string | null = null;
+  @Input() secondary: string | null = null;
+  @Input() dark: boolean = false;
+
   @Output() nameChange = new EventEmitter<string>();
   guid = Math.random().toString(36).substring(2);
   isLightTheme = signal(false);
-  primaryPal: MaterialPalette = Object.assign({}, emptyPalette);
-  accentPal: MaterialPalette = Object.assign({}, emptyPalette);
-  warnPal: MaterialPalette = Object.assign({}, emptyPalette);
+  primaryPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
+  accentPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
+  warnPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
 
-  fontLight = '';
-  fontDark = '';
+  fontLight = '#ffffff';
+  fontDark = '#000000';
   automaticContrast = signal(true);
   isPalMode = signal(false);
 
@@ -64,7 +68,10 @@ export class ThemeComponent implements OnChanges {
       changes['warnPal'] ||
       changes['isLightTheme'] ||
       changes['fontLight'] ||
-      changes['fontDark']
+      changes['fontDark'] ||
+      changes['primary'] ||
+      changes['secondary'] ||
+      changes['dark']
     ) {
       console.log('update in theme');
       this._themesService.applyTheme(this);
@@ -80,7 +87,27 @@ export class ThemeComponent implements OnChanges {
   updatePaletteMode(value: MatSlideToggleChange) {
     this.isPalMode.set(value.checked);
   }
-  updatePalette(pal: MaterialPalette) {
-    console.warn(pal);
+  updatePalette(pal: Color[], currentPal: string) {
+    console.log('updatePalette', pal, currentPal);
+    // todo no pal dircelty in themes, on changes update theme object
+    // currentPal = pal;
+    if (currentPal === 'primaryPal') {
+      this.primaryPal = this.computePal(pal);
+    } else if (currentPal === 'accentPal') {
+      this.accentPal = this.computePal(pal);
+    } else if (currentPal === 'warnPal') {
+      this.warnPal = this.computePal(pal);
+    }
+  }
+  computePal(pal: Color[]): MaterialPalette {
+    const materialPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
+    pal.forEach((color) => {
+      const hue = color.name;
+      materialPal[hue as keyof MaterialColors] = color.hexCode;
+    });
+    return materialPal;
+  }
+  test(ev: any) {
+    console.log('test', ev);
   }
 }

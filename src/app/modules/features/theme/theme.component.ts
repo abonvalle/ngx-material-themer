@@ -1,9 +1,11 @@
 import { Component, DestroyRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
 import { ThemeClassicModeComponent } from '@features/legacy/theme-classic-mode/theme-classic-mode.component';
 import { ColorPaletteComponent } from '@features/theme/components/color-palette/color-palette.component';
@@ -12,7 +14,6 @@ import { emptyMaterialPalette } from '@models/empty-material-palette.const';
 import { MaterialColors } from '@models/material';
 import { MaterialPalette } from '@models/material/material-palette.interface';
 import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
-import { PalettesService } from '@modules/shared/services/palettes.service';
 import { ThemesService } from '@modules/shared/services/themes.service';
 
 @Component({
@@ -21,13 +22,15 @@ import { ThemesService } from '@modules/shared/services/themes.service';
   imports: [
     MatFormFieldModule,
     MatInputModule,
+    FormsModule,
     ColorPaletteComponent,
     MatIconModule,
     MatSlideToggle,
     ColorBrickComponent,
     MatCheckboxModule,
     HelpTooltipComponent,
-    ThemeClassicModeComponent
+    ThemeClassicModeComponent,
+    MatSliderModule
   ],
   templateUrl: './theme.component.html',
   styleUrl: './theme.component.scss'
@@ -45,16 +48,13 @@ export class ThemeComponent implements OnChanges {
   primaryPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
   accentPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
   warnPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
-
   fontLight = '#ffffff';
   fontDark = '#000000';
+  density: number = 0;
   automaticContrast = signal(true);
-  isPalMode = signal(false);
-
   constructor(
     private _destroyRef: DestroyRef,
-    private _themesService: ThemesService,
-    private _paletteService: PalettesService
+    private _themesService: ThemesService
   ) {
     this._themesService.addTheme(this);
     this._destroyRef.onDestroy(() => {
@@ -84,9 +84,6 @@ export class ThemeComponent implements OnChanges {
   updateTheme(value: MatSlideToggleChange) {
     this.isLightTheme.set(value.checked);
   }
-  updatePaletteMode(value: MatSlideToggleChange) {
-    this.isPalMode.set(value.checked);
-  }
   updatePalette(pal: Color[], currentPal: string) {
     console.log('updatePalette', pal, currentPal);
     // todo no pal dircelty in themes, on changes update theme object
@@ -98,6 +95,7 @@ export class ThemeComponent implements OnChanges {
     } else if (currentPal === 'warnPal') {
       this.warnPal = this.computePal(pal);
     }
+    this._themesService.applyTheme(this);
   }
   computePal(pal: Color[]): MaterialPalette {
     const materialPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
@@ -106,8 +104,5 @@ export class ThemeComponent implements OnChanges {
       materialPal[hue as keyof MaterialColors] = color.hexCode;
     });
     return materialPal;
-  }
-  test(ev: any) {
-    console.log('test', ev);
   }
 }

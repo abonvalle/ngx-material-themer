@@ -36,14 +36,28 @@ $dynamic-app-theme: mat.define-light-theme(
       warn: $dynamic-theme-warn-palette
     ),
     typography: $dynamic-typography,
-    // is-dark: false,
-    // background: $dynamic-light-theme-background,
-    // foreground: $dynamic-light-theme-foreground,,
+    density: $dynamic-theme-density
   )
 );
 
 @include mat.all-component-themes($dynamic-app-theme);
 @include mat.typography-hierarchy($dynamic-app-theme);
+
+$dynamic-app-theme-dark: mat.define-dark-theme(
+  (
+    color: (
+      primary: $dynamic-theme-primary-palette,
+      accent: $dynamic-theme-accent-palette,
+      warn: $dynamic-theme-warn-palette
+    ),
+    typography: $dynamic-typography,
+    density: $dynamic-theme-density
+  )
+);
+.dark-mode {
+  @include mat.all-component-themes($dynamic-app-theme-dark);
+  @include mat.typography-hierarchy($dynamic-app-theme-dark);
+}
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.

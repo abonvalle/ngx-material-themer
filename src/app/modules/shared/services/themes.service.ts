@@ -44,6 +44,8 @@ export class ThemesService {
     console.warn('applyTheme primary', theme.primaryPal);
     console.warn('applyTheme accent', theme.accentPal);
     console.warn('applyTheme warn', theme.warnPal);
+    document.documentElement.style.setProperty(`--theme-density`, theme.density.toFixed(0));
+    document.documentElement.classList.toggle('dark-mode', theme.isLightTheme());
     this.setMaterialPaletteColor('primary', theme.primaryPal, fonts);
     this.setMaterialPaletteColor('accent', theme.accentPal, fonts);
     this.setMaterialPaletteColor('warn', theme.warnPal, fonts);

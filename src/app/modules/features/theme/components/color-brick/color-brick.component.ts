@@ -14,21 +14,11 @@ import { ColorPickerModule } from 'ngx-color-picker';
 })
 export class ColorBrickComponent {
   @Input({ required: true }) color!: string;
-  @Input() contrasts!: { dark?: string; light?: string };
   @Output() colorChange: EventEmitter<string> = new EventEmitter();
-  @Output() contrastsChange: EventEmitter<{ dark?: string; light?: string }> = new EventEmitter();
   constructor(private _cdrRef: ChangeDetectorRef) {}
-  editColor(event: Event) {
-    event.stopPropagation();
-    // this._toolPanelService.currentElement.set(this);
-  }
+
   setColor(color: string) {
     this.colorChange.emit(color);
-    this._cdrRef.markForCheck();
-  }
-  setContrasts(contrasts: { dark?: string; light?: string }) {
-    this.contrasts = contrasts;
-    this.contrastsChange.emit(this.contrasts);
     this._cdrRef.markForCheck();
   }
 }

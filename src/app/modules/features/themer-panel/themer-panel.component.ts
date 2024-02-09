@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
+import { ColorBrickComponent } from '@features/theme/components/color-brick/color-brick.component';
 import { ColorPaletteComponent } from '@features/theme/components/color-palette/color-palette.component';
 import { ConfirmDialogComponent } from '@modules/shared/confirm-dialog/confirm-dialog.component';
 import { ConfigService } from '@modules/shared/services/config.service';

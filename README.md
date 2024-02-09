@@ -38,7 +38,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 - Add a list of Material components to check/uncheck depending on whether they are used in the application to optimize theming and builds.
 
-- Add a tutorial/cheatsheet tab to explain how each Material component uses palettes
+- Add a tutorial/cheatsheet or lexical tab to explain how each Material component uses palettes
 
 - Improve the preview panel :
   - Add an error input in the preview panel

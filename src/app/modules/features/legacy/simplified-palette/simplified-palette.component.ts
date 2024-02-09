@@ -1,6 +1,6 @@
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { ColorBrickComponent } from '@features/legacy/color-brick/color-brick.component';
+import { ColorBrickComponent } from '@features/theme/components/color-brick/color-brick.component';
 import { colorKeyTooltip } from '@models/color-key-tooltip.const';
 import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
 

@@ -12,21 +12,6 @@
       <mat-slide-toggle class="mx-2" [checked]="isLightTheme()" (change)="updateTheme($event)" labelPosition="before">
       </mat-slide-toggle>
     </div>
-    <!-- <div class="flex items-center justify-between">
-      <div class="flex items-center justify-center">
-        <mat-icon class="mat-icon mr-1">palette</mat-icon>
-        Palette mode
-        <app-help-tooltip
-          tooltip="Check this if you want to specify each hue of the Material palette. Keep in mind that this feature
-        might be useless to customize the Angular Material components based on what I found in the source code."></app-help-tooltip>
-      </div>
-      <mat-slide-toggle
-        class="mx-2"
-        [checked]="isPalMode()"
-        (change)="updatePaletteMode($event)"
-        labelPosition="before">
-      </mat-slide-toggle>
-    </div> -->
   </div>
   <div class="flex flex-row flex-wrap items-center">
     <mat-form-field class="">
@@ -39,46 +24,23 @@
     <div class="flex items-center justify-center pb-[22px] text-xs"></div>
   </div>
   <div>
-    Density {{ density }}
-    <mat-slider min="-15" max="0" step="1">
-      <input [(ngModel)]="density" matSliderThumb />
-    </mat-slider>
-  </div>
-  <!-- <div class="flex flex-col gap-5">
-    <div class="flex flex-col gap-2">
-      <span>Font</span>
-      <div class="flex flex-wrap items-center">
-        <app-color-brick [(color)]="fontLight"><span class="text-white">light</span></app-color-brick>
-        <app-color-brick [(color)]="fontDark"><span class="text-black">dark</span></app-color-brick>
-        <mat-checkbox [checked]="automaticContrast" matTooltip="Uncheck to sepcify contrast for every hue" class="ml-5">
-          Determine contrast automatically
-        </mat-checkbox>
-      </div>
+    <span class="flex">
+      Density
+      <app-help-tooltip
+        tooltip="The scale moves to negative numbers as space decreases, creating higher density. Each increment represents a decrease in the height of a component by 4px."></app-help-tooltip>
+    </span>
+    <span class="text-xs italic text-black/60">
+      You cannot see the result in the preview panel at the moment, but the density is applied to the downloadable
+      output
+    </span>
+    <div>
+      {{ density }}
+      <mat-slider min="-15" max="0" step="1">
+        <input [(ngModel)]="density" matSliderThumb />
+      </mat-slider>
     </div>
-    <app-color-palette [(palette)]="primaryPal"></app-color-palette>
-    <app-color-palette [(palette)]="accentPal"></app-color-palette>
-    <app-color-palette [(palette)]="warnPal"></app-color-palette>
-  </div> -->
-  <!-- @if (isPalMode()) { -->
-  <!-- <app-theme-palettes-mode
-    [(primaryPal)]="primaryPal"
-    [(accentPal)]="accentPal"
-    [(warnPal)]="warnPal"
-    [fontDark]="fontDark"
-    [fontLight]="fontLight"
-    [automaticContrast]="automaticContrast()"></app-theme-palettes-mode> -->
-  <!-- } @else {
-    <app-theme-classic-mode
-      [primaryPal]="primaryPalSimplified()"
-      [accentPal]="accentPalSimplified()"
-      [warnPal]="warnPalSimplified()"
-      [fontDark]="fontDark"
-      [fontLight]="fontLight"
-      [automaticContrast]="automaticContrast()"
-      (primaryPalChange)="updatePal($event, primaryPal)"
-      (accentPalChange)="updatePal($event, accentPal)"
-      (warnPalChange)="updatePal($event, warnPal)"></app-theme-classic-mode>
-  } -->
+  </div>
+
   <div class="flex flex-col gap-5">
     <div class="flex flex-col gap-2">
       <span>Font</span>

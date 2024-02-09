@@ -6,7 +6,6 @@
     "baseUrl": "./",
     "paths": {
       "@app/*": ["src/app/*"],
-      "@v17_2/*": ["@app/v17_2/*"],
       "@models/*": ["src/models/*"],
       "@assets/*": ["src/assets/*"]
     },

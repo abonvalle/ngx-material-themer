@@ -1,4 +1,4 @@
-# ngMaterialThemer
+# ngMaterialThemer for v17.1
 
 This is a simple Angular Material theme generator. It's a POC for now, but the goal is to be able to fully customize your theme with ease, and to understand every step of the customization process in order to embrace the Angular Material philosophy.
 

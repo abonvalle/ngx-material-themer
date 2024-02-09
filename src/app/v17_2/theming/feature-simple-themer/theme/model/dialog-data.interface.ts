@@ -1,4 +1,4 @@
-import { MaterialPalette } from '@models/material';
+import { MaterialPalette } from './material-palette.interface';
 
 export interface dialogData {
   name: string;

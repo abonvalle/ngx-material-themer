@@ -1,9 +1,7 @@
 import { Injectable, Signal, WritableSignal, computed, effect, signal } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { colorTile } from '@features/theme/model';
-import { Color } from '@features/theme/model/color.interface';
-import { emptyPalette } from '@features/theme/model/empty-palette.const';
-import { computeColor, createPalette } from '@modules/shared/colors.utils';
+import { computeColor, createPalette } from '../../../util-colors';
+import { Color, colorTile, emptyPalette } from '../../model';
 
 @Injectable()
 export class ColorPaletteService {

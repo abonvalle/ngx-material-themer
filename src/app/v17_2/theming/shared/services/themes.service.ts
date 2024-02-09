@@ -1,6 +1,6 @@
 import { Injectable, WritableSignal, effect, signal } from '@angular/core';
-import { ThemeComponent } from '@features/theme/theme.component';
-import { MaterialPalette } from '@models/material/material-palette.interface';
+import { MaterialPalette } from '../../feature-simple-themer/theme/model/material-palette.interface';
+import { ThemeComponent } from '../../feature-simple-themer/theme/theme.component';
 
 @Injectable({
   providedIn: 'root'

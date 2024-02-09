@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { PreviewPanelComponent } from '@features/preview-panel/model/preview-panel-component.interface';
 import {
   BadgeComponent,
   BottomSheetComponent,
@@ -30,6 +29,7 @@ import {
   TooltipComponent,
   TreeComponent
 } from './components';
+import { PreviewPanelComponent } from './model/preview-panel-component.interface';
 
 @Injectable({
   providedIn: 'root'

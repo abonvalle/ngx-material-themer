@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipListboxChange, MatChipsModule } from '@angular/material/chips';
 import { VERSION } from '@angular/material/core';
@@ -9,14 +9,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ColorBrickComponent } from '@features/theme/components/color-brick/color-brick.component';
-import { ColorPaletteComponent } from '@features/theme/components/color-palette/color-palette.component';
-import { ConfirmDialogComponent } from '@modules/shared/confirm-dialog/confirm-dialog.component';
-import { ConfigService } from '@modules/shared/services/config.service';
-import { ThemesService } from '@modules/shared/services/themes.service';
-import packageJSON from 'package.json';
-import { ThemeComponent } from '../theme/theme.component';
-
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { ConfigService } from '../shared/services/config.service';
+import { ThemesService } from '../shared/services/themes.service';
+import { ColorBrickComponent } from './theme/components/color-brick/color-brick.component';
+import { ColorPaletteComponent } from './theme/components/color-palette/color-palette.component';
+import { ThemeComponent } from './theme/theme.component';
 @Component({
   selector: 'app-themer-panel',
   standalone: true,
@@ -37,6 +35,7 @@ import { ThemeComponent } from '../theme/theme.component';
   styleUrl: './themer-panel.component.scss'
 })
 export class ThemerPanelComponent {
+  @Input() appVersion = '';
   secondeTheme = signal(false);
   cssMode: 'CSS' | 'SASS' | 'LESS' = 'CSS';
   themes = [
@@ -49,7 +48,6 @@ export class ThemerPanelComponent {
   isDarkMode = this._themeService.darkMode;
   hideHelpTooltips = this._configService.hideHelpTooltips;
   materialVersion = `${VERSION.major}.${VERSION.minor}`;
-  appVersion = packageJSON.version.slice(-packageJSON.version.lastIndexOf('.'));
   constructor(
     public dialog: MatDialog,
     private _themeService: ThemesService,

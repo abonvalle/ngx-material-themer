@@ -18,9 +18,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { colorTile } from '@features/theme/model';
-import { Color } from '@features/theme/model/color.interface';
-import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
+import { HelpTooltipComponent } from '@app/v17_2/theming/shared/help-tooltip/help-tooltip.component';
+import { Color, colorTile } from '../../model';
 import { ColorTileComponent } from '../color-tile/color-tile.component';
 import { ColorPaletteService } from './color-palette.service';
 

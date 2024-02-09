@@ -8,9 +8,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { PreviewPanelComponent as PreviewPanelComponentInterface } from '@features/preview-panel/model/preview-panel-component.interface';
 import { map, startWith } from 'rxjs';
 import { DynamicContentComponent } from './components/dynamic-content/dynamic-content.component';
+import { PreviewPanelComponent as PreviewPanelComponentInterface } from './model/preview-panel-component.interface';
 import { PreviewPanelService } from './preview-panel.service';
 @Component({
   selector: 'app-preview-panel',

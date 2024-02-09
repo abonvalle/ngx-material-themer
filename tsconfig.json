@@ -5,10 +5,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@features/*": ["src/app/modules/features/*"],
+      "@app/*": ["src/app/*"],
+      "@v17_2/*": ["@app/v17_2/*"],
       "@models/*": ["src/models/*"],
-      "@modules/*": ["src/app/modules/*"],
-      "@shared/*": ["src/app/shared/*"],
       "@assets/*": ["src/assets/*"]
     },
     "outDir": "./dist/out-tsc",

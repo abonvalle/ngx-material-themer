@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MaterialPalette } from '@models/material/material-palette.interface';
+import { MaterialPalette } from '../../feature-simple-themer/theme/model/material-palette.interface';
 
 @Injectable({
   providedIn: 'root'

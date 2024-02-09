@@ -12,10 +12,10 @@ import {
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
-import { marks } from '@features/theme/model';
-import { MATERIAL_COLORS } from '@models/material-colors.const';
-import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
+import { HelpTooltipComponent } from '@app/v17_2/theming/shared/help-tooltip/help-tooltip.component';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { marks } from '../../model';
+import { MATERIAL_COLORS } from '../../model/material-colors.const';
 
 @Component({
   selector: 'app-color-tile',

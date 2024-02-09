@@ -6,14 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
-import { ColorBrickComponent } from '@features/theme/components/color-brick/color-brick.component';
-import { ColorPaletteComponent } from '@features/theme/components/color-palette/color-palette.component';
-import { Color } from '@features/theme/model/color.interface';
-import { emptyMaterialPalette } from '@models/empty-material-palette.const';
-import { MaterialColors } from '@models/material';
-import { MaterialPalette } from '@models/material/material-palette.interface';
-import { HelpTooltipComponent } from '@modules/shared/help-tooltip/help-tooltip.component';
-import { ThemesService } from '@modules/shared/services/themes.service';
+import { HelpTooltipComponent } from '../../shared/help-tooltip/help-tooltip.component';
+import { ThemesService } from '../../shared/services/themes.service';
+import { ColorBrickComponent } from './components/color-brick/color-brick.component';
+import { ColorPaletteComponent } from './components/color-palette/color-palette.component';
+import { Color } from './model';
+import { emptyMaterialPalette } from './model/empty-material-palette.const';
+import { MaterialColors } from './model/material-colors.interface';
+import { MaterialPalette } from './model/material-palette.interface';
 
 @Component({
   selector: 'app-theme',

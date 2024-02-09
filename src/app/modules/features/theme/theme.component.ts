@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
-import { ThemeClassicModeComponent } from '@features/legacy/theme-classic-mode/theme-classic-mode.component';
 import { ColorBrickComponent } from '@features/theme/components/color-brick/color-brick.component';
 import { ColorPaletteComponent } from '@features/theme/components/color-palette/color-palette.component';
 import { Color } from '@features/theme/model/color.interface';
@@ -29,7 +28,6 @@ import { ThemesService } from '@modules/shared/services/themes.service';
     ColorBrickComponent,
     MatCheckboxModule,
     HelpTooltipComponent,
-    ThemeClassicModeComponent,
     MatSliderModule
   ],
   templateUrl: './theme.component.html',

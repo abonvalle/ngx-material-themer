@@ -41,5 +41,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Add a tutorial/cheatsheet or lexical tab to explain how each Material component uses palettes
 
 - Improve the preview panel :
+
   - Add an error input in the preview panel
   - Expansion panel with main components for quick visualization
+
+- State handling in url (for sharing, saving purposes)

@@ -2,12 +2,7 @@
 [matMenuTriggerFor]="menu" -->
 <div
   class="example-box z-50 !cursor-default"
-  [colorPicker]="_color"
-  (colorPickerChange)="setColor($event)"
-  cpPosition="bottom"
-  cpAlphaChannel="disabled"
-  cpOutputFormat="hex"
-  [cpExtraTemplate]="customTemplate"
+  (click)="openColorPicker($event)"
   [style.background-color]="color"
   [attr.data-hue]="label">
   <span class="rounded-lg bg-white px-2 py-1">
@@ -27,42 +22,4 @@
       </mat-chip>
     }
   </div>
-
-  <ng-template #customTemplate>
-    <mat-accordion>
-      <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-          <h4 class="!mb-0">Recently used</h4>
-        </mat-expansion-panel-header>
-        <div class="flex flex-wrap gap-2">
-          @for (color of matColors; track color.name) {
-            <div
-              class="rounded-lg bg-white px-2 py-1"
-              [style.background-color]="color.hexCode"
-              (click)="setColor(color.hexCode)">
-              {{ color.name }}
-            </div>
-          }
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <h4 class="!mb-0">Material colors presets</h4>
-        </mat-expansion-panel-header>
-        <div class="gap-row-2 grid grid-cols-5 gap-x-4">
-          @for (color of matColors; track color.name) {
-            <div class="flex flex-col items-center text-center text-sm">
-              <button (click)="setColor(color.hexCode)">
-                <span
-                  [style.background-color]="color.hexCode"
-                  class="flex h-5 w-5 items-center justify-center rounded-sm shadow-sm">
-                </span>
-              </button>
-              <span class="flex items-center justify-center gap-1 capitalize"> {{ color.name }} </span>
-            </div>
-          }
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </ng-template>
 </div>

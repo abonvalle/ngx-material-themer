@@ -3,19 +3,22 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   EventEmitter,
   Input,
   OnChanges,
   Output,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { HelpTooltipComponent } from '@app//theming/shared/help-tooltip/help-tooltip.component';
+import { ColorPickerService } from '@app/color-picker/color-picker.service';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { marks } from '../../model';
-import { MATERIAL_COLORS } from '../../model/material-colors.const';
 
 @Component({
   selector: 'app-color-tile',
@@ -33,11 +36,13 @@ export class ColorTileComponent implements OnChanges {
   @Input() text!: string;
   @Input() textColor!: string;
   @Output() colorChange: EventEmitter<string | null> = new EventEmitter();
-  matColors = MATERIAL_COLORS;
-  constructor(private _cdrRef: ChangeDetectorRef) {}
+  destroyRef = inject(DestroyRef);
+  constructor(
+    private _cdrRef: ChangeDetectorRef,
+    private _colorPickerService: ColorPickerService
+  ) {}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['color']) {
-      console.warn('color change', this.color);
       this._color = this.color ?? '';
     }
   }
@@ -45,5 +50,22 @@ export class ColorTileComponent implements OnChanges {
   setColor(color: string | null) {
     this.colorChange.emit(color === '' ? null : color);
     this._cdrRef.markForCheck();
+  }
+  openColorPicker(event: MouseEvent) {
+    const colorChange = this._colorPickerService
+      .openColorPicker({ x: event.x, y: event.y })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (value) => {
+          this.setColor(value);
+        },
+        complete: () => {
+          colorChange.unsubscribe();
+        },
+        error: (err) => {
+          console.error('error', err);
+          colorChange.unsubscribe();
+        }
+      });
   }
 }

@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { ConfigService } from '../shared/services/config.service';
 import { ThemesService } from '../shared/services/themes.service';
 import { ColorBrickComponent } from './theme/components/color-brick/color-brick.component';
@@ -54,24 +53,6 @@ export class ThemerPanelComponent {
     private _configService: ConfigService
   ) {}
 
-  addSecondTheme() {
-    this.secondeTheme.update((_) => true);
-  }
-  removeSecondTheme() {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'Delete second theme',
-        msg: 'Its palettes & colors will be lost forever.',
-        yes: 'Delete the theme',
-        no: 'Cancel'
-      },
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.warn('The dialog was closed', result);
-      result && this.secondeTheme.update((_) => false);
-    });
-  }
   updateMode() {
     this._themeService.toggleDarkMode();
   }
@@ -86,57 +67,3 @@ export class ThemerPanelComponent {
     console.log('selectPresetTheme', event.value);
   }
 }
-
-/** https://stackblitz.com/edit/angular-material-theming-playground?file=src%2Fapp%2Fapp.component.ts
- *  savePrimaryColor() {
-    this.primaryColorPalette = computeColors(this.primaryColor);
-    updateTheme(this.primaryColorPalette, 'primary');
-  }
-
-  saveAccentColor() {
-    this.accentColorPalette = computeColors(this.accentColor);
-    updateTheme(this.accentColorPalette, 'accent');
-  }
-}
-
-function updateTheme(colors: Color[], theme: string) {
-  colors.forEach(color => {
-      document.documentElement.style.setProperty(
-        `--theme-${theme}-${color.name}`,
-        color.hex
-      );
-      document.documentElement.style.setProperty(
-        `--theme-${theme}-contrast-${color.name}`,
-        color.darkContrast ? 'rgba(black, 0.87)' : 'white'
-      );
-    });
-}
-
-function computeColors(hex: string): Color[] {
-  return [
-    getColorObject(tinycolor(hex).lighten(52), '50'),
-    getColorObject(tinycolor(hex).lighten(37), '100'),
-    getColorObject(tinycolor(hex).lighten(26), '200'),
-    getColorObject(tinycolor(hex).lighten(12), '300'),
-    getColorObject(tinycolor(hex).lighten(6), '400'),
-    getColorObject(tinycolor(hex), '500'),
-    getColorObject(tinycolor(hex).darken(6), '600'),
-    getColorObject(tinycolor(hex).darken(12), '700'),
-    getColorObject(tinycolor(hex).darken(18), '800'),
-    getColorObject(tinycolor(hex).darken(24), '900'),
-    getColorObject(tinycolor(hex).lighten(50).saturate(30), 'A100'),
-    getColorObject(tinycolor(hex).lighten(30).saturate(30), 'A200'),
-    getColorObject(tinycolor(hex).lighten(10).saturate(15), 'A400'),
-    getColorObject(tinycolor(hex).lighten(5).saturate(5), 'A700')
-  ];
-}
-
-function getColorObject(value, name): Color {
-  const c = tinycolor(value);
-  return {
-    name: name,
-    hex: c.toHexString(),
-    darkContrast: c.isLight()
-  };
-}
- */

@@ -62,23 +62,6 @@
         [primary]="currentTheme().primary"
         [secondary]="currentTheme().secondary"
         [dark]="currentTheme().dark ?? false"></app-theme>
-      <mat-divider></mat-divider>
-      @if (!secondeTheme()) {
-        <button mat-raised-button (click)="addSecondTheme()" class="">
-          <mat-icon class="mat-icon">add</mat-icon>
-          <span>
-            Add a 2nd theme
-            <span class="text-xs italic text-black/50"> (for dark mode) </span>
-          </span>
-        </button>
-      } @else {
-        <app-theme name="my-custom-dark-theme" label="Second custom theme"></app-theme>
-
-        <button mat-raised-button color="warn" (click)="removeSecondTheme()" class="">
-          <mat-icon class="mat-icon">remove</mat-icon>
-          <span>Remove second theme</span>
-        </button>
-      }
     </div>
   </div>
   <mat-divider></mat-divider>

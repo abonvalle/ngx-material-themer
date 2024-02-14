@@ -6,11 +6,19 @@ import packageJSON from '../../package.json';
 import { PreviewPanelComponent } from './/content/feature-preview/preview-panel.component';
 import { ThemerPanelComponent } from './/theming/feature-simple-themer/themer-panel.component';
 import { ThemesService } from './/theming/shared/services/themes.service';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ThemerPanelComponent, PreviewPanelComponent, MatSidenavModule],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    ThemerPanelComponent,
+    PreviewPanelComponent,
+    MatSidenavModule,
+    ColorPickerComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -9,14 +9,15 @@ export class ThemesService {
   darkMode: WritableSignal<boolean> = signal(false);
   themes: WritableSignal<ThemeComponent[]> = signal([]);
   constructor() {
-    effect(() => {
-      console.warn('change in themes');
-      this.updateThemes(this.themes());
-    });
+    effect(
+      () => {
+        console.warn('change in themes');
+        this.updateThemes(this.themes());
+      },
+      { allowSignalWrites: true }
+    );
   }
-  toggleDarkMode() {
-    this.darkMode.update((mode) => !mode);
-  }
+
   addTheme(theme: ThemeComponent) {
     this.themes.update((themes) => [...themes, theme]);
   }
@@ -45,7 +46,8 @@ export class ThemesService {
     console.warn('applyTheme accent', theme.accentPal);
     console.warn('applyTheme warn', theme.warnPal);
     document.documentElement.style.setProperty(`--theme-density`, theme.density.toFixed(0));
-    document.documentElement.classList.toggle('dark-mode', theme.isLightTheme());
+    this.darkMode.set(theme.isLightTheme());
+    document.documentElement.classList.toggle('dark', theme.isLightTheme());
     this.setMaterialPaletteColor('primary', theme.primaryPal, fonts);
     this.setMaterialPaletteColor('accent', theme.accentPal, fonts);
     this.setMaterialPaletteColor('warn', theme.warnPal, fonts);

@@ -5,10 +5,10 @@
         <h1 class="mat-headline-4 !mb-1 whitespace-nowrap">
           ng Material Themer <span class="text-base">v{{ appVersion }}</span>
         </h1>
-        <p class="mat-body-1 text-black/75">
+        <p class="mat-body-1 text-black/75 dark:text-white/75">
           A tool to easily create your own Angular Material theme.
           <br />
-          <span class="mb-3 text-sm text-black/60">
+          <span class="mb-3 text-sm text-black/60 dark:text-white/60">
             Based on Angular Material v{{ materialVersion }}, this may not work for earlier versions
           </span>
         </p>
@@ -23,18 +23,12 @@
       </div>
       <div class="flex items-center justify-start gap-2">
         <div class="flex flex-col items-start justify-center gap-3">
-          <div class="flex items-center justify-center">
-            <mat-icon class="mat-icon mr-2 rotate-180">brightness_3</mat-icon>
-            Dark mode
-          </div>
           <div class="flex items-center">
             <mat-icon class="mat-icon mr-1">help_outline</mat-icon>
             Hide help tooltips
           </div>
         </div>
         <div class="flex flex-col items-center justify-center gap-3">
-          <mat-slide-toggle class="mx-2 mb-2" [checked]="isDarkMode()" (change)="updateMode()" labelPosition="before">
-          </mat-slide-toggle>
           <mat-slide-toggle
             class="mx-2"
             [checked]="hideHelpTooltips()"

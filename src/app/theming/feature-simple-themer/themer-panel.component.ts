@@ -53,9 +53,6 @@ export class ThemerPanelComponent {
     private _configService: ConfigService
   ) {}
 
-  updateMode() {
-    this._themeService.toggleDarkMode();
-  }
   updateHideHelpTooltips() {
     this._configService.toggleHideHelpTooltips();
   }

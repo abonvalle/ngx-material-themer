@@ -71,7 +71,7 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
       () => {
         this.paletteChange.emit(this._colorPaletteService.palette());
       },
-      { injector: this.injector }
+      { injector: this.injector, allowSignalWrites: true }
     );
   }
   ngOnChanges(changes: SimpleChanges): void {

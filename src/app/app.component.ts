@@ -5,7 +5,6 @@ import { RouterOutlet } from '@angular/router';
 import packageJSON from '../../package.json';
 import { PreviewPanelComponent } from './/content/feature-preview/preview-panel.component';
 import { ThemerPanelComponent } from './/theming/feature-simple-themer/themer-panel.component';
-import { ThemesService } from './/theming/shared/services/themes.service';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 
 @Component({
@@ -24,7 +23,6 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
 })
 export class AppComponent {
   title = 'ng-material-themer';
-  isDarkMode = this._themeService.darkMode;
   appVersion = packageJSON.version.slice(0, -packageJSON.version.lastIndexOf('.') + 1);
-  constructor(private _themeService: ThemesService) {}
+  constructor() {}
 }

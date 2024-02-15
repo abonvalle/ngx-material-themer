@@ -54,7 +54,7 @@ $dynamic-app-theme-dark: mat.define-dark-theme(
     density: $dynamic-theme-density
   )
 );
-.dark-mode {
+.dark {
   @include mat.all-component-themes($dynamic-app-theme-dark);
   @include mat.typography-hierarchy($dynamic-app-theme-dark);
 }

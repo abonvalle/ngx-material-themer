@@ -1,0 +1,21 @@
+export const MATERIAL_COLORS = [
+  { name: 'red', hexCode: '#f44336' },
+  { name: 'pink', hexCode: '#e91e63' },
+  { name: 'purple', hexCode: '#9c27b0' },
+  { name: 'deep purple', hexCode: '#673ab7' },
+  { name: 'indigo', hexCode: '#3f51b5' },
+  { name: 'blue', hexCode: '#2196f3' },
+  { name: 'light blue', hexCode: '#03a9f4' },
+  { name: 'cyan', hexCode: '#00bcd4' },
+  { name: 'teal', hexCode: '#009688' },
+  { name: 'green', hexCode: '#4caf50' },
+  { name: 'light green', hexCode: '#8bc34a' },
+  { name: 'lime', hexCode: '#cddc39' },
+  { name: 'yellow', hexCode: '#ffeb3b' },
+  { name: 'amber', hexCode: '#ffc107' },
+  { name: 'orange', hexCode: '#ff9800' },
+  { name: 'deep orange', hexCode: '#ff5722' },
+  { name: 'brown', hexCode: '#795548' },
+  { name: 'grey', hexCode: '#9e9e9e' },
+  { name: 'blue grey', hexCode: '#607d8b' }
+];

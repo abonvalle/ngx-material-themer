@@ -1,4 +1,4 @@
-# ngMaterialThemer
+# ngMaterialThemer for v17.1
 
 This is a simple Angular Material theme generator. It's a POC for now, but the goal is to be able to fully customize your theme with ease, and to understand every step of the customization process in order to embrace the Angular Material philosophy.
 
@@ -41,5 +41,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Add a tutorial/cheatsheet or lexical tab to explain how each Material component uses palettes
 
 - Improve the preview panel :
+
   - Add an error input in the preview panel
   - Expansion panel with main components for quick visualization
+
+- State handling in url (for sharing, saving purposes)

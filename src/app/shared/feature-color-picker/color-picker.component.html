@@ -1,0 +1,54 @@
+<input
+  #ignoredInput
+  [colorPicker]="color()"
+  (colorPickerChange)="setColor($event)"
+  [cpToggle]="toggle()"
+  (cpToggleChange)="setToggle($event)"
+  [style.background]="color()"
+  [cpIgnoredElements]="[ignoredInput]"
+  [cpEyeDropper]="true"
+  [cpExtraTemplate]="customTemplate"
+  cpPosition="right"
+  cpPositionOffset="50%"
+  [cpPositionRelativeToArrow]="true"
+  cpAlphaChannel="disabled"
+  cpOutputFormat="hex"
+  class="absolute z-50 h-0 w-0"
+  [ngStyle]="position()" />
+
+<ng-template #customTemplate>
+  @if (showTemplate()) {
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <h4 class="!mb-0">Recently used</h4>
+        </mat-expansion-panel-header>
+        <div class="grid grid-cols-6 items-center justify-center gap-2">
+          @for (color of recentlyUsedColors(); track color) {
+            <button (click)="setColor(color)">
+              <span
+                [style.background-color]="color"
+                class="flex h-5 w-5 items-center justify-center rounded-sm shadow-sm">
+              </span>
+            </button>
+          }
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <h4 class="!mb-0">Material colors presets</h4>
+        </mat-expansion-panel-header>
+        <div class="grid grid-cols-6 items-center justify-center gap-2">
+          @for (color of colorPickerConstants.materialColors; track color.name) {
+            <button (click)="setColor(color.hexCode)" [matTooltip]="color.name | titlecase">
+              <span
+                [style.background-color]="color.hexCode"
+                class="flex h-5 w-5 items-center justify-center rounded-sm shadow-sm">
+              </span>
+            </button>
+          }
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  }
+</ng-template>

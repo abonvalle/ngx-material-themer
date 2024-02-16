@@ -10,10 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { map, startWith } from 'rxjs';
 import { DynamicContentComponent } from './components/dynamic-content/dynamic-content.component';
-import { PreviewPanelComponent as PreviewPanelComponentInterface } from './model/preview-panel-component.interface';
-import { PreviewPanelService } from './preview-panel.service';
+import { PreviewComponent as PreviewComponentInterface } from './model/preview-component.interface';
+import { PreviewService } from './preview.service';
 @Component({
-  selector: 'app-preview-panel',
+  selector: 'app-preview',
   standalone: true,
   imports: [
     CommonModule,
@@ -27,21 +27,21 @@ import { PreviewPanelService } from './preview-panel.service';
     MatIconModule,
     MatButtonModule
   ],
-  templateUrl: './preview-panel.component.html',
-  styleUrl: './preview-panel.component.scss'
+  templateUrl: './preview.component.html',
+  styleUrl: './preview.component.scss'
 })
-export class PreviewPanelComponent implements OnInit {
-  components: WritableSignal<PreviewPanelComponentInterface[]> = signal(this.previewPanelService.components);
+export class PreviewComponent implements OnInit {
+  components: WritableSignal<PreviewComponentInterface[]> = signal(this.previewService.components);
   myControl = new FormControl('');
   filteredOptions: WritableSignal<string[]> = signal([]);
   destroyRef = inject(DestroyRef);
-  constructor(public previewPanelService: PreviewPanelService) {}
+  constructor(public previewService: PreviewService) {}
   ngOnInit() {
     this.myControl.valueChanges
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         startWith(''),
-        map((value) => this.previewPanelService.filterOpts(value || ''))
+        map((value) => this.previewService.filterOpts(value || ''))
       )
       .subscribe((value) => {
         this.filteredOptions.set(value);
@@ -49,10 +49,10 @@ export class PreviewPanelComponent implements OnInit {
   }
   onInput(evt: Event) {
     const value = (<HTMLInputElement>evt.target).value;
-    this.components.update((c) => this.previewPanelService.sortComponentsOnInput(c, value));
+    this.components.update((c) => this.previewService.sortComponentsOnInput(c, value));
   }
 
   onOptSelected(opt: MatAutocompleteSelectedEvent) {
-    this.components.update((c) => this.previewPanelService.sortComponentsOnSelect(c, opt.option.value));
+    this.components.update((c) => this.previewService.sortComponentsOnSelect(c, opt.option.value));
   }
 }

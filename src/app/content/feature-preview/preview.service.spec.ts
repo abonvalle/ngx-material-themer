@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PreviewPanelService } from './preview-panel.service';
+import { PreviewService } from './preview.service';
 
-describe('PreviewPanelService', () => {
-  let service: PreviewPanelService;
+describe('PreviewService', () => {
+  let service: PreviewService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PreviewPanelService);
+    service = TestBed.inject(PreviewService);
   });
 
   it('should be created', () => {

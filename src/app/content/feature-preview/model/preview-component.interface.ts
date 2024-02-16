@@ -1,6 +1,6 @@
 import { ComponentType } from '@angular/cdk/overlay';
 
-export interface PreviewPanelComponent {
+export interface PreviewComponent {
   label: string;
   ref: ComponentType<unknown>;
   open?: boolean;

@@ -29,13 +29,13 @@ import {
   TooltipComponent,
   TreeComponent
 } from './components';
-import { PreviewPanelComponent } from './model/preview-panel-component.interface';
+import { PreviewComponent } from './model/preview-component.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PreviewPanelService {
-  components: PreviewPanelComponent[] = [
+export class PreviewService {
+  components: PreviewComponent[] = [
     { label: 'Buttons', ref: ButtonsComponent, open: true, additionnalLabels: ['Button Toggle'] },
     { label: 'Inputs', ref: InputsComponent, additionnalLabels: ['Datepicker', 'Select', 'Textarea', 'Autocomplete'] },
     { label: 'Stepper', ref: StepperComponent },
@@ -73,7 +73,7 @@ export class PreviewPanelService {
     const filterValue = value.toLowerCase();
     return this.autoCompleteOptions.filter((option) => option.toLowerCase().includes(filterValue));
   }
-  sortComponentsOnInput(c: PreviewPanelComponent[], value: string) {
+  sortComponentsOnInput(c: PreviewComponent[], value: string) {
     const filteredComponents = this.components.filter(
       (component) =>
         component.label.toLowerCase().includes(value.toLowerCase()) ||
@@ -97,7 +97,7 @@ export class PreviewPanelService {
       }
     });
   }
-  sortComponentsOnSelect(c: PreviewPanelComponent[], value: string) {
+  sortComponentsOnSelect(c: PreviewComponent[], value: string) {
     c = c.sort((a, b) => {
       if (a.label === value || a.additionnalLabels?.includes(value)) {
         return -1;

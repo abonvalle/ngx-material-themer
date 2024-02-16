@@ -3,7 +3,7 @@
     <div class="flex flex-col justify-center gap-8">
       <div>
         <h1 class="mat-headline-4 !mb-1 whitespace-nowrap">
-          ng Material Themer <span class="text-base">v{{ appVersion }}</span>
+          ngx Material Themer <span class="text-base">v{{ appVersion }}</span>
         </h1>
         <p class="mat-body-1 text-black/75 dark:text-white/75">
           A tool to easily create your own Angular Material theme.
@@ -54,20 +54,13 @@
         name="my-custom-theme"
         label="Custom theme"
         [primary]="currentTheme().primary"
-        [secondary]="currentTheme().secondary"
+        [accent]="currentTheme().accent"
+        [warn]="currentTheme().warn"
         [dark]="currentTheme().dark ?? false"></app-theme>
     </div>
   </div>
   <mat-divider></mat-divider>
-  <div class="flex min-h-[200px] flex-col items-center justify-center p-8">
-    <mat-form-field class="!mb-0">
-      <mat-label>Style lang</mat-label>
-      <mat-select [(value)]="cssMode" class="!text-sm">
-        <mat-option value="CSS">CSS</mat-option>
-        <mat-option value="SASS">SCSS/SASS</mat-option>
-        <mat-option value="LESS">LESS</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="flex min-h-[100px] flex-col items-center justify-center p-8">
     <div class="flex gap-5">
       <button mat-raised-button color="accent" class="max-w-64">
         <mat-icon class="mat-icon">download</mat-icon>
@@ -79,8 +72,4 @@
       </button>
     </div>
   </div>
-  <!-- <div class="">
-    <mat-divider></mat-divider>
-    <app-tool-panel></app-tool-panel>
-  </div> -->
 </div>

@@ -12,7 +12,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { ColorPickerService } from '@app/color-picker/color-picker.service';
+import { ColorPickerService } from '@app/shared/feature-color-picker/color-picker.service';
 
 @Component({
   selector: 'app-color-brick',

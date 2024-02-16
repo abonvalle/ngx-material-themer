@@ -56,7 +56,6 @@ export class ColorPaletteService {
   }
   updateColor(hexCode: string | null, color: colorTile) {
     if (!['A100', 'A200', 'A400', 'A700'].includes(color.name) && this.automaticShades()) {
-      console.log('automatic shades');
       if (!hexCode) {
         return;
       }

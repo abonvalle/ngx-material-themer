@@ -16,7 +16,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { HelpTooltipComponent } from '@app//theming/shared/help-tooltip/help-tooltip.component';
-import { ColorPickerService } from '@app/color-picker/color-picker.service';
+import { ColorPickerService } from '@app/shared/feature-color-picker/color-picker.service';
 import { marks } from '../../model';
 
 @Component({

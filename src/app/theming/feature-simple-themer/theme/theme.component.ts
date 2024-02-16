@@ -37,12 +37,13 @@ export class ThemeComponent implements OnChanges {
   @Input({ required: true }) name: string = '';
   @Input({ required: true }) label: string = '';
   @Input() primary: string | null = null;
-  @Input() secondary: string | null = null;
+  @Input() accent: string | null = null;
+  @Input() warn: string | null = '#f44336';
   @Input() dark: boolean = false;
 
   @Output() nameChange = new EventEmitter<string>();
   guid = Math.random().toString(36).substring(2);
-  isLightTheme = signal(false);
+  isLightTheme = signal(!this.dark);
   primaryPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
   accentPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
   warnPal: MaterialPalette = Object.assign({}, emptyMaterialPalette);
@@ -60,6 +61,9 @@ export class ThemeComponent implements OnChanges {
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dark']) {
+      this.isLightTheme.set(!this.dark);
+    }
     if (
       changes['primaryPal'] ||
       changes['accentPal'] ||
@@ -80,7 +84,7 @@ export class ThemeComponent implements OnChanges {
     this.nameChange.emit(name);
   }
   updateTheme(value: MatSlideToggleChange) {
-    this.isLightTheme.set(value.checked);
+    this.isLightTheme.set(!value.checked);
   }
   updatePalette(pal: Color[], currentPal: string) {
     console.log('updatePalette', pal, currentPal);

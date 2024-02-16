@@ -9,7 +9,7 @@
         <app-help-tooltip
           tooltip="This impact your Angular Materials components's background & text colors"></app-help-tooltip>
       </div>
-      <mat-slide-toggle class="mx-2" [checked]="isLightTheme()" (change)="updateTheme($event)" labelPosition="before">
+      <mat-slide-toggle class="mx-2" [checked]="!isLightTheme()" (change)="updateTheme($event)" labelPosition="before">
       </mat-slide-toggle>
     </div>
   </div>
@@ -35,7 +35,7 @@
     </span>
     <div>
       {{ density }}
-      <mat-slider min="-15" max="0" step="1">
+      <mat-slider min="-10" max="0" step="1">
         <input [(ngModel)]="density" matSliderThumb />
       </mat-slider>
     </div>
@@ -68,12 +68,12 @@
       name="Accent"
       [fontLight]="fontLight"
       [fontDark]="fontDark"
-      [defaultColor]="secondary"
+      [defaultColor]="accent"
       (paletteChange)="updatePalette($event, 'accentPal')"
       tooltip="Secondary palette used to selectively highlight key parts of your UI"></app-color-palette>
     <app-color-palette
       name="Warn"
-      defaultColor="#f44336"
+      [defaultColor]="warn"
       [fontLight]="fontLight"
       [fontDark]="fontDark"
       (paletteChange)="updatePalette($event, 'warnPal')"

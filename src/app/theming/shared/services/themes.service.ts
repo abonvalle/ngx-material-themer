@@ -46,8 +46,8 @@ export class ThemesService {
     console.warn('applyTheme accent', theme.accentPal);
     console.warn('applyTheme warn', theme.warnPal);
     document.documentElement.style.setProperty(`--theme-density`, theme.density.toFixed(0));
-    this.darkMode.set(theme.isLightTheme());
-    document.documentElement.classList.toggle('dark', theme.isLightTheme());
+    this.darkMode.set(!theme.isLightTheme());
+    document.documentElement.classList.toggle('dark', !theme.isLightTheme());
     this.setMaterialPaletteColor('primary', theme.primaryPal, fonts);
     this.setMaterialPaletteColor('accent', theme.accentPal, fonts);
     this.setMaterialPaletteColor('warn', theme.warnPal, fonts);

@@ -13,7 +13,7 @@ import { ColorBrickComponent } from './theme/components/color-brick/color-brick.
 import { ColorPaletteComponent } from './theme/components/color-palette/color-palette.component';
 import { ThemeComponent } from './theme/theme.component';
 @Component({
-  selector: 'app-themer-panel',
+  selector: 'app-simple-themer',
   standalone: true,
   imports: [
     MatButtonModule,
@@ -26,10 +26,10 @@ import { ThemeComponent } from './theme/theme.component';
     MatSlideToggleModule,
     ThemeComponent
   ],
-  templateUrl: './themer-panel.component.html',
-  styleUrl: './themer-panel.component.scss'
+  templateUrl: './simple-themer.component.html',
+  styleUrl: './simple-themer.component.scss'
 })
-export class ThemerPanelComponent {
+export class SimpleThemerComponent {
   @Input() appVersion = '';
   cssMode: 'CSS' | 'SASS' | 'LESS' = 'CSS';
   themes = [

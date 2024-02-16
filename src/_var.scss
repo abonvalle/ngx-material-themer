@@ -1,4 +1,4 @@
-$dynamic-theme-primary: (
+$dyn-theme-primary-palette: (
   50: var(--theme-primary-050),
   100: var(--theme-primary-100),
   200: var(--theme-primary-200),
@@ -30,7 +30,7 @@ $dynamic-theme-primary: (
     A700: var(--theme-primary-contrast-A700)
   )
 );
-$dynamic-theme-accent: (
+$dyn-theme-accent-palette: (
   50: var(--theme-accent-050),
   100: var(--theme-accent-100),
   200: var(--theme-accent-200),
@@ -62,7 +62,7 @@ $dynamic-theme-accent: (
     A700: var(--theme-accent-contrast-A700)
   )
 );
-$dynamic-theme-warn: (
+$dyn-theme-warn-palette: (
   50: var(--theme-warn-050),
   100: var(--theme-warn-100),
   200: var(--theme-warn-200),
@@ -95,9 +95,24 @@ $dynamic-theme-warn: (
   )
 );
 
-$dynamic-theme-density: --theme-density;
+$dyn-theme-density: --theme-density;
 
-// $dynamic-light-theme-background: (
+$dyn-theme-primary-default-hue: 500;
+$dyn-theme-primary-lighter-hue: 100;
+$dyn-theme-primary-darker-hue: 700;
+$dyn-theme-primary-text-hue: 500;
+
+$dyn-theme-accent-default-hue: 500;
+$dyn-theme-accent-lighter-hue: 100;
+$dyn-theme-accent-darker-hue: 700;
+$dyn-theme-accent-text-hue: 500;
+
+$dyn-theme-warn-default-hue: 500;
+$dyn-theme-warn-lighter-hue: 100;
+$dyn-theme-warn-darker-hue: 700;
+$dyn-theme-warn-text-hue: 500;
+
+// $dyn-light-theme-background: (
 //   status-bar: map_get(mat.$grey-palette, 300),
 //   app-bar: map_get(mat.$grey-palette, 100),
 //   background: map_get(mat.$grey-palette, 50),
@@ -114,7 +129,7 @@ $dynamic-theme-density: --theme-density;
 //   disabled-list-option: map_get(mat.$grey-palette, 200)
 // );
 
-// $dynamic-light-theme-foreground: (
+// $dyn-light-theme-foreground: (
 //   base: black,
 //   divider: rgba(black, 0.12),
 //   dividers: rgba(black, 0.12),

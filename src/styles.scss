@@ -9,11 +9,29 @@
 
 @include mat.core();
 
-$dynamic-theme-primary-palette: mat.define-palette($dynamic-theme-primary);
-$dynamic-theme-accent-palette: mat.define-palette($dynamic-theme-accent);
-$dynamic-theme-warn-palette: mat.define-palette($dynamic-theme-warn);
+$mat-theme-primary-palette: mat.define-palette(
+  $dyn-theme-primary-palette,
+  $dyn-theme-primary-default-hue,
+  $dyn-theme-primary-lighter-hue,
+  $dyn-theme-primary-darker-hue,
+  $dyn-theme-primary-text-hue
+);
+$mat-theme-accent-palette: mat.define-palette(
+  $dyn-theme-accent-palette,
+  $dyn-theme-accent-default-hue,
+  $dyn-theme-accent-lighter-hue,
+  $dyn-theme-accent-darker-hue,
+  $dyn-theme-accent-text-hue
+);
+$mat-theme-warn-palette: mat.define-palette(
+  $dyn-theme-warn-palette,
+  $dyn-theme-warn-default-hue,
+  $dyn-theme-warn-lighter-hue,
+  $dyn-theme-warn-darker-hue,
+  $dyn-theme-warn-text-hue
+);
 
-$dynamic-typography: mat.define-typography-config();
+$mat-typography: mat.define-typography-config();
 //   $font-family: 'Roboto, "Helvetica Neue", sans-serif',
 //   $headline-1:
 //     mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
@@ -28,35 +46,35 @@ $dynamic-typography: mat.define-typography-config();
 //   $button: mat.define-typography-level(14px, 14px, 500),
 // );
 
-$dynamic-app-theme: mat.define-light-theme(
+$dyn-app-theme: mat.define-light-theme(
   (
     color: (
-      primary: $dynamic-theme-primary-palette,
-      accent: $dynamic-theme-accent-palette,
-      warn: $dynamic-theme-warn-palette
+      primary: $mat-theme-primary-palette,
+      accent: $mat-theme-accent-palette,
+      warn: $mat-theme-warn-palette
     ),
-    typography: $dynamic-typography,
-    density: $dynamic-theme-density
+    typography: $mat-typography,
+    density: $dyn-theme-density
   )
 );
 
-@include mat.all-component-themes($dynamic-app-theme);
-@include mat.typography-hierarchy($dynamic-app-theme);
+@include mat.all-component-themes($dyn-app-theme);
+@include mat.typography-hierarchy($dyn-app-theme);
 
-$dynamic-app-theme-dark: mat.define-dark-theme(
+$dyn-app-theme-dark: mat.define-dark-theme(
   (
     color: (
-      primary: $dynamic-theme-primary-palette,
-      accent: $dynamic-theme-accent-palette,
-      warn: $dynamic-theme-warn-palette
+      primary: $mat-theme-primary-palette,
+      accent: $mat-theme-accent-palette,
+      warn: $mat-theme-warn-palette
     ),
-    typography: $dynamic-typography,
-    density: $dynamic-theme-density
+    typography: $mat-typography,
+    density: $dyn-theme-density
   )
 );
 .dark {
-  @include mat.all-component-themes($dynamic-app-theme-dark);
-  @include mat.typography-hierarchy($dynamic-app-theme-dark);
+  @include mat.all-component-themes($dyn-app-theme-dark);
+  @include mat.typography-hierarchy($dyn-app-theme-dark);
 }
 
 // Include the common styles for Angular Material. We include this here so that you only

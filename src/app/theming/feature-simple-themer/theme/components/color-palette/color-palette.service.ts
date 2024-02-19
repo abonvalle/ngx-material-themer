@@ -54,6 +54,9 @@ export class ColorPaletteService {
   updateDarkFont(hexCode: string) {
     this.fontDark.set(hexCode);
   }
+  updatePalette(palette: Color[] | null) {
+    this.palette.set(palette ?? emptyPalette);
+  }
   updateColor(hexCode: string | null, color: colorTile) {
     if (!['A100', 'A200', 'A400', 'A700'].includes(color.name) && this.automaticShades()) {
       if (!hexCode) {

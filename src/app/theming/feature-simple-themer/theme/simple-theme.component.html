@@ -9,7 +9,7 @@
         <app-help-tooltip
           tooltip="This impact your Angular Materials components's background & text colors"></app-help-tooltip>
       </div>
-      <mat-slide-toggle class="mx-2" [checked]="!isLightTheme()" (change)="updateTheme($event)" labelPosition="before">
+      <mat-slide-toggle class="mx-2" [checked]="isDarkTheme()" (change)="updateTheme($event)" labelPosition="before">
       </mat-slide-toggle>
     </div>
   </div>
@@ -34,7 +34,7 @@
       output
     </span>
     <div>
-      {{ density }}
+      {{ density() }}
       <mat-slider min="-10" max="0" step="1">
         <input [(ngModel)]="density" matSliderThumb />
       </mat-slider>
@@ -45,10 +45,10 @@
     <div class="flex flex-col gap-2">
       <span>Font</span>
       <div class="flex flex-wrap items-center">
-        <app-color-brick [(color)]="fontLight">
+        <app-color-brick [color]="fontLight()" (colorChange)="updateLightFont($event)">
           <span class="text-black">light</span>
         </app-color-brick>
-        <app-color-brick [(color)]="fontDark">
+        <app-color-brick [color]="fontDark()" (colorChange)="updateDarkFont($event)">
           <span class="text-white">dark</span>
         </app-color-brick>
         <mat-checkbox [disabled]="true" [checked]="automaticContrast" class="ml-5">
@@ -59,24 +59,24 @@
     </div>
     <app-color-palette
       name="Primary"
-      [fontLight]="fontLight"
-      [fontDark]="fontDark"
-      [defaultColor]="primary"
-      (paletteChange)="updatePalette($event, 'primaryPal')"
+      [fontLight]="fontLight()"
+      [fontDark]="fontDark()"
+      [palette]="primaryPal()"
+      (paletteChange)="updatePrimaryPalette($event)"
       tooltip="For the color that appears most frequently throughout your application"></app-color-palette>
     <app-color-palette
       name="Accent"
-      [fontLight]="fontLight"
-      [fontDark]="fontDark"
-      [defaultColor]="accent"
-      (paletteChange)="updatePalette($event, 'accentPal')"
+      [fontLight]="fontLight()"
+      [fontDark]="fontDark()"
+      [palette]="accentPal()"
+      (paletteChange)="updateAccentPalette($event)"
       tooltip="Secondary palette used to selectively highlight key parts of your UI"></app-color-palette>
     <app-color-palette
       name="Warn"
-      [defaultColor]="warn"
-      [fontLight]="fontLight"
-      [fontDark]="fontDark"
-      (paletteChange)="updatePalette($event, 'warnPal')"
+      [fontLight]="fontLight()"
+      [fontDark]="fontDark()"
+      [palette]="warnPal()"
+      (paletteChange)="updateWarnPalette($event)"
       tooltip="Error palette used for warnings and error states. Default to material red."></app-color-palette>
   </div>
 </div>

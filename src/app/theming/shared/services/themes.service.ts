@@ -1,13 +1,13 @@
 import { Injectable, WritableSignal, effect, signal } from '@angular/core';
-import { MaterialPalette } from '../../feature-simple-themer/theme/model/material-palette.interface';
-import { ThemeComponent } from '../../feature-simple-themer/theme/theme.component';
+import { Color } from '@app/theming/feature-simple-themer/theme/model';
+import { SimpleThemeComponent } from '../../feature-simple-themer/theme/simple-theme.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemesService {
   darkMode: WritableSignal<boolean> = signal(false);
-  themes: WritableSignal<ThemeComponent[]> = signal([]);
+  themes: WritableSignal<SimpleThemeComponent[]> = signal([]);
   constructor() {
     effect(
       () => {
@@ -18,13 +18,7 @@ export class ThemesService {
     );
   }
 
-  addTheme(theme: ThemeComponent) {
-    this.themes.update((themes) => [...themes, theme]);
-  }
-  removeTheme(theme: ThemeComponent) {
-    this.themes.update((themes) => themes.filter((t) => t.guid !== theme.guid));
-  }
-  updateThemes(themes: ThemeComponent[]) {
+  updateThemes(themes: SimpleThemeComponent[]) {
     themes.forEach((themeC) => {
       this.applyTheme(themeC);
     });
@@ -36,34 +30,30 @@ export class ThemesService {
     // );
     // });
   }
-  applyTheme(theme: ThemeComponent) {
+  applyTheme(theme: SimpleThemeComponent) {
     const fonts = {
-      dark: theme.fontDark,
-      light: theme.fontLight,
-      isLight: theme.isLightTheme()
+      dark: theme.fontDark(),
+      light: theme.fontLight()
     };
     console.warn('applyTheme primary', theme.primaryPal);
     console.warn('applyTheme accent', theme.accentPal);
     console.warn('applyTheme warn', theme.warnPal);
-    document.documentElement.style.setProperty(`--theme-density`, theme.density.toFixed(0));
-    this.darkMode.set(!theme.isLightTheme());
-    document.documentElement.classList.toggle('dark', !theme.isLightTheme());
-    this.setMaterialPaletteColor('primary', theme.primaryPal, fonts);
-    this.setMaterialPaletteColor('accent', theme.accentPal, fonts);
-    this.setMaterialPaletteColor('warn', theme.warnPal, fonts);
+    document.documentElement.style.setProperty(`--theme-density`, theme.density().toFixed(0));
+    this.darkMode.set(theme.isDarkTheme());
+    document.documentElement.classList.toggle('dark', theme.isDarkTheme());
+    this.applyPalette('primary', theme.primaryPal(), fonts);
+    this.applyPalette('accent', theme.accentPal(), fonts);
+    this.applyPalette('warn', theme.warnPal(), fonts);
   }
-  setMaterialPaletteColor(
-    palName: string,
-    matPal: MaterialPalette,
-    fonts: { dark: string; light: string; isLight: boolean }
-  ) {
-    Object.entries(matPal).forEach(([key, color]) => {
-      if (typeof color !== 'string') {
-        return;
-      }
-      document.documentElement.style.setProperty(`--theme-${palName}-${key}`, color);
-      const fontColor = fonts.isLight ? fonts.light : fonts.dark;
-      document.documentElement.style.setProperty(`--theme-${palName}-contrast-${key}`, fontColor);
+
+  applyPalette(palName: string, pal: Color[], fonts: { dark: string; light: string }) {
+    console.warn('applyPalette', palName, pal);
+    pal?.forEach((color) => {
+      document.documentElement.style.setProperty(`--theme-${palName}-${color.name}`, color.hexCode);
+      document.documentElement.style.setProperty(
+        `--theme-${palName}-contrast-${color.name}`,
+        color.contrastLight ? fonts.light : fonts.dark
+      );
     });
   }
 }

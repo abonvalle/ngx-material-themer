@@ -45,7 +45,7 @@ import { ColorPaletteService } from './color-palette.service';
 })
 export class ColorPaletteComponent implements OnInit, OnChanges {
   @Input({ required: true }) name: string = '';
-  @Input() defaultColor: string | null = null;
+  @Input() palette: Color[] | null = null;
   @Input() tooltip: string = '';
   @Input() fontLight: string = '';
   @Input() fontDark: string = '';
@@ -63,10 +63,7 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this._colorPaletteService.updateLightFont(this.fontLight);
     this._colorPaletteService.updateDarkFont(this.fontDark);
-    this._colorPaletteService.updateColor(
-      this.defaultColor,
-      this.colors().find((color) => color.name === '500') as colorTile
-    );
+    this._colorPaletteService.updatePalette(this.palette);
     effect(
       () => {
         this.paletteChange.emit(this._colorPaletteService.palette());
@@ -81,11 +78,8 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
     if (changes['fontDark']) {
       this._colorPaletteService.updateDarkFont(this.fontDark);
     }
-    if (changes['defaultColor']) {
-      this._colorPaletteService.updateColor(
-        this.defaultColor,
-        this.colors().find((color) => color.name === '500') as colorTile
-      );
+    if (changes['palette']) {
+      this._colorPaletteService.updatePalette(this.palette);
     }
   }
   updateColor(hexCode: string | null, color: colorTile) {

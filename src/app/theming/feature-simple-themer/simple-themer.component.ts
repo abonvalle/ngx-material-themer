@@ -11,7 +11,17 @@ import { ConfigService } from '../shared/services/config.service';
 import { ThemesService } from '../shared/services/themes.service';
 import { ColorBrickComponent } from './theme/components/color-brick/color-brick.component';
 import { ColorPaletteComponent } from './theme/components/color-palette/color-palette.component';
-import { ThemeComponent } from './theme/theme.component';
+import {
+  matAmberPalette,
+  matBlueGreyPalette,
+  matDeepPurplePalette,
+  matGreenPalette,
+  matIndigoPalette,
+  matPinkPalette,
+  matPurplePalette,
+  matRedPalette
+} from './theme/model';
+import { SimpleThemeComponent } from './theme/simple-theme.component';
 @Component({
   selector: 'app-simple-themer',
   standalone: true,
@@ -24,7 +34,7 @@ import { ThemeComponent } from './theme/theme.component';
     MatDividerModule,
     MatChipsModule,
     MatSlideToggleModule,
-    ThemeComponent
+    SimpleThemeComponent
   ],
   templateUrl: './simple-themer.component.html',
   styleUrl: './simple-themer.component.scss'
@@ -33,10 +43,30 @@ export class SimpleThemerComponent {
   @Input() appVersion = '';
   cssMode: 'CSS' | 'SASS' | 'LESS' = 'CSS';
   themes = [
-    { value: 'd&a', label: 'Deep Purple & Amber', primary: '#673ab7', accent: '#ffc107', warn: '#f44336' },
-    { value: 'i&p', label: 'Indigo & Pink', primary: '#3f51b5', accent: '#e91e63', warn: '#f44336' },
-    { value: 'p&bl', label: 'Pink & Blue-grey', primary: '#e91e63', accent: '#607d8b', warn: '#f44336', dark: true },
-    { value: 'p&g', label: 'Purple & Green', primary: '#9c27b0', accent: '#4caf50', warn: '#f44336', dark: true }
+    {
+      value: 'd&a',
+      label: 'Deep Purple & Amber',
+      primary: matDeepPurplePalette,
+      accent: matAmberPalette,
+      warn: matRedPalette
+    },
+    { value: 'i&p', label: 'Indigo & Pink', primary: matIndigoPalette, accent: matPinkPalette, warn: matRedPalette },
+    {
+      value: 'p&bl',
+      label: 'Pink & Blue-grey',
+      primary: matPinkPalette,
+      accent: matBlueGreyPalette,
+      warn: matRedPalette,
+      dark: true
+    },
+    {
+      value: 'p&g',
+      label: 'Purple & Green',
+      primary: matPurplePalette,
+      accent: matGreenPalette,
+      warn: matRedPalette,
+      dark: true
+    }
   ];
   currentTheme = signal(this.themes[0]);
   isDarkMode = this._themeService.darkMode;

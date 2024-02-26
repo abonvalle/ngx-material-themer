@@ -1,17 +1,39 @@
 <mat-accordion>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{ name }}
-        @if (tooltip) {
-          <app-help-tooltip class="ml-1" [tooltip]="tooltip"></app-help-tooltip>
-        }
+      <mat-panel-title class="flex w-full items-center justify-between">
+        <div class="flex">
+          {{ name }}
+          @if (tooltip) {
+            <app-help-tooltip class="ml-1" [tooltip]="tooltip"></app-help-tooltip>
+          }
+        </div>
+        <div class="flex">
+          @for (color of colorsPreview(); track $index) {
+            <div class="h-4 w-2" [ngStyle]="{ 'background-color': color }"></div>
+          }
+        </div>
+        <button mat-icon-button (click)="openColorPicker($event)" class="relative">
+          <mat-icon class="mat-icon mr-1">format_color_fill</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()" class="relative">
+          <mat-icon class="mat-icon mr-1">palette</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="px-4">
+          <h4 class="mat-typography">Material preset palettes</h4>
+          <div class="grid grid-cols-6 items-center justify-center gap-2">
+            @for (palette of colorPaletteConstants.materialpalettes; track palette.name) {
+              <button (click)="setPalette(palette.matPalette)" [matTooltip]="palette.name | titlecase">
+                <span
+                  [style.background-color]="palette.hexCode"
+                  class="flex h-5 w-5 items-center justify-center rounded-sm shadow-sm">
+                </span>
+              </button>
+            }
+          </div>
+        </mat-menu>
       </mat-panel-title>
-      <mat-panel-description>
-        @for (color of colorsPreview(); track $index) {
-          <div class="h-4 w-2" [ngStyle]="{ 'background-color': color }"></div>
-        }
-      </mat-panel-description>
+      <mat-panel-description class="flex w-full items-center justify-start"> </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-checkbox [checked]="automaticShades()" (change)="updateAutomaticShades($event)" class="mb-3">
       <div class="flex items-center justify-start">

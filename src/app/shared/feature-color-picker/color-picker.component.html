@@ -31,21 +31,8 @@
                 class="flex h-5 w-5 items-center justify-center rounded-sm shadow-sm">
               </span>
             </button>
-          }
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <h4 class="!mb-0">Material colors presets</h4>
-        </mat-expansion-panel-header>
-        <div class="grid grid-cols-6 items-center justify-center gap-2">
-          @for (color of colorPickerConstants.materialColors; track color.name) {
-            <button (click)="setColor(color.hexCode)" [matTooltip]="color.name | titlecase">
-              <span
-                [style.background-color]="color.hexCode"
-                class="flex h-5 w-5 items-center justify-center rounded-sm shadow-sm">
-              </span>
-            </button>
+          } @empty {
+            <p class="col-span-6 text-center italic">No colors yet</p>
           }
         </div>
       </mat-expansion-panel>

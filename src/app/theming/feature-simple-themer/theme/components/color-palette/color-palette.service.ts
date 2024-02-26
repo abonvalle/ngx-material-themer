@@ -6,6 +6,7 @@ import { Color, colorTile, emptyPalette } from '../../model';
 @Injectable()
 export class ColorPaletteService {
   palette: WritableSignal<Color[]> = signal(emptyPalette);
+  mainColorTile: Signal<colorTile> = computed(() => this.palette().find((color) => color.name === '500') as colorTile);
   colorsPreview: Signal<string[]> = computed(() =>
     this.palette()
       .filter((color) => color.hexCode !== null)

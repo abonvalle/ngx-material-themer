@@ -1,25 +1,22 @@
 <!-- #matMenuTrigger="matMenuTrigger"
 [matMenuTriggerFor]="menu" -->
-<div
-  class="example-box z-50 !cursor-default"
-  (click)="openColorPicker($event)"
-  [style.background-color]="color"
+<div class="example-box z-50 !cursor-default" (click)="openColorPicker($event)" [style.background-color]="color"
   [attr.data-hue]="label">
   <span class="rounded-lg bg-white px-2 py-1">
     {{ label }}
   </span>
   @if (text) {
-    <div class="flex" [style.color]="textColor">
-      {{ text }}
-      <app-help-tooltip
-        tooltip="The Web Content Accessibility Guidelines (WCAG) recommend a contrast ratio of at least 4.5:1 for AA (minimum contrast) and 7:1 for AAA (enhanced contrast)"></app-help-tooltip>
-    </div>
+  <div class="flex" [style.color]="textColor">
+    {{ text }}
+    <app-help-tooltip
+      tooltip="The Web Content Accessibility Guidelines (WCAG) recommend a contrast ratio of at least 4.5:1 for AA (minimum contrast) and 7:1 for AAA (enhanced contrast)"></app-help-tooltip>
+  </div>
   }
   <div class="flex gap-2">
     @for (mark of marks; track mark) {
-      <mat-chip class="!cursor-move border-[1px] border-black/50 bg-slate-300" cdkDrag [attr.data-mark]="mark">
-        {{ mark }}
-      </mat-chip>
+    <mat-chip class="!cursor-move border border-black/50 bg-slate-300" cdkDrag [attr.data-mark]="mark">
+      {{ mark }}
+    </mat-chip>
     }
   </div>
 </div>

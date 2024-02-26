@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   EventEmitter,
   Injector,
   Input,
@@ -11,16 +12,23 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  effect
+  effect,
+  inject
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { HelpTooltipComponent } from '@app//theming/shared/help-tooltip/help-tooltip.component';
+import { ColorPickerService } from '@app/shared/feature-color-picker/color-picker.service';
 import { Color, colorTile } from '../../model';
 import { ColorTileComponent } from '../color-tile/color-tile.component';
+import { ColorPaletteConstants } from './color-palette.constants';
 import { ColorPaletteService } from './color-palette.service';
 
 @Component({
@@ -36,7 +44,10 @@ import { ColorPaletteService } from './color-palette.service';
     CdkDrag,
     ColorTileComponent,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatTooltipModule
   ],
   providers: [ColorPaletteService],
   templateUrl: './color-palette.component.html',
@@ -53,11 +64,15 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
   colors = this._colorPaletteService.colors;
   colorsPreview = this._colorPaletteService.colorsPreview;
   automaticShades = this._colorPaletteService.automaticShades;
+  mainColorTile = this._colorPaletteService.mainColorTile;
+  destroyRef = inject(DestroyRef);
   constructor(
     public dialog: MatDialog,
     private _colorPaletteService: ColorPaletteService,
+    private _colorPickerService: ColorPickerService,
     private _cdrRef: ChangeDetectorRef,
-    private injector: Injector
+    private injector: Injector,
+    public colorPaletteConstants: ColorPaletteConstants
   ) {}
 
   ngOnInit(): void {
@@ -102,5 +117,30 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
   }
   updateAutomaticShades(event: MatCheckboxChange) {
     this._colorPaletteService.updateAutomaticShades(event);
+  }
+  openColorPicker(event: MouseEvent) {
+    event.stopPropagation();
+    const colorChange = this._colorPickerService
+      .openColorPicker(this.mainColorTile().hexCode, { x: event.x, y: event.y })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (value) => {
+          this.setMainColor(value);
+        },
+        complete: () => {
+          colorChange.unsubscribe();
+        },
+        error: (err) => {
+          console.error('error', err);
+          colorChange.unsubscribe();
+        }
+      });
+  }
+  setMainColor(color: string | null) {
+    this._colorPaletteService.updateColor(color, this.mainColorTile());
+    this._cdrRef.markForCheck();
+  }
+  setPalette(palette: Color[] | null) {
+    this._colorPaletteService.updatePalette(palette);
   }
 }

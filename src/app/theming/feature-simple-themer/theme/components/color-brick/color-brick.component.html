@@ -1,6 +1,4 @@
-<div
-  (click)="openColorPicker($event)"
-  [ngStyle]="{ 'background-color': color }"
-  class="flex h-8 w-12 cursor-pointer items-center justify-center border-[1px] border-[#e5e5e5] bg-black/10 hover:border-black/60 dark:hover:border-white/60">
+<div (click)="openColorPicker($event)" [ngStyle]="{ 'background-color': color }"
+  class="flex h-8 w-12 cursor-pointer items-center justify-center border border-[#e5e5e5] bg-black/10 hover:border-black/60 dark:hover:border-white/60">
   <ng-content></ng-content>
 </div>

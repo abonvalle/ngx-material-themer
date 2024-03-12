@@ -1,22 +1,47 @@
 <!-- #matMenuTrigger="matMenuTrigger"
 [matMenuTriggerFor]="menu" -->
-<div class="example-box z-50 !cursor-default" (click)="openColorPicker($event)" [style.background-color]="color"
+<div
+  class="example-box z-50"
+  (click)="openColorPicker($event)"
+  [style.background-color]="color"
   [attr.data-hue]="label">
-  <span class="rounded-lg bg-white px-2 py-1">
-    {{ label }}
-  </span>
-  @if (text) {
-  <div class="flex" [style.color]="textColor">
-    {{ text }}
-    <app-help-tooltip
-      tooltip="The Web Content Accessibility Guidelines (WCAG) recommend a contrast ratio of at least 4.5:1 for AA (minimum contrast) and 7:1 for AAA (enhanced contrast)"></app-help-tooltip>
+  <div class="flex items-center justify-start gap-4">
+    <span class="rounded-lg bg-white px-2 py-1">
+      {{ label }}
+    </span>
+    @if (text) {
+      <div class="flex items-center" [style.color]="textColor">
+        {{ text }}
+        <app-help-tooltip
+          tooltip="The Web Content Accessibility Guidelines (WCAG) recommend a contrast ratio of at least 4.5:1 for AA (minimum contrast) and 7:1 for AAA (enhanced contrast)"></app-help-tooltip>
+      </div>
+    }
   </div>
-  }
   <div class="flex gap-2">
     @for (mark of marks; track mark) {
-    <mat-chip class="!cursor-move border border-black/50 bg-slate-300" cdkDrag [attr.data-mark]="mark">
-      {{ mark }}
-    </mat-chip>
+      <mat-chip class="!cursor-move" cdkDrag [attr.data-mark]="mark">
+        <div class="flex items-center justify-center">
+          <svg
+            class="mr-1"
+            fill="none"
+            width="18"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <polyline points="5 9 2 12 5 15" />
+            <polyline points="9 5 12 2 15 5" />
+            <polyline points="15 19 12 22 9 19" />
+            <polyline points="19 9 22 12 19 15" />
+            <line x1="2" x2="22" y1="12" y2="12" />
+            <line x1="12" x2="12" y1="2" y2="22" />
+          </svg>
+          {{ mark }}
+        </div>
+      </mat-chip>
     }
   </div>
 </div>

@@ -34,9 +34,9 @@ import { SimpleThemeService } from './simple-theme.service';
 export class SimpleThemeComponent implements OnChanges {
   @Input({ required: true }) name: string = '';
   @Input({ required: true }) label: string = '';
-  @Input() primary: Color[] | null = null;
-  @Input() accent: Color[] | null = null;
-  @Input() warn: Color[] | null = null;
+  @Input({ required: true }) primary!: Color[];
+  @Input({ required: true }) accent!: Color[];
+  @Input({ required: true }) warn!: Color[];
   @Input() dark: boolean = false;
   isDarkTheme = this._simpleThemeService.isDarkTheme;
   primaryPal = this._simpleThemeService.primaryPal;
@@ -50,7 +50,19 @@ export class SimpleThemeComponent implements OnChanges {
     private _destroyRef: DestroyRef,
     private _themesService: ThemesService,
     private _simpleThemeService: SimpleThemeService
-  ) {}
+  ) {
+    this.primary && (this._simpleThemeService.primaryPal = this.primary);
+    this.accent && (this._simpleThemeService.accentPal = this.accent);
+    this.warn && (this._simpleThemeService.warnPal = this.warn);
+    console.log('SimpleThemeComponent', this.primary, this.accent, this.warn, this.dark);
+    console.log(
+      'SimpleThemeComponent',
+      this._simpleThemeService.primaryPal(),
+      this._simpleThemeService.accentPal(),
+      this._simpleThemeService.warnPal(),
+      this._simpleThemeService.isDarkTheme()
+    );
+  }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['dark']) {
       this._simpleThemeService.isDarkTheme = this.dark;

@@ -1,12 +1,12 @@
 import { Injectable, Signal, WritableSignal, computed, effect, signal } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { computeColor, createPalette } from '../../../util-colors';
-import { Color, colorTile, emptyPalette } from '../../model';
+import { Color, colorTile, emptyPalette, marks } from '../../model';
 
 @Injectable()
 export class ColorPaletteService {
   palette: WritableSignal<Color[]> = signal(emptyPalette);
-  mainColorTile: Signal<colorTile> = computed(() => this.palette().find((color) => color.name === '500') as colorTile);
+  mainColorTile: Signal<colorTile> = computed(() => this.palette().find((color) => color.name === '500') as any);
   colorsPreview: Signal<string[]> = computed(() =>
     this.palette()
       .filter((color) => color.hexCode !== null)
@@ -20,7 +20,7 @@ export class ColorPaletteService {
         ? `Contrast ratio : ${color.contrastRatio > 7 ? 'AAA ✔' : color.contrastRatio > 4.5 ? 'AA ✔' : 'AA ✘'}`
         : '',
       textColor: color.contrastLight ? this.fontLight() : this.fontDark(),
-      marks: []
+      marks: color.marks ?? []
     }))
   );
 
@@ -33,7 +33,9 @@ export class ColorPaletteService {
         const light = this.fontLight(),
           dark = this.fontDark();
         this.palette.update((pal) =>
-          pal.map((color) => (color.hexCode ? computeColor(color.hexCode, color.name, light, dark) : color))
+          pal.map((color) =>
+            color.hexCode ? computeColor(color.hexCode, color.name, color.marks, light, dark) : color
+          )
         );
       },
       { allowSignalWrites: true }
@@ -56,6 +58,12 @@ export class ColorPaletteService {
     this.fontDark.set(hexCode);
   }
   updatePalette(palette: Color[] | null) {
+    const newPalette = palette ?? emptyPalette;
+    console.log('updatePalette', newPalette);
+    const test = newPalette.map((color) =>
+      color.hexCode ? computeColor(color.hexCode, color.name, color.marks, this.fontLight(), this.fontDark()) : color
+    );
+    console.log('updatePalette', test);
     this.palette.set(palette ?? emptyPalette);
   }
   updateColor(hexCode: string | null, color: colorTile) {
@@ -83,14 +91,21 @@ export class ColorPaletteService {
       console.warn('updateColor', hexCode, color.name, color);
       this.palette.update((pal) => {
         return pal.map((c) =>
-          c.name === color.name ? computeColor(hexCode, color.name, this.fontLight(), this.fontDark()) : c
+          c.name === color.name ? computeColor(hexCode, color.name, color.marks, this.fontLight(), this.fontDark()) : c
         );
       });
       // pal[color.name as keyof MaterialColors] = hexCode;
       // return Object.assign({}, pal);
     }
   }
-
+  updateMark(mark: marks, key: string) {
+    this.palette.update((pal) => {
+      return pal.map((c) => {
+        c.marks = c.marks?.includes(mark) ? c.marks?.filter((m) => m !== mark) : c.marks ?? [];
+        return c.name === key ? { ...c, marks: [...c.marks, mark] } : c;
+      });
+    });
+  }
   drop(colorName: string, mark: string) {
     // this.hueKeys.update((hueKeys) => {
     //   const oldHue = hueKeys.find((hueKey) => hueKey.marks.includes(mark));

@@ -1,4 +1,5 @@
 import { hueKeys } from '@models/hue-keys.const';
+import { DEFAULT_MARKS } from './theme/model';
 
 function I(a, b, c) {
   return Math.min(Math.max(a, b), c);
@@ -596,21 +597,48 @@ function Ze(a, b) {
     }
   return { uc: d, tc: e };
 }
-export function computeColor(hexCode, name, light, dark) {
-  const c = te(hexCode.slice(1));
+export function computeContrastLight(hexCode) {
+  return Xe(te(hexCode.slice(1))) ? false : true;
+}
+export function computeContrastRatio(hexCode1, hexCode2) {
+  return pe(te(hexCode1.slice(1)), te(hexCode2.slice(1)));
+}
+
+export function computeColor(hexCode, name, marks, light, dark) {
   return {
     name,
     hexCode,
-    contrastLight: Xe(c) ? false : true,
-    contrastRatio: pe(Xe(c) ? te(dark.slice(1)) : te(light.slice(1)), c)
+    ...{ ...computeContrast(hexCode, light, dark) },
+    marks
   };
 }
-export function createPalette(hexCode, light, dark) {
-  const t = Ye(te(hexCode.slice(1))).map((c, index) => ({
-    name: hueKeys[index],
-    hexCode: '#' + X(c),
-    contrastLight: Xe(c) ? false : true,
-    contrastRatio: pe(Xe(c) ? te(dark.slice(1)) : te(light.slice(1)), c)
-  }));
+export function createPalette(mainHexCode, light, dark) {
+  const t = Ye(te(mainHexCode.slice(1))).map((c, index) => {
+    const hexCode = '#' + X(c);
+    return {
+      name: hueKeys[index],
+      hexCode,
+      ...{ ...computeContrast(hexCode, light, dark) },
+      marks: DEFAULT_MARKS[hueKeys[index]]
+    };
+  });
+  for (let elt of ['A100', 'A200', 'A400', 'A700']) {
+    t.push({
+      name: elt,
+      hexCode: '#ffffff',
+      contrastLight: false,
+      contrastRatio: computeContrastRatio('#ffffff', dark),
+      marks: []
+    });
+  }
+
   return t;
+}
+
+export function computeContrast(hexCode, light, dark) {
+  const contrastLight = computeContrastLight(hexCode);
+  return {
+    contrastLight,
+    contrastRatio: computeContrastRatio(contrastLight ? dark : light, hexCode)
+  };
 }

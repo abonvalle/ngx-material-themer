@@ -35,18 +35,8 @@
       </mat-panel-title>
       <mat-panel-description class="flex w-full items-center justify-start"> </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-checkbox [checked]="automaticShades()" (change)="updateAutomaticShades($event)" class="mb-3">
-      <div class="flex items-center justify-start">
-        Determine shades automatically
-        <app-help-tooltip tooltip="Uncheck to specify each shade manually"></app-help-tooltip>
-      </div>
-    </mat-checkbox>
     <div class="flex w-full flex-col">
-      <div
-        cdkDropList
-        cdkDropListSortingDisabled
-        (cdkDropListDropped)="drop($event)"
-        class="example-list w-full !cursor-default">
+      <div class="example-list w-full !cursor-default">
         @for (color of colors(); track color.name) {
           <app-color-tile
             [color]="color.hexCode"
@@ -54,7 +44,10 @@
             [label]="color.name"
             [text]="color.text"
             [textColor]="color.textColor"
-            [marks]="color.marks"></app-color-tile>
+            [marks]="color.marks"
+            cdkDropList
+            cdkDropListSortingDisabled
+            (cdkDropListDropped)="drop($event)"></app-color-tile>
         }
       </div>
     </div>

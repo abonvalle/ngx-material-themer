@@ -9,11 +9,13 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  inject
+  inject,
+  signal
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HelpTooltipComponent } from '@app//theming/shared/help-tooltip/help-tooltip.component';
 import { ColorPickerService } from '@app/shared/feature-color-picker/color-picker.service';
@@ -22,19 +24,20 @@ import { marks } from '../../model';
 @Component({
   selector: 'app-color-tile',
   standalone: true,
-  imports: [MatChipsModule, CdkDrag, MatMenuModule, MatExpansionModule, HelpTooltipComponent],
+  imports: [MatChipsModule, CdkDrag, MatMenuModule, MatExpansionModule, HelpTooltipComponent, MatIconModule],
   templateUrl: './color-tile.component.html',
   styleUrl: './color-tile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorTileComponent implements OnChanges {
   @Input({ required: true }) color!: string | null;
-  _color: string = this.color ?? '';
   @Input({ required: true }) marks: marks[] = [];
   @Input({ required: true }) label!: string;
   @Input() text!: string;
   @Input() textColor!: string;
   @Output() colorChange: EventEmitter<string | null> = new EventEmitter();
+  _color: string = this.color ?? '';
+  isDragging = signal(false);
   destroyRef = inject(DestroyRef);
   constructor(
     private _cdrRef: ChangeDetectorRef,

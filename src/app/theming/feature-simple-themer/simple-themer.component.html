@@ -31,8 +31,8 @@
   <app-simple-theme
     name="my-custom-theme"
     label="Custom theme"
-    [primary]="currentTheme().primary"
-    [accent]="currentTheme().accent"
-    [warn]="currentTheme().warn"
+    [primary]="currentPrimaryPal()"
+    [accent]="currentAccentPal()"
+    [warn]="currentWarnPal()"
     [dark]="currentTheme().dark ?? false"></app-simple-theme>
 </div>

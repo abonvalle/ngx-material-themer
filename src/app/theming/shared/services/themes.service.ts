@@ -11,7 +11,7 @@ export class ThemesService {
   constructor() {
     effect(
       () => {
-        console.warn('change in themes');
+        // console.warn('change in themes');
         this.updateThemes(this.themes());
       },
       { allowSignalWrites: true }
@@ -35,9 +35,9 @@ export class ThemesService {
       dark: theme.fontDark(),
       light: theme.fontLight()
     };
-    console.warn('applyTheme primary', theme.primaryPal);
-    console.warn('applyTheme accent', theme.accentPal);
-    console.warn('applyTheme warn', theme.warnPal);
+    // console.warn('applyTheme primary', theme.primaryPal);
+    // console.warn('applyTheme accent', theme.accentPal);
+    // console.warn('applyTheme warn', theme.warnPal);
     document.documentElement.style.setProperty(`--theme-density`, theme.density().toFixed(0));
     this.darkMode.set(theme.isDarkTheme());
     document.documentElement.classList.toggle('dark', theme.isDarkTheme());
@@ -47,7 +47,7 @@ export class ThemesService {
   }
 
   applyPalette(palName: string, pal: Color[], fonts: { dark: string; light: string }) {
-    console.warn('applyPalette', palName, pal);
+    // console.warn('applyPalette', palName, pal);
     pal?.forEach((color) => {
       document.documentElement.style.setProperty(`--theme-${palName}-${color.name}`, color.hexCode);
       document.documentElement.style.setProperty(

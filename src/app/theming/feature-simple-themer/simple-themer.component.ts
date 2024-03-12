@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input, computed, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipListboxChange, MatChipsModule } from '@angular/material/chips';
 import { VERSION } from '@angular/material/core';
@@ -22,6 +22,7 @@ import {
   matRedPalette
 } from './theme/model';
 import { SimpleThemeComponent } from './theme/simple-theme.component';
+import { computeColor } from './util-colors';
 @Component({
   selector: 'app-simple-themer',
   standalone: true,
@@ -69,6 +70,15 @@ export class SimpleThemerComponent {
     }
   ];
   currentTheme = signal(this.themes[0]);
+  currentPrimaryPal = computed(() =>
+    this.currentTheme().primary.map((c) => computeColor(c.hexCode, c.name, c.marks, '#ffffff', '#000000'))
+  );
+  currentAccentPal = computed(() =>
+    this.currentTheme().accent.map((c) => computeColor(c.hexCode, c.name, c.marks, '#ffffff', '#000000'))
+  );
+  currentWarnPal = computed(() =>
+    this.currentTheme().warn.map((c) => computeColor(c.hexCode, c.name, c.marks, '#ffffff', '#000000'))
+  );
   isDarkMode = this._themeService.darkMode;
   hideHelpTooltips = this._configService.hideHelpTooltips;
   materialVersion = `${VERSION.major}.${VERSION.minor}`;

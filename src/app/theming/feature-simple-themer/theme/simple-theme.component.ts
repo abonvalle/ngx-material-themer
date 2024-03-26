@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import { ThemesService } from '../../../shared/services/themes.service';
 import { HelpTooltipComponent } from '../../shared/help-tooltip/help-tooltip.component';
-import { ThemesService } from '../../shared/services/themes.service';
 import { ColorBrickComponent } from './components/color-brick/color-brick.component';
 import { ColorPaletteComponent } from './components/color-palette/color-palette.component';
 import { Color } from './model';
@@ -77,7 +77,7 @@ export class SimpleThemeComponent implements OnChanges {
       this._simpleThemeService.warnPal = this.warn;
     }
     if (changes['primary'] || changes['accent'] || changes['warn'] || changes['dark']) {
-      this._themesService.applyTheme(this);
+      this._themesService.setTheme(this);
     }
   }
   updateTheme(value: MatSlideToggleChange) {
@@ -85,23 +85,23 @@ export class SimpleThemeComponent implements OnChanges {
   }
   updatePrimaryPalette(pal: Color[]) {
     this._simpleThemeService.primaryPal = pal;
-    this._themesService.applyTheme(this);
+    this._themesService.setTheme(this);
   }
   updateAccentPalette(pal: Color[]) {
     this._simpleThemeService.accentPal = pal;
-    this._themesService.applyTheme(this);
+    this._themesService.setTheme(this);
   }
   updateWarnPalette(pal: Color[]) {
     this._simpleThemeService.warnPal = pal;
-    this._themesService.applyTheme(this);
+    this._themesService.setTheme(this);
   }
   updateName(inptEvt: Event) {}
   updateLightFont(color: string) {
     this._simpleThemeService.fontLight = color;
-    this._themesService.applyTheme(this);
+    this._themesService.setTheme(this);
   }
   updateDarkFont(color: string) {
     this._simpleThemeService.fontDark = color;
-    this._themesService.applyTheme(this);
+    this._themesService.setTheme(this);
   }
 }

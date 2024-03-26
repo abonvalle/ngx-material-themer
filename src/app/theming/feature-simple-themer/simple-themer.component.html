@@ -17,7 +17,7 @@
   </div>
   <div class="flex flex-col justify-center">
     <h5 class="mat-typography">Use preset themes :</h5>
-    <mat-chip-listbox
+    <!-- <mat-chip-listbox
       aria-label="Preset theme selection"
       class="mb-4"
       (change)="selectPresetTheme($event)"
@@ -25,7 +25,28 @@
       @for (theme of themes; track theme.value) {
         <mat-chip-option [value]="theme.value">{{ theme.label }}</mat-chip-option>
       }
-    </mat-chip-listbox>
+    </mat-chip-listbox> -->
+    <div>
+      @for (theme of themes; track theme.value) {
+        <button mat-stroked-button class="m-2" (click)="selectPresetTheme(theme)">
+          <div class="flex items-center justify-center gap-1">
+            <div>
+              <div
+                [ngStyle]="{
+                  'border-left-color': theme.firstColor,
+                  'border-bottom-color': theme.firstColor,
+                  'border-top-color': theme.secondColor,
+                  'border-right-color': theme.secondColor
+                }"
+                class="h-0 w-0 items-center justify-center rounded-sm border-8 shadow-sm"></div>
+            </div>
+            <span class="ml-1">
+              {{ theme.label }}
+            </span>
+          </div>
+        </button>
+      }
+    </div>
   </div>
   <mat-divider></mat-divider>
   <app-simple-theme

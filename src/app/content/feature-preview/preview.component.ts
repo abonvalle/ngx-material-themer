@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import { Component, DestroyRef, ElementRef, OnInit, WritableSignal, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -8,6 +8,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { ThemesService } from '@app/shared/services/themes.service';
 import { map, startWith } from 'rxjs';
 import { DynamicContentComponent } from './components/dynamic-content/dynamic-content.component';
 import { PreviewComponent as PreviewComponentInterface } from './model/preview-component.interface';
@@ -35,7 +36,17 @@ export class PreviewComponent implements OnInit {
   myControl = new FormControl('');
   filteredOptions: WritableSignal<string[]> = signal([]);
   destroyRef = inject(DestroyRef);
-  constructor(public previewService: PreviewService) {}
+  constructor(
+    public previewService: PreviewService,
+    private elementRef: ElementRef,
+    private themesService: ThemesService
+  ) {
+    effect(() => {
+      this.themesService.themes();
+      console.log('update detected');
+      this.elementRef && this.themesService.applyThemes(this.elementRef);
+    });
+  }
   ngOnInit() {
     this.myControl.valueChanges
       .pipe(

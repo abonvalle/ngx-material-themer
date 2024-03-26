@@ -1,14 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, computed, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipListboxChange, MatChipsModule } from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { VERSION } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ThemesService } from '../../shared/services/themes.service';
 import { ConfigService } from '../shared/services/config.service';
-import { ThemesService } from '../shared/services/themes.service';
 import { ColorBrickComponent } from './theme/components/color-brick/color-brick.component';
 import { ColorPaletteComponent } from './theme/components/color-palette/color-palette.component';
 import {
@@ -27,6 +28,7 @@ import { computeColor } from './util-colors';
   selector: 'app-simple-themer',
   standalone: true,
   imports: [
+    CommonModule,
     MatButtonModule,
     MatIconModule,
     ColorBrickComponent,
@@ -49,15 +51,27 @@ export class SimpleThemerComponent {
       label: 'Deep Purple & Amber',
       primary: matDeepPurplePalette,
       accent: matAmberPalette,
-      warn: matRedPalette
+      warn: matRedPalette,
+      firstColor: matDeepPurplePalette.find((c) => c.name === '500')?.hexCode,
+      secondColor: matAmberPalette.find((c) => c.name === '500')?.hexCode
     },
-    { value: 'i&p', label: 'Indigo & Pink', primary: matIndigoPalette, accent: matPinkPalette, warn: matRedPalette },
+    {
+      value: 'i&p',
+      label: 'Indigo & Pink',
+      primary: matIndigoPalette,
+      accent: matPinkPalette,
+      warn: matRedPalette,
+      firstColor: matIndigoPalette.find((c) => c.name === '500')?.hexCode,
+      secondColor: matPinkPalette.find((c) => c.name === '500')?.hexCode
+    },
     {
       value: 'p&bl',
       label: 'Pink & Blue-grey',
       primary: matPinkPalette,
       accent: matBlueGreyPalette,
       warn: matRedPalette,
+      firstColor: matPinkPalette.find((c) => c.name === '500')?.hexCode,
+      secondColor: matBlueGreyPalette.find((c) => c.name === '500')?.hexCode,
       dark: true
     },
     {
@@ -66,6 +80,8 @@ export class SimpleThemerComponent {
       primary: matPurplePalette,
       accent: matGreenPalette,
       warn: matRedPalette,
+      firstColor: matPurplePalette.find((c) => c.name === '500')?.hexCode,
+      secondColor: matGreenPalette.find((c) => c.name === '500')?.hexCode,
       dark: true
     }
   ];
@@ -91,11 +107,12 @@ export class SimpleThemerComponent {
   updateHideHelpTooltips() {
     this._configService.toggleHideHelpTooltips();
   }
-  selectPresetTheme(event: MatChipListboxChange) {
-    const th = this.themes.find((theme) => theme.value === event.value);
-    if (th) {
-      this.currentTheme.set(th);
-    }
-    console.log('selectPresetTheme', event.value);
+  selectPresetTheme(theme: any) {
+    console.log('selectPresetTheme', theme.buttonColor);
+    // const th = this.themes.find((theme) => theme.value === event.value);
+    // if (th) {
+    this.currentTheme.set(theme);
+    // }
+    // console.log('selectPresetTheme', event.value);
   }
 }

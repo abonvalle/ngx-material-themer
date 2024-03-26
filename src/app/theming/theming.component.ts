@@ -3,8 +3,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { VERSION } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { ThemesService } from '../shared/services/themes.service';
 import { SimpleThemerComponent } from './feature-simple-themer/simple-themer.component';
-import { ThemesService } from './shared/services/themes.service';
 
 @Component({
   selector: 'app-theming',

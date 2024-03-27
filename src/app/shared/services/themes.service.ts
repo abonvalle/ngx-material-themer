@@ -126,7 +126,7 @@ export class ThemesService {
       contrasts.push(`${color.name}: ${color.contrastLight ? '$light-text' : '$dark-text'}`);
     });
     return `(
-      ${colorsStr.join(',')}
+      ${colorsStr.join(',')},
       contrast: (
         ${contrasts.join(',')}
       )

@@ -104,4 +104,8 @@ export class SimpleThemeComponent implements OnChanges {
     this._simpleThemeService.fontDark = color;
     this._themesService.setTheme(this);
   }
+  updateDensity(value: number) {
+    this._simpleThemeService.density = value;
+    this._themesService.setTheme(this);
+  }
 }

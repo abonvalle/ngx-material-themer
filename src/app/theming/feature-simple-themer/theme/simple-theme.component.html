@@ -27,7 +27,7 @@
     <div>
       {{ density() }}
       <mat-slider min="-10" max="0" step="1">
-        <input [(ngModel)]="density" matSliderThumb />
+        <input [value]="density()" (valueChange)="updateDensity($event)" matSliderThumb />
       </mat-slider>
     </div>
   </div>

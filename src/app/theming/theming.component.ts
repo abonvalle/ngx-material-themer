@@ -18,4 +18,11 @@ export class ThemingComponent {
   materialVersion = `${VERSION.major}.${VERSION.minor}`;
   isDarkMode = this._themeService.darkMode;
   constructor(private _themeService: ThemesService) {}
+
+  downloadStyefile() {
+    this._themeService.downloadTheme();
+  }
+  copyStyefile() {
+    this._themeService.copyTheme();
+  }
 }

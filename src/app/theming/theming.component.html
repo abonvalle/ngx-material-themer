@@ -30,11 +30,11 @@
   <mat-divider></mat-divider>
   <div class="flex min-h-[100px] flex-col items-center justify-center p-8">
     <div class="flex gap-5">
-      <button mat-raised-button color="accent" class="max-w-64">
+      <button mat-raised-button (click)="downloadStyefile()" color="accent" class="max-w-64">
         <mat-icon class="mat-icon">download</mat-icon>
         <span>Download style file</span>
       </button>
-      <button mat-raised-button color="accent" class="max-w-64">
+      <button mat-raised-button (click)="copyStyefile()" color="accent" class="max-w-64">
         <mat-icon class="mat-icon">content_copy</mat-icon>
         <span>Copy style</span>
       </button>

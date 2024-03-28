@@ -19,7 +19,7 @@ import {
   matRedPalette,
   matTealPalette,
   matYellowPalette
-} from '../../model';
+} from '../../../../model';
 
 @Injectable({
   providedIn: 'root'

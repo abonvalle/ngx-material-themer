@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { matRedPalette } from '@app/theming/model';
 import { computeContrast } from '../util-colors';
-import { Color, emptyPalette, matRedPalette } from './model';
+import { Color, emptyPalette } from './model';
 
 @Injectable({
   providedIn: 'root'

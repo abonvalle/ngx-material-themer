@@ -1,5 +1,5 @@
-import { marks } from '../marks.enum';
-import { MatColor } from '../mat-color.interface';
+import { marks } from '../../feature-simple-themer/theme/model/marks.enum';
+import { MatColor } from '../../feature-simple-themer/theme/model/mat-color.interface';
 
 export const matLightBluePalette: MatColor[] = [
   { name: '50', hexCode: '#e1f5fe', marks: [] },

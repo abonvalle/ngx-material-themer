@@ -639,6 +639,6 @@ export function computeContrast(hexCode, light, dark) {
   const contrastLight = computeContrastLight(hexCode);
   return {
     contrastLight,
-    contrastRatio: computeContrastRatio(contrastLight ? dark : light, hexCode)
+    contrastRatio: computeContrastRatio(contrastLight ? light : dark, hexCode)
   };
 }

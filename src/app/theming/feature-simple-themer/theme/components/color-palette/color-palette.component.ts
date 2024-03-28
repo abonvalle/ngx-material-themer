@@ -144,7 +144,7 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
     event.stopPropagation();
     const colorChange = this._colorPickerService
       .openColorPicker(this.mainColorTile().hexCode, { x: event.x, y: event.y })
-      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(20))
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(3))
       .subscribe({
         next: (value) => {
           this.setMainColor(value);

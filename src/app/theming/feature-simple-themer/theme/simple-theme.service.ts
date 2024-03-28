@@ -1,4 +1,5 @@
 import { Injectable, Signal, computed, signal } from '@angular/core';
+import { computeColor } from '../util-colors';
 import { Color } from './model';
 import { SimpleThemeConstants } from './simple-theme.constants';
 
@@ -52,9 +53,11 @@ export class SimpleThemeService {
   }
   set fontLight(fontLight: string) {
     this._fontLight.set(fontLight);
+    this.refreshContrast();
   }
   set fontDark(fontDark: string) {
     this._fontDark.set(fontDark);
+    this.refreshContrast();
   }
   set density(density: number) {
     this._density.set(density);
@@ -63,4 +66,17 @@ export class SimpleThemeService {
     this._automaticContrast.set(automaticContrast);
   }
   constructor(private _simpleThemeConstants: SimpleThemeConstants) {}
+  refreshContrast() {
+    const light = this.fontLight();
+    const dark = this.fontDark();
+    this._primaryPal.update((pal) =>
+      pal.map((color) => (color.hexCode ? computeColor(color.hexCode, color.name, color.marks, light, dark) : color))
+    );
+    this._accentPal.update((pal) =>
+      pal.map((color) => (color.hexCode ? computeColor(color.hexCode, color.name, color.marks, light, dark) : color))
+    );
+    this._warnPal.update((pal) =>
+      pal.map((color) => (color.hexCode ? computeColor(color.hexCode, color.name, color.marks, light, dark) : color))
+    );
+  }
 }

@@ -1,6 +1,6 @@
 <div class="flex h-full flex-col overflow-hidden">
-  <div class="flex-1 overflow-auto p-8">
-    <div class="flex flex-col justify-center gap-8">
+  <div class="flex-1 overflow-auto">
+    <div class="flex flex-col justify-center gap-8 p-8">
       <div>
         <h1 class="mat-headline-4 !mb-1 whitespace-nowrap">
           ngx Material Themer <span class="text-base">v{{ appVersion }}</span>
@@ -24,8 +24,65 @@
           Give it a star on Github!
         </a> -->
       </div>
-      <app-simple-themer></app-simple-themer>
+      <div class="flex items-center justify-start gap-2">
+        <div class="flex flex-col items-start justify-center gap-3">
+          <div class="flex items-center">
+            <mat-icon class="mat-icon mr-1">help_outline</mat-icon>
+            Hide help tooltips
+          </div>
+        </div>
+        <div class="flex flex-col items-center justify-center gap-3">
+          <mat-slide-toggle
+            class="mx-2"
+            [checked]="hideHelpTooltips()"
+            (change)="updateHideHelpTooltips()"
+            labelPosition="before">
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="flex flex-col justify-center">
+        <h5 class="mat-typography">Use preset themes :</h5>
+        <!-- <mat-chip-listbox
+          aria-label="Preset theme selection"
+          class="mb-4"
+          (change)="selectPresetTheme($event)"
+          [value]="currentTheme().value">
+          @for (theme of themes; track theme.value) {
+            <mat-chip-option [value]="theme.value">{{ theme.label }}</mat-chip-option>
+          }
+        </mat-chip-listbox> -->
+        <div>
+          @for (theme of themes; track theme.value) {
+            <button mat-stroked-button class="m-2" (click)="selectPresetTheme(theme)">
+              <div class="flex items-center justify-center gap-1">
+                <div>
+                  <div
+                    [ngStyle]="{
+                      'border-left-color': theme.firstColor,
+                      'border-bottom-color': theme.firstColor,
+                      'border-top-color': theme.secondColor,
+                      'border-right-color': theme.secondColor
+                    }"
+                    class="h-0 w-0 items-center justify-center rounded-sm border-8 shadow-sm"></div>
+                </div>
+                <span class="ml-1">
+                  {{ theme.label }}
+                </span>
+              </div>
+            </button>
+          }
+        </div>
+      </div>
+      <mat-divider></mat-divider>
     </div>
+    <mat-tab-group>
+      <mat-tab label="Basic">
+        <div class="p-8"><app-simple-themer [currentTheme]="currentTheme()"></app-simple-themer></div>
+      </mat-tab>
+      <mat-tab label="Advanced">
+        <div class="p-8"><app-simple-themer [currentTheme]="currentTheme()"></app-simple-themer></div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
   <mat-divider></mat-divider>
   <div class="flex min-h-[100px] flex-col items-center justify-center p-8">

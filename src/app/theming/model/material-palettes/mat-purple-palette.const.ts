@@ -1,5 +1,5 @@
-import { marks } from '../marks.enum';
-import { MatColor } from '../mat-color.interface';
+import { marks } from '../../feature-simple-themer/theme/model/marks.enum';
+import { MatColor } from '../../feature-simple-themer/theme/model/mat-color.interface';
 
 export const matPurplePalette: MatColor[] = [
   { name: '050', hexCode: '#f3e5f5', marks: [] },

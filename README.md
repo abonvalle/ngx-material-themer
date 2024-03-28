@@ -30,6 +30,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Roadmap
 
+- Fix marks
+
 - Make density work dynamicly in preview panel by overriding components vars
 
 - Clean up & use tests to facilitate open source support

@@ -1,4 +1,4 @@
-import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -43,7 +43,6 @@ import { ColorPaletteService } from './color-palette.service';
     HelpTooltipComponent,
     MatChipsModule,
     CdkDropList,
-    CdkDrag,
     ColorTileComponent,
     MatExpansionModule,
     MatMenuModule,
@@ -78,7 +77,6 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
   colorsPreview = signal(
     this.palette?.filter((color) => color.hexCode !== null).map((color) => color.hexCode as string)
   );
-  // automaticShades = this._colorPaletteService.automaticShades;
   mainColorTile = this._colorPaletteService.mainColorTile;
   destroyRef = inject(DestroyRef);
   constructor(
@@ -125,21 +123,8 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
     const hueTarget = (<HTMLElement>event.event?.target)?.dataset['hue'] as string; //?.getAttribute('data-hue');
     const mark = event.item.element.nativeElement?.dataset['mark'] as marks;
     this._colorPaletteService.updateMark(mark, hueTarget);
-    // this.hueKeys.update((hueKeys) => {
-    //   const oldHue = hueKeys.find((hueKey) => hueKey.marks.includes(mark));
-    //   const newHue = hueKeys.find((hueKey) => hueKey.name === hueTarget);
-    //   if (!newHue || !oldHue) {
-    //     return hueKeys;
-    //   }
-    //   oldHue.marks = oldHue.marks.filter((hueKeyMark) => hueKeyMark !== mark);
-    //   newHue.marks = [...newHue.marks, mark];
-    //   return hueKeys;
-    // });
   }
 
-  // updateAutomaticShades(event: MatCheckboxChange) {
-  //   this._colorPaletteService.updateAutomaticShades(event);
-  // }
   openColorPicker(event: MouseEvent) {
     event.stopPropagation();
     const colorChange = this._colorPickerService
@@ -159,18 +144,14 @@ export class ColorPaletteComponent implements OnInit, OnChanges {
       });
   }
   setMainColor(color: string | null) {
-    // this._colorPaletteService.updateColor(color, this.mainColorTile());
     const colors = createPalette(color ?? '', this.fontLight, this.fontDark);
     this.paletteChange.emit(colors);
     this._cdrRef.markForCheck();
   }
   setPalette(palette: MatColor[] | null) {
-    // this._colorPaletteService.updatePalette(palette);
-    // const newPalette = palette ?? emptyPalette;
     const newPal = palette?.map((color) =>
       computeColor(color.hexCode, color.name, color.marks, this.fontLight, this.fontDark)
     );
-    // console.log('updatePalette', test);
 
     this.paletteChange.emit(newPal ?? emptyPalette);
     this._cdrRef.markForCheck();

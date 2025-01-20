@@ -6,8 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { ThemesService } from '../../shared/services/themes.service';
-import { ColorBrickComponent } from './theme/components/color-brick/color-brick.component';
-import { ColorPaletteComponent } from './theme/components/color-palette/color-palette.component';
 
 import { PresetTheme } from '../model/preset-theme.interface';
 import { Color } from './theme/model';
@@ -16,15 +14,7 @@ import { computeColor } from './util-colors';
 @Component({
   selector: 'app-simple-themer',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    ColorBrickComponent,
-    ColorPaletteComponent,
-    MatDividerModule,
-    SimpleThemeComponent
-  ],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatDividerModule, SimpleThemeComponent],
   templateUrl: './simple-themer.component.html',
   styleUrl: './simple-themer.component.scss'
 })

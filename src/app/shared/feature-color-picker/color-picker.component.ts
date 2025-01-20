@@ -54,6 +54,5 @@ export class ColorPickerComponent {
   setToggle(toggle: boolean) {
     this._colorPickerService.toggle = toggle;
     !toggle && this._colorPickerService.closeColorPicker(toggle);
-    // this._cdrRef.markForCheck();
   }
 }

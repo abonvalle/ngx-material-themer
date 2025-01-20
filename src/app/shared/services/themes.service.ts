@@ -10,29 +10,7 @@ import { SimpleThemeComponent } from '../../theming/feature-simple-themer/theme/
 export class ThemesService {
   darkMode: WritableSignal<boolean> = signal(false);
   themes: WritableSignal<SimpleThemeComponent[]> = signal([]);
-  constructor() {
-    // effect(
-    //   () => {
-    //     // console.warn('change in themes');
-    //     this.updateThemes(this.themes());
-    //   },
-    //   { allowSignalWrites: true }
-    // );
-  }
-
-  updateThemes(themes: SimpleThemeComponent[]) {
-    // this.themes.set(themes);
-    // themes.forEach((themeC) => {
-    // this.applyTheme(themeC);
-    // });
-    // colors.forEach((color) => {
-    // document.documentElement.style.setProperty(`--theme-${theme}-${color.name}`, color.hex);
-    // document.documentElement.style.setProperty(
-    // `--theme-${theme}-contrast-${color.name}`,
-    // color.darkContrast ? 'rgba(black, 0.87)' : 'white'
-    // );
-    // });
-  }
+  constructor() {}
 
   setTheme(theme: SimpleThemeComponent) {
     this.themes.set([theme]);
@@ -47,7 +25,6 @@ export class ThemesService {
       // console.warn('applyTheme accent', theme.accentPal);
       // console.warn('applyTheme warn', theme.warnPal);
       elementRef.nativeElement.style.setProperty(`--theme-density`, theme.density().toFixed(0));
-      // this.darkMode.set(theme.isDarkTheme());
       elementRef.nativeElement.classList.toggle('dark', theme.isDarkTheme());
       this.applyPalette(elementRef, 'primary', theme.primaryPal(), fonts);
       this.applyPalette(elementRef, 'accent', theme.accentPal(), fonts);
@@ -100,7 +77,7 @@ export class ThemesService {
     $mat-theme-accent-palette: mat.define-palette($accent-palette,${this.getMarkedHue(theme.accentPal())});
     $mat-theme-warn-palette: mat.define-palette($warn-palette,${this.getMarkedHue(theme.warnPal())});
     $mat-typography: mat.define-typography-config();
-    $my-custom-app-theme: mat.define-${theme.dark ? 'dark' : 'light'}-theme(
+    $my-custom-app-theme: mat.define-${theme.isDarkTheme() ? 'dark' : 'light'}-theme(
       (
         color: (
           primary: $mat-theme-primary-palette,

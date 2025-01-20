@@ -98,10 +98,6 @@ export class ThemingComponent {
   }
   selectPresetTheme(theme: any) {
     console.log('selectPresetTheme', theme.buttonColor);
-    // const th = this.themes.find((theme) => theme.value === event.value);
-    // if (th) {
     this.currentTheme.set(theme);
-    // }
-    // console.log('selectPresetTheme', event.value);
   }
 }

@@ -69,10 +69,12 @@ export class PreviewService {
     .map((component) => [component.label, ...(component.additionnalLabels || [])])
     .flat();
   constructor() {}
+
   filterOpts(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.autoCompleteOptions.filter((option) => option.toLowerCase().includes(filterValue));
   }
+
   sortComponentsOnInput(c: PreviewComponent[], value: string) {
     const filteredComponents = this.components.filter(
       (component) =>
@@ -97,6 +99,7 @@ export class PreviewService {
       }
     });
   }
+
   sortComponentsOnSelect(c: PreviewComponent[], value: string) {
     c = c.sort((a, b) => {
       if (a.label === value || a.additionnalLabels?.includes(value)) {

@@ -1,50 +1,73 @@
-# ngMaterialThemer for v17.1
+# ngx Material Themer
 
-This is a simple Angular Material theme generator. It's a POC for now, but the goal is to be able to fully customize your theme with ease, and to understand every step of the customization process in order to embrace the Angular Material philosophy.
+#### This project is now considered archived, as the theming of Angular Material 18 caused a lot of change by implementing the Material 3 specifications.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+This project is an Angular application that helps create and apply custom themes with live preview using Angular Material.
 
-## Development server
+The project was created with Angular 17.1 and may not work for other versions.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Getting Started
 
-## Code scaffolding
+### Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Node.js and npm installed
+- Angular CLI installed
 
-## Build
+### Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository:
 
-## Running unit tests
+```bash
+git clone https://github.com/abonvalle/ngx-material-themer.git
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Navigate to the project directory:
 
-## Running end-to-end tests
+```bash
+cd ngx-material-themer
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Install the dependencies:
 
-## Further help
+```bash
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Running the Application
 
-## Roadmap
+To start the development server, run:
 
-- Fix marks
+```bash
+ng serve
+```
 
-- Make density work dynamicly in preview panel by overriding components vars
+Navigate to `http://localhost:4200/` in your browser to see the application.
 
-- Clean up & use tests to facilitate open source support
+### Building the Application
 
-- Advanced customization based on components (and their variables) rather than palettes
+To build the application for production, run:
 
-- Add a list of Material components to check/uncheck depending on whether they are used in the application to optimize theming and builds.
+```bash
+ng build
+```
 
-- Add a tutorial/cheatsheet or lexical tab to explain how each Material component uses palettes
+The build artifacts will be stored in the `dist/` directory.
 
-- Improve the preview panel :
+## Usage
 
-  - Add an error input in the preview panel
-  - Expansion panel with main components for quick visualization
+### Creating a Custom Theme
 
-- State handling in url (for sharing, saving purposes)
+You can create a custom theme with the user interface and see the theme update live. Then you can download or copy the theme as a scss string and paste it in your projects.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- [Angular](https://angular.io/)
+- [Angular Material](https://material.angular.io/)
